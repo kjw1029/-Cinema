@@ -1,11 +1,15 @@
-import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.SpringLayout;
 import javax.swing.border.EmptyBorder;
 
 public class Store extends JFrame {
@@ -55,19 +59,76 @@ public class Store extends JFrame {
 		menu.add(beverage);
 		menu.add(beverage2);
 		menu.add(beverage3);
-		
+
 		giftCardList.add(movies);
 		giftCardList.add(movies2);
 		giftCardList.add(movies4D);
 		giftCardList.add(rechargeableCard);
 	}
+
 	public void GUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 600, 600);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
-	}
+		SpringLayout sl_contentPane = new SpringLayout();
+		contentPane.setLayout(sl_contentPane);
 
+		JPanel cards = new JPanel(new CardLayout());
+
+		JPanel panel = new JPanel();
+		sl_contentPane.putConstraint(SpringLayout.NORTH, panel, 10, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.WEST, panel, 10, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.SOUTH, panel, 56, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, panel, -36, SpringLayout.EAST, contentPane);
+		contentPane.add(panel);
+		SpringLayout sl_panel = new SpringLayout();
+		panel.setLayout(sl_panel);
+
+		JButton giftcard = new JButton("기프트카드");
+		giftcard.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CardLayout cardLayout = (CardLayout) cards.getLayout();
+				cardLayout.show(cards, "기프트카드");
+			}
+		});
+		sl_panel.putConstraint(SpringLayout.NORTH, giftcard, 0, SpringLayout.NORTH, panel);
+		sl_panel.putConstraint(SpringLayout.WEST, giftcard, 10, SpringLayout.WEST, panel);
+		sl_panel.putConstraint(SpringLayout.SOUTH, giftcard, -9, SpringLayout.SOUTH, panel);
+		sl_panel.putConstraint(SpringLayout.EAST, giftcard, 160, SpringLayout.WEST, panel);
+		panel.add(giftcard);
+
+		JButton popcon = new JButton("팝콘");
+		popcon.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CardLayout cardLayout = (CardLayout) cards.getLayout();
+				cardLayout.show(cards, "팝콘");
+			}
+		});
+		sl_panel.putConstraint(SpringLayout.NORTH, popcon, 0, SpringLayout.NORTH, giftcard);
+		sl_panel.putConstraint(SpringLayout.WEST, popcon, 5, SpringLayout.EAST, giftcard);
+		sl_panel.putConstraint(SpringLayout.SOUTH, popcon, 0, SpringLayout.SOUTH, giftcard);
+		sl_panel.putConstraint(SpringLayout.EAST, popcon, 164, SpringLayout.EAST, giftcard);
+		panel.add(popcon);
+
+		JButton beverage = new JButton("음료");
+		beverage.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CardLayout cardLayout = (CardLayout) cards.getLayout();
+				cardLayout.show(cards, "음료");
+			}
+		});
+		sl_panel.putConstraint(SpringLayout.NORTH, beverage, 0, SpringLayout.NORTH, giftcard);
+		sl_panel.putConstraint(SpringLayout.WEST, beverage, 6, SpringLayout.EAST, popcon);
+		sl_panel.putConstraint(SpringLayout.SOUTH, beverage, -1, SpringLayout.SOUTH, giftcard);
+		sl_panel.putConstraint(SpringLayout.EAST, beverage, -33, SpringLayout.EAST, panel);
+		panel.add(beverage);
+
+		cards.add(giftcard, "기프트카드");
+		cards.add(popcon, "팝콘");
+		cards.add(beverage, "음료");
+		
+		contentPane.add(cards);
+	}
 }
