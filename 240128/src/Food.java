@@ -33,6 +33,7 @@ public class Food {
 //		Customer.setFood(food);
 //	}
 	// 사이즈 업
+	
 	public void sizeUp(Food food) {
 		if (!(food.name.equals("핫도그"))) {
 			food.setSize("L");
@@ -100,4 +101,9 @@ public class Food {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return "[" + name + "] "+ price+"원 " + "사이즈 "+ size;
+	}
+	
 }
