@@ -13,6 +13,9 @@ public class SignUp {
 	private String age;
 	private String phoneNum;
 
+	Map<String, SignUp> customerInfo = new HashMap<String, SignUp>();
+	List<SignUp> signUpList = new ArrayList<SignUp>();
+	Scanner scan = new Scanner(System.in);
 	public SignUp(String iD, String password, String gender, String age, String phoneNum) {
 		super();
 		ID = iD;
@@ -76,12 +79,11 @@ public class SignUp {
 		return "SingUp [ID=" + ID + ", password=" + password + ", gender=" + gender + ", age=" + age + ", phoneNum="
 				+ phoneNum + "]";
 	}
+	
 
-	public static void main(String[] args) {
-		Map<String, SignUp> CustomerInfo = new HashMap<String, SignUp>();
-		List<SignUp> signUpList = new ArrayList<SignUp>();
+//	public static void main(String[] args) {
+	public void sign() {
 
-		Scanner scan = new Scanner(System.in);
 		for (int i = 0; i < 3; i++) {
 			System.out.println("아이디");
 			String iD = scan.nextLine();
@@ -95,12 +97,15 @@ public class SignUp {
 			String phoneNum = scan.nextLine();
 			SignUp s = new SignUp(iD, password, gender, age, phoneNum);
 
-			CustomerInfo.put(s.getID(), s);
-			System.out.println(CustomerInfo.get(s.getID()));
-
-			signUpList.add(s);
+			if (!customerInfo.containsKey(s.getID())) {
+				customerInfo.put(s.getID(), s);
+				signUpList.add(s);
+				System.out.println(s.getID());
+			} else {
+				System.out.println("중복");
+			}
+			System.out.println(signUpList.toString());
 		}
-		System.out.println(signUpList.toString());
-
 	}
+
 }
