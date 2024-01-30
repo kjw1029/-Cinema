@@ -1,11 +1,11 @@
-public class GifrCard {
+public class GiftCard {
 	private String name; // 카드 이름
 	private int price; // 가격
 	private String expirationPeriod; // 만료기간
 	private String availableStores; // 이용가능한 지점
 	// 생성
 
-	public GifrCard(String name, int price, String expirationPeriod, String availableStores) {
+	public GiftCard(String name, int price, String expirationPeriod, String availableStores) {
 		super();
 		this.name = name;
 		this.price = price;
@@ -14,18 +14,18 @@ public class GifrCard {
 	}
 
 	// 구매
-	public static GifrCard GifrCardPurchase(String name) {
-		for (GifrCard g : Store.giftCardList) {
+	public static GiftCard GifrCardPurchase(String name) {
+		for (GiftCard g : Store.giftCardList) {
 			if (g.equals(name)) {
-				return new GifrCard(g.name, g.price, g.expirationPeriod, g.availableStores);
+				return new GiftCard(g.name, g.price, g.expirationPeriod, g.availableStores);
 			}
 		}
 		return null;
 	}
 
 	// 충전
-	public static void rechargeableCard(GifrCard rechargeableCard, int charge) {
-		for (GifrCard g : Store.giftCardList) {
+	public static void rechargeableCard(GiftCard rechargeableCard, int charge) {
+		for (GiftCard g : Store.giftCardList) {
 			if (g.name.equals(rechargeableCard.name)) {
 				if (charge > 0) {
 					rechargeableCard.setPrice(charge);
@@ -87,7 +87,7 @@ public class GifrCard {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		GifrCard other = (GifrCard) obj;
+		GiftCard other = (GiftCard) obj;
 		if (availableStores == null) {
 			if (other.availableStores != null)
 				return false;

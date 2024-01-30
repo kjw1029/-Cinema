@@ -21,7 +21,7 @@ import javax.swing.border.EmptyBorder;
 public class Store extends JFrame {
 	private JPanel contentPane;
 	private Food food;
-	private GifrCard giftCard;
+	private GiftCard giftCard;
 	private Food popcorn = new Food(5000, "고소", "M");
 	private Food popcorn2 = new Food(6000, "달콤", "M");
 	private Food popcorn3 = new Food(7000, "치즈", "M");
@@ -30,11 +30,11 @@ public class Store extends JFrame {
 	private Food beverage2 = new Food(3000, "커피", "M");
 	private Food beverage3 = new Food(3000, "에이드", "M");
 	protected static List<Food> menu = new ArrayList<Food>(); // 음식 리스트
-	private GifrCard movies = new GifrCard("영화 관람권", 13000, "2024.12.31", "해운대");
-	private GifrCard movies2 = new GifrCard("영화 관람권", 40000, "2024.12.31", "해운대");
-	private GifrCard movies4D = new GifrCard("4D 관람권", 19000, "2024.12.31", "해운대");
-	private GifrCard rechargeableCard = new GifrCard("충전형 영화 관람권", 50000, "2025.12.31", "서면");
-	protected static List<GifrCard> giftCardList = new ArrayList(); // 기프트카드리스트
+	private GiftCard movies = new GiftCard("영화 관람권", 13000, "2024.12.31", "해운대");
+	private GiftCard movies2 = new GiftCard("영화 관람권", 40000, "2024.12.31", "해운대");
+	private GiftCard movies4D = new GiftCard("4D 관람권", 19000, "2024.12.31", "해운대");
+	private GiftCard rechargeableCard = new GiftCard("충전형 영화 관람권", 50000, "2025.12.31", "서면");
+	protected static List<GiftCard> giftCardList = new ArrayList(); // 기프트카드리스트
 	private static Map<JButton, Integer> count = new HashMap<>(); // 구매목록 장바구니에서 카운트
 	private JTextArea textArea;
 	private JButton btnSavoryPopcorn;
@@ -311,10 +311,10 @@ public class Store extends JFrame {
 		sl_panel.putConstraint(SpringLayout.EAST, lblNewLabel, -304, SpringLayout.EAST, shoppingBasket);
 		shoppingBasket.add(lblNewLabel);
 
-		
 	}
 
 	// 텍스트 재등록하는 메소드
+	// 기프트카드 영화티켓 들어올시 상당히 지저분해질 가능성 높음 
 	private void updateTextArea() {
 		textArea.setText(""); // 기존 내용을 모두 지우고
 
@@ -330,9 +330,11 @@ public class Store extends JFrame {
 			}
 		}
 	}
-
+	
 	// 구매한 음식 카운트 해주는 메소드
 	// 금액 추가
+	// 버튼 생성 후 기프트카드 예정
+	// 영화티켓 구매시도 생각해봐야함 충돌 가능성 있음
 	private void listener(JButton btn) {
 		btn.addActionListener(new ActionListener() {
 			@Override
@@ -348,5 +350,4 @@ public class Store extends JFrame {
 			}
 		});
 	}
-//	private void 
 }
