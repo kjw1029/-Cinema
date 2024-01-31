@@ -5,17 +5,21 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Scanner;
 import java.util.TreeMap;
+import java.util.regex.Pattern;
 
-public class SignUp {
+import javax.swing.JPanel;
+
+public class SignUp extends JPanel {
 	private String ID;
 	private String password;
 	private String gender;
 	private String age;
 	private String phoneNum;
 
-	Map<String, SignUp> customerInfo = new HashMap<String, SignUp>();
-	List<SignUp> signUpList = new ArrayList<SignUp>();
-	Scanner scan = new Scanner(System.in);
+//	HashMap<String, SignUp> customerInfo = new HashMap<String, SignUp>();
+//	List<SignUp> signUpList = new ArrayList<SignUp>();
+//	Scanner scan = new Scanner(System.in);
+	
 	public SignUp(String iD, String password, String gender, String age, String phoneNum) {
 		super();
 		ID = iD;
@@ -24,6 +28,10 @@ public class SignUp {
 		this.age = age;
 		this.phoneNum = phoneNum;
 	}
+
+	public SignUp() {
+	super();
+}
 
 	public String getID() {
 		return ID;
@@ -81,14 +89,30 @@ public class SignUp {
 	}
 	
 
-//	public static void main(String[] args) {
-	public void sign() {
+	public static void main(String[] args) {
+		HashMap<String, SignUp> customerInfo = new HashMap<String, SignUp>();
+		List<SignUp> signUpList = new ArrayList<SignUp>();
+		Scanner scan = new Scanner(System.in);
+//	public void sign() {
 
 		for (int i = 0; i < 3; i++) {
 			System.out.println("아이디");
 			String iD = scan.nextLine();
+			
+			 if (!checkID(iD)) {
+	                System.out.println("유효하지 않은 아이디 형식입니다.");
+	                continue;
+	            }
+			
 			System.out.println("비번");
 			String password = scan.nextLine();
+			
+            if (!checkPassword(password)) {
+                System.out.println("유효하지 않은 비밀번호 형식입니다.");
+                continue;
+            }
+			
+			
 			System.out.println("성별");
 			String gender = scan.nextLine();
 			System.out.println("나이");
@@ -107,5 +131,18 @@ public class SignUp {
 			System.out.println(signUpList.toString());
 		}
 	}
+	
+	
+	// 아이디: 영문자로 시작하며 영문자와 숫자를 조합하여 4자 이상
+    private static boolean checkID(String id) {
+        String idRegex = "^[a-zA-Z][a-zA-Z0-9]{3,}$";
+        return Pattern.matches(idRegex, id);
+    }
+
+    // 비밀번호: 대소문자, 숫자, 특수문자를 조합하여 8자 이상
+    private static boolean checkPassword(String password) {
+        String passwordRegex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$";
+        return Pattern.matches(passwordRegex, password);
+    }
 
 }

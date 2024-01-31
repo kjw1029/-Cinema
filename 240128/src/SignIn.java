@@ -1,8 +1,12 @@
+import javax.swing.JPanel;
 
-public class SignIn {
-	private static SignUp signUp;
-	public static void main(String[] args) {
-		SignUp s = new SignUp("s", "s", "s", "s", "s");
-		s.sign();
-	}
+public class SignIn extends JPanel {
+//	private SignUp signUp;
+	MovieProgram m = new MovieProgram();
+
+//	public SignIn(String id, String password) {
+		
+//	}
+	
+	
 }
