@@ -1,20 +1,22 @@
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.EventQueue;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.Set;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
 import javax.swing.SpringLayout;
 import javax.swing.border.EmptyBorder;
 
@@ -36,7 +38,6 @@ public class Store extends JFrame {
 	private GiftCard rechargeableCard = new GiftCard("충전형 영화 관람권", 50000, "2025.12.31", "서면");
 	protected static List<GiftCard> giftCardList = new ArrayList(); // 기프트카드리스트
 	private static Map<JButton, Integer> count = new HashMap<>(); // 구매목록 장바구니에서 카운트
-	private JTextArea textArea;
 	private JButton btnSavoryPopcorn;
 	private JButton btnSweetPopcorn;
 	private JButton btnCheesePopcorn;
@@ -46,6 +47,12 @@ public class Store extends JFrame {
 	private JButton btnAde;
 	private static int amount;
 	private JLabel lblNewLabel;
+	private Map<Integer, JLabel> shoppingBasketJLabel = new HashMap<>();
+	private Map<Integer, JButton> shoppingBasketJButton = new HashMap<>();
+	private Map<Integer, JPanel> shoppingBasketJPanel = new HashMap<>();
+	private Set<String> createdItems = new HashSet<>(); // 테스트
+	private int i;
+	private JPanel shoppingBasket;
 
 	/**
 	 * Launch the application.
@@ -285,52 +292,114 @@ public class Store extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				cardLayout.show(cards, "장바구니");
+				addJLableMap(shoppingBasket);
 			}
 		});
-
 		// 장바구니 패널
-		JPanel shoppingBasket = new JPanel();
+		shoppingBasket = new JPanel();
 		cards.add(shoppingBasket, "장바구니");
 		SpringLayout sl_panel = new SpringLayout();
-		shoppingBasket.setLayout(sl_panel);
-
-		// 장바구니 출력 텍스트
-		textArea = new JTextArea();
-		sl_panel.putConstraint(SpringLayout.NORTH, textArea, 10, SpringLayout.NORTH, shoppingBasket);
-		sl_panel.putConstraint(SpringLayout.WEST, textArea, 10, SpringLayout.WEST, shoppingBasket);
-		sl_panel.putConstraint(SpringLayout.SOUTH, textArea, 313, SpringLayout.NORTH, shoppingBasket);
-		sl_panel.putConstraint(SpringLayout.EAST, textArea, 284, SpringLayout.WEST, shoppingBasket);
-		sl_contentPane.putConstraint(SpringLayout.EAST, btnshoppingBasket, -32, SpringLayout.EAST, contentPane);
-		shoppingBasket.add(textArea);
-		textArea.setEditable(false);
+		shoppingBasket.setLayout(new FlowLayout());
+//		shoppingBasket.setLayout(sl_panel);
+//		sl_contentPane.putConstraint(SpringLayout.EAST, btnshoppingBasket, -32, SpringLayout.EAST, contentPane);
 		// 총금액
 		lblNewLabel = new JLabel("총 금액");
-		sl_panel.putConstraint(SpringLayout.NORTH, lblNewLabel, 43, SpringLayout.SOUTH, textArea);
+		sl_panel.putConstraint(SpringLayout.NORTH, lblNewLabel, 356, SpringLayout.NORTH, shoppingBasket);
 		sl_panel.putConstraint(SpringLayout.WEST, lblNewLabel, 10, SpringLayout.WEST, shoppingBasket);
 		sl_panel.putConstraint(SpringLayout.SOUTH, lblNewLabel, -62, SpringLayout.SOUTH, shoppingBasket);
 		sl_panel.putConstraint(SpringLayout.EAST, lblNewLabel, -304, SpringLayout.EAST, shoppingBasket);
+
 		shoppingBasket.add(lblNewLabel);
 
 	}
 
 	// 텍스트 재등록하는 메소드
-	// 기프트카드 영화티켓 들어올시 상당히 지저분해질 가능성 높음 
-	private void updateTextArea() {
-		textArea.setText(""); // 기존 내용을 모두 지우고
+	// 기프트카드 영화티켓 들어올시 상당히 지저분해질 가능성 높음
+//	private void updateTextArea() {
+//		textArea.setText(""); // 기존 내용을 모두 지우고
+//
+//		for (Map.Entry<JButton, Integer> entry : Store.count.entrySet()) {
+//			JButton button = entry.getKey();
+//			Integer count = entry.getValue();
+//			if (count > 0) {
+//				for (Food f : menu) {
+//					if (f.getName().equals(button.getText())) {
+//						textArea.append(f.toString() + ": " + count + "개\n"); // 새로운 정보 추가
+//					}
+//				}
+//			}
+//		}
+//	}
 
-		for (Map.Entry<JButton, Integer> entry : Store.count.entrySet()) {
-			JButton button = entry.getKey();
-			Integer count = entry.getValue();
-			if (count > 0) {
-				for (Food f : menu) {
-					if (f.getName().equals(button.getText())) {
-						textArea.append(f.toString() + ": " + count + "개\n"); // 새로운 정보 추가
-					}
-				}
-			}
-		}
+	// 최초 생성
+//	private void addJLableMap(JPanel jpanel) {
+////		if(장바구니 버튼 클릭시) {
+//		// 최초의 라벨 버튼 생성과정 (삭제 고려필요)
+//		for (Map.Entry<JButton, Integer> entry : Store.count.entrySet()) {
+//			JButton button = entry.getKey();
+//			Integer count = entry.getValue();
+//			if (count == 1) {
+//				shoppingBasketJLabel.put(i, new JLabel());
+//				shoppingBasketJButton.put(i, new JButton("-"));
+//				shoppingBasketJPanel.put(i, new JPanel());
+//				shoppingBasketJPanel.get(i).add(shoppingBasketJLabel.get(i));
+//				shoppingBasketJPanel.get(i).add(shoppingBasketJButton.get(i));
+//				jpanel.add(shoppingBasketJPanel.get(i));
+//				i++;
+//			}
+//			if (count > 0) {
+//				for (Food f : menu) {
+//					if (f.getName().equals(button.getText())) {
+//						for (int j = 0; j < i; j++) {
+//							String foodName = f.getName();
+//							if (foodName.contains(shoppingBasketJLabel.get(j).getText())) {
+//								shoppingBasketJLabel.get(j).setText((f.toString() + ": " + count + "개\n"));
+//							}
+//						}
+//					}
+//				}
+//			}
+//		}
+//	}
+	private void addJLableMap(JPanel jpanel) {
+	    // 최초의 라벨 버튼 생성과정 (삭제 고려 필요)
+	    for (Map.Entry<JButton, Integer> entry : Store.count.entrySet()) {
+	        JButton button = entry.getKey();
+	        Integer count = entry.getValue();
+
+	        // 품목의 이름 가져오기
+	        String itemName = button.getText();
+
+	        // 해당 품목이 아직 생성되지 않았다면 라벨 생성
+	        if (!createdItems.contains(itemName) && count > 0) {
+	            shoppingBasketJLabel.put(i, new JLabel());
+	            shoppingBasketJButton.put(i, new JButton("-"));
+	            shoppingBasketJPanel.put(i, new JPanel());
+	            shoppingBasketJPanel.get(i).add(shoppingBasketJLabel.get(i));
+	            shoppingBasketJPanel.get(i).add(shoppingBasketJButton.get(i));
+	            jpanel.add(shoppingBasketJPanel.get(i));
+	            i++;
+
+	            // 생성된 품목을 집합에 추가
+	            createdItems.add(itemName);
+	        }
+
+	        // 품목이 이미 생성된 경우
+	        if (count > 0) {
+	            for (Food f : menu) {
+	                if (f.getName().equals(itemName)) {
+	                    for (int j = 0; j < i; j++) {
+	                        String foodName = f.getName();
+	                        if (foodName.contains(shoppingBasketJLabel.get(j).getText())) {
+	                            shoppingBasketJLabel.get(j).setText((f.toString() + ": " + count + "개\n"));
+	                        }
+	                    }
+	                }
+	            }
+	        }
+	    }
 	}
-	
+
 	// 구매한 음식 카운트 해주는 메소드
 	// 금액 추가
 	// 버튼 생성 후 기프트카드 예정
@@ -340,7 +409,6 @@ public class Store extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Store.count.put(btn, Store.count.get(btn) + 1); // 클릭수 올려주는 코드
-				updateTextArea();
 				for (int i = 0; i < menu.size(); i++) {
 					if (menu.get(i).getName().equals(btn.getText())) {
 						amount += menu.get(i).getPrice();
