@@ -2,6 +2,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
+
+import User.SignUp;
+import User.SignUpPanel;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.CardLayout;
@@ -31,6 +35,7 @@ public class MovieProgram {
 	private JButton btnNewButton_5;
 	private JButton btnNewButton_6;
 	private JButton btnNewButton_7;
+	private SignUp s;
 
     public MovieProgram() {
         frame = new JFrame("Panel Switch Example");
@@ -97,6 +102,21 @@ public class MovieProgram {
         btnNewButton_2 = new JButton("스토어");
         btnNewButton_2.setBounds(275, 10, 77, 23);
         panel.add(btnNewButton_2);
+        
+        JLabel lblNewLabel_3 = new JLabel("로그인 여부");
+        lblNewLabel_3.setBounds(85, 11, 203, 15);
+        
+        // 환영 메시지 출력
+        try {
+        	lblNewLabel_3.setText(s.getID() + "님 환영합니다.");
+		} catch (NullPointerException e) {
+			e.printStackTrace();
+		} finally {
+			lblNewLabel_3.setText("로그인 해주세요");
+		}
+
+        
+        panel1.add(lblNewLabel_3);
         btnNewButton_2.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		 cardLayout.show(frame.getContentPane(), "panel5");
@@ -205,7 +225,7 @@ public class MovieProgram {
     // 나의 메뉴
     private void createPanel7() {
 //        panel7 = new JPanel();
-    	panel7 = new SignUp();
+    	panel7 = new JPanel();
         panel7.setLayout(null);
         
         textField = new JTextField();
@@ -234,13 +254,25 @@ public class MovieProgram {
         	public void actionPerformed(ActionEvent e) {
         		String userId = textField.getText();
         		String userPassword = passwordField.getText();
-        		JPanel signIn = new SignUp();
+//        		SignUp s = new si
+//        		JPanel signIn = new SignUp();
         	}
         });
         btnNewButton_5.setBounds(313, 158, 97, 23);
         panel7.add(btnNewButton_5);
         
         btnNewButton_6 = new JButton("회원가입");
+        btnNewButton_6.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+//        		SignUpPanel s = new SignUpPanel();
+        		
+        		SignUpPanel p = new SignUpPanel(s);
+        		frame.getContentPane().add(p);
+        		 frame.getContentPane().add(p, "회원가입");
+        		cardLayout.show(frame.getContentPane(), "회원가입");
+        		
+        	}
+        });
         btnNewButton_6.setBounds(109, 228, 97, 23);
         panel7.add(btnNewButton_6);
         

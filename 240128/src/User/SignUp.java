@@ -1,3 +1,4 @@
+package User;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -7,9 +8,42 @@ import java.util.Scanner;
 import java.util.TreeMap;
 import java.util.regex.Pattern;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
-public class SignUp extends JPanel {
+//public class SignUpPanel extends JPanel {
+//	private JLabel lblId;
+//	private JTextField tfId;
+//	private JLabel lblpassword;
+//
+//	public SignUpPanel(SignUpPanel s) {
+//		lblId = new JLabel("아이디");
+//		tfId = new JTextField(10);
+//		lblpassword = new JLabel("비밀번호");
+//		
+//		add(lblId);
+//		add(lblpassword);
+//		
+//		setSignUp(s);
+//	}
+//
+//	private void setSignUp(SignUpPanel s) {
+//		setTfId(s.getID());
+//	}
+//
+//	private void setTfId(String id) {
+//		tfId.setText(id);
+//	}
+//	
+//}
+
+
+
+
+
+
+public class SignUp {
 	private String ID;
 	private String password;
 	private String gender;
@@ -89,58 +123,58 @@ public class SignUp extends JPanel {
 	}
 	
 
-	public static void main(String[] args) {
-		HashMap<String, SignUp> customerInfo = new HashMap<String, SignUp>();
-		List<SignUp> signUpList = new ArrayList<SignUp>();
-		Scanner scan = new Scanner(System.in);
-//	public void sign() {
-
-		for (int i = 0; i < 3; i++) {
-			System.out.println("아이디");
-			String iD = scan.nextLine();
-			
-			 if (!checkID(iD)) {
-	                System.out.println("유효하지 않은 아이디 형식입니다.");
-	                continue;
-	            }
-			
-			System.out.println("비번");
-			String password = scan.nextLine();
-			
-            if (!checkPassword(password)) {
-                System.out.println("유효하지 않은 비밀번호 형식입니다.");
-                continue;
-            }
-			
-			
-			System.out.println("성별");
-			String gender = scan.nextLine();
-			System.out.println("나이");
-			String age = scan.nextLine();
-			System.out.println("전화번호");
-			String phoneNum = scan.nextLine();
-			SignUp s = new SignUp(iD, password, gender, age, phoneNum);
-
-			if (!customerInfo.containsKey(s.getID())) {
-				customerInfo.put(s.getID(), s);
-				signUpList.add(s);
-				System.out.println(s.getID());
-			} else {
-				System.out.println("중복");
-			}
-			System.out.println(signUpList.toString());
-		}
-	}
+//	public static void main(String[] args) {
+//		HashMap<String, SignUp> customerInfo = new HashMap<String, SignUp>();
+//		List<SignUp> signUpList = new ArrayList<SignUp>();
+//		Scanner scan = new Scanner(System.in);
+////	public void sign() {
+//
+//		for (int i = 0; i < 3; i++) {
+//			System.out.println("아이디");
+//			String iD = scan.nextLine();
+//			
+//			 if (!checkID(iD)) {
+//	                System.out.println("유효하지 않은 아이디 형식입니다.");
+//	                continue;
+//	            }
+//			
+//			System.out.println("비번");
+//			String password = scan.nextLine();
+//			
+//            if (!checkPassword(password)) {
+//                System.out.println("유효하지 않은 비밀번호 형식입니다.");
+//                continue;
+//            }
+//			
+//			
+//			System.out.println("성별");
+//			String gender = scan.nextLine();
+//			System.out.println("나이");
+//			String age = scan.nextLine();
+//			System.out.println("전화번호");
+//			String phoneNum = scan.nextLine();
+//			SignUp s = new SignUp(iD, password, gender, age, phoneNum);
+//
+//			if (!customerInfo.containsKey(s.getID())) {
+//				customerInfo.put(s.getID(), s);
+//				signUpList.add(s);
+//				System.out.println(s.getID());
+//			} else {
+//				System.out.println("중복");
+//			}
+//			System.out.println(signUpList.toString());
+//		}
+//	}
 	
 	
 	// 아이디: 영문자로 시작하며 영문자와 숫자를 조합하여 4자 이상
-    private static boolean checkID(String id) {
+    public static boolean checkID(String id) {
         String idRegex = "^[a-zA-Z][a-zA-Z0-9]{3,}$";
         return Pattern.matches(idRegex, id);
     }
 
     // 비밀번호: 대소문자, 숫자, 특수문자를 조합하여 8자 이상
-    private static boolean checkPassword(String password) {
+    public static boolean checkPassword(String password) {
         String passwordRegex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$";
         return Pattern.matches(passwordRegex, password);
     }

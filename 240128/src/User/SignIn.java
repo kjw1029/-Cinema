@@ -1,4 +1,7 @@
+package User;
 import javax.swing.JPanel;
+
+import MovieProgram;
 
 public class SignIn extends JPanel {
 //	private SignUp signUp;
