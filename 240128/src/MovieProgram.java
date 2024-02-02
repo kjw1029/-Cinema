@@ -199,6 +199,7 @@ public class MovieProgram {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(frame.getContentPane(), "panel1");
+//                Store.
             }
         });
 

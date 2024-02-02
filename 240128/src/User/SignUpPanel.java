@@ -72,16 +72,16 @@ public class SignUpPanel extends JPanel {
 				if (!s.checkPassword((passwordField.getText() + e.getKeyChar()))) {
 					System.out.println("불가능");
 					lblNewLabel.setText("불가능");
-					revalidate();
-					repaint();
+//					revalidate();
+//					repaint();
 				} else {
 					System.out.println("가능");
 					lblNewLabel.setText("가능");
-					revalidate();
-					repaint();
+//					revalidate();
+//					repaint();
 				}
-				revalidate();
-				repaint();
+//				revalidate();
+//				repaint();
 				System.out.println("1");
 			}
 		});
