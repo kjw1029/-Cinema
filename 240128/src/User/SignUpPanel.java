@@ -8,9 +8,9 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.MaskFormatter;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonObject;
+//import com.google.gson.Gson;
+//import com.google.gson.GsonBuilder;
+//import com.google.gson.JsonObject;
 
 import javax.swing.JPasswordField;
 import javax.swing.ButtonGroup;
@@ -188,26 +188,24 @@ public class SignUpPanel extends JPanel {
 					ss.setAge("10");
 					ss.setGender(rdbtnNewRadioButton.getText());
 					System.out.println(ss.toString());
-					Gson gson = new GsonBuilder().setPrettyPrinting().create();
-					//출처: https://hianna.tistory.com/629#gson8 [어제 오늘 내일:티스토리]
+//					Gson gson = new GsonBuilder().setPrettyPrinting().create();
 					// 객체를 다시 JSON으로 직렬화
-					String updatedJsonString = gson.toJson(ss);
-					String id = ss.getID();
+//					String updatedJsonString = gson.toJson(ss);
+//					String id = ss.getID();
 					
-					JsonObject obj = new JsonObject();
-					obj.addProperty(id, updatedJsonString);
+//					JsonObject obj = new JsonObject();
+//					obj.addProperty(id, updatedJsonString);
 					// 출력
-					System.out.println("Updated JSON: " + updatedJsonString);
+//					System.out.println("Updated JSON: " + updatedJsonString);
 					
 					 // Json 문자열 -> Map       
-					Map<String, Object> map = gson.fromJson(updatedJsonString, Map.class);         
-					// Map 출력       
-					for (Map.Entry<String, Object> entry : map.entrySet()) {            
-						System.out.println(entry.getKey() + "=" + entry.getValue()); 
-						}
-					
-					System.out.println(obj.toString());
-					//출처: https://hianna.tistory.com/629#gson8 [어제 오늘 내일:티스토리]
+//					Map<String, Object> map = gson.fromJson(updatedJsonString, Map.class);         
+//					// Map 출력       
+//					for (Map.Entry<String, Object> entry : map.entrySet()) {            
+//						System.out.println(entry.getKey() + "=" + entry.getValue()); 
+//						}
+//					
+//					System.out.println(obj.toString());
 					
 
 				}
