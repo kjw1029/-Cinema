@@ -1,3 +1,4 @@
+
 public class GiftCard {
 	private String name; // 카드 이름
 	private int price; // 가격
@@ -15,7 +16,7 @@ public class GiftCard {
 
 	// 구매
 	public static GiftCard GifrCardPurchase(String name) {
-		for (GiftCard g : Store.giftCardList) {
+		for (GiftCard g : StoreMenu.giftCardList) {
 			if (g.equals(name)) {
 				return new GiftCard(g.name, g.price, g.expirationPeriod, g.availableStores);
 			}
@@ -25,7 +26,7 @@ public class GiftCard {
 
 	// 충전
 	public static void rechargeableCard(GiftCard rechargeableCard, int charge) {
-		for (GiftCard g : Store.giftCardList) {
+		for (GiftCard g : StoreMenu.giftCardList) {
 			if (g.name.equals(rechargeableCard.name)) {
 				if (charge > 0) {
 					rechargeableCard.setPrice(charge);

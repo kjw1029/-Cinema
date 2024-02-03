@@ -20,20 +20,16 @@ public class Food {
 
 	// 구매
 	public static Food foodPurchase(String name) {
-		for (Food f : Store.menu) {
+		for (Food f : StoreMenu.foodmenu) {
 			if (f.equals(name)) {
 				return new Food(f.price, f.name, f.size);
 			}
 		}
 		return null;
 	}
-
-	// 음식 변경
-//	public void foodChange(Food food) {
-//		Customer.setFood(food);
-//	}
-	// 사이즈 업
 	
+	
+	// 사이즈업
 	public void sizeUp(Food food) {
 		if (!(food.name.equals("핫도그"))) {
 			food.setSize("L");
