@@ -9,6 +9,7 @@ public class ShoppingBasket {
 	protected static List<String> totalPurchaseList = new ArrayList<String>();
 	protected static Map<Food, Integer> foodCount = new HashMap<>();
 	protected static Map<GiftCard, Integer> giftCount = new HashMap<>();
+	protected static List<String> totalPurchaseCountList = new ArrayList<String>();
 
 	// 음시 구매록목 추가
 	public static void addfoodPurchaseList(Food food) {
@@ -25,6 +26,7 @@ public class ShoppingBasket {
 		for (int i = 0; i < foodPurchaseList.size(); i++) {
 			if (foodPurchaseList.get(i).equals(food.getName())) {
 				foodPurchaseList.remove(i);
+				foodCount.put(food, foodCount.getOrDefault(food, 0) - 1);
 				break;
 			}
 		}
@@ -35,29 +37,41 @@ public class ShoppingBasket {
 		for (int i = 0; i < GiftCardPurchaseList.size(); i++) {
 			if (GiftCardPurchaseList.get(i).equals(giftcard.getName())) {
 				GiftCardPurchaseList.remove(i);
+				giftCount.put(giftcard, giftCount.getOrDefault(giftcard, 0) - 1);
 				break;
 			}
 		}
 	}
 
-	// 구매 리스트 하나로 합치기, 카운트
+	// 구매 리스트 하나로 합치기, 카운트 갱신
 	public static void makeTotalPurchaseList() {
 		countTotalPurchaseList();
 		for (Food f : foodPurchaseList) {
+			String totalCount = String.valueOf(foodCount.get(f));
 			if (!totalPurchaseList.contains(f.getName())) {
-				String totalCount = String.valueOf(foodCount.get(f));
-				totalPurchaseList.add(f.getName() +"             " + totalCount);
+				totalPurchaseList.add(f.getName());
+				totalPurchaseCountList.add(totalCount);
+			} else if (totalPurchaseList.contains(f.getName()) ){
+				int index = totalPurchaseList.indexOf(f.getName());
+				totalPurchaseCountList.set(index, totalCount);
+				
+				}
 			}
-		}
+		
 		for (GiftCard g : GiftCardPurchaseList) {
+			String totalCount = String.valueOf(giftCount.get(g));
 			if (!totalPurchaseList.contains(g.getName())) {
-				String totalCount = String.valueOf(giftCount.get(g));
-				totalPurchaseList.add(g.getName() +"             " + totalCount);
+				totalPurchaseList.add(g.getName());
+				totalPurchaseCountList.add(totalCount);
+			} else if (totalPurchaseList.contains(g.getName())) {
+				int index = totalPurchaseList.indexOf(g.getName());
+				totalPurchaseCountList.set(index, totalCount);
 			}
 		}
 
 	}
-	
+
+	// 카운트
 	public static void countTotalPurchaseList() {
 		for (Food f : foodPurchaseList) {
 			foodCount.put(f, foodCount.getOrDefault(f, 0) + 1);
@@ -66,7 +80,7 @@ public class ShoppingBasket {
 			giftCount.put(g, giftCount.getOrDefault(g, 0) + 1);
 		}
 	}
-	
+
 //	// 구매 리스트 카운트 추가...ㅠㅠ
 //	public static void addCountTotalPurchaseList() {
 //		for (int i = 0; i < totalPurchaseList.size(); i++) {
