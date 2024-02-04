@@ -4,7 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
@@ -14,40 +13,41 @@ import javax.swing.SpringLayout;
 import javax.swing.table.DefaultTableModel;
 
 public class StoreJPanel extends JPanel {
-	private JFrame test;
+	private JPanel test;
 	private CardLayout cardLayout;
 	private JPanel cards;
 	protected static JTable table;
 	protected static String[][] jTabledatas;
 
 	public StoreJPanel() {
-		test = new JFrame();
 		Store.Store();
-
-		test.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		test.setBounds(100, 100, 600, 600);
-		SpringLayout springLayout = new SpringLayout();
-		test.getContentPane().setLayout(springLayout);
+		test = new JPanel();
+//
+//		test.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		test.setBounds(100, 100, 600, 600);
+//		SpringLayout springLayout = new SpringLayout();
+//		test.setLayout(springLayout);
+		
 
 		JPanel panel = new JPanel();
-		springLayout.putConstraint(SpringLayout.NORTH, panel, -453, SpringLayout.SOUTH, test.getContentPane());
-		springLayout.putConstraint(SpringLayout.SOUTH, panel, -10, SpringLayout.SOUTH, test.getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, panel, 576, SpringLayout.WEST, test.getContentPane());
-		test.getContentPane().add(panel);
+//		springLayout.putConstraint(SpringLayout.NORTH, panel, -453, SpringLayout.SOUTH, test.getRootPane());
+//		springLayout.putConstraint(SpringLayout.SOUTH, panel, -10, SpringLayout.SOUTH, test.getRootPane());
+//		springLayout.putConstraint(SpringLayout.EAST, panel, 576, SpringLayout.WEST, test.getRootPane());
+		panel.setPreferredSize(new Dimension(600,600));
 
 		JMenuBar menuBar = new JMenuBar();
-		springLayout.putConstraint(SpringLayout.NORTH, menuBar, 30, SpringLayout.NORTH, test.getContentPane());
-		springLayout.putConstraint(SpringLayout.WEST, menuBar, 10, SpringLayout.WEST, test.getContentPane());
-		springLayout.putConstraint(SpringLayout.SOUTH, menuBar, -23, SpringLayout.NORTH, panel);
-		springLayout.putConstraint(SpringLayout.EAST, menuBar, -31, SpringLayout.EAST, test.getContentPane());
-		springLayout.putConstraint(SpringLayout.WEST, panel, 0, SpringLayout.WEST, menuBar);
+//		springLayout.putConstraint(SpringLayout.NORTH, menuBar, 30, SpringLayout.NORTH, test.getRootPane());
+//		springLayout.putConstraint(SpringLayout.WEST, menuBar, 10, SpringLayout.WEST, test.getRootPane());
+//		springLayout.putConstraint(SpringLayout.SOUTH, menuBar, -23, SpringLayout.NORTH, panel);
+//		springLayout.putConstraint(SpringLayout.EAST, menuBar, -31, SpringLayout.EAST, test.getRootPane());
+//		springLayout.putConstraint(SpringLayout.WEST, panel, 0, SpringLayout.WEST, menuBar);
 		SpringLayout sl_panel = new SpringLayout();
 		panel.setLayout(sl_panel);
 
 		cards = new JPanel();
-		sl_panel.putConstraint(SpringLayout.NORTH, cards, 0, SpringLayout.NORTH, panel);
+		sl_panel.putConstraint(SpringLayout.NORTH, cards, 147, SpringLayout.NORTH, panel);
 		sl_panel.putConstraint(SpringLayout.WEST, cards, 0, SpringLayout.WEST, panel);
-		sl_panel.putConstraint(SpringLayout.SOUTH, cards, 443, SpringLayout.NORTH, panel);
+		sl_panel.putConstraint(SpringLayout.SOUTH, cards, -10, SpringLayout.SOUTH, panel);
 		sl_panel.putConstraint(SpringLayout.EAST, cards, 566, SpringLayout.WEST, panel);
 		cardLayout = new CardLayout();
 		cards.setLayout(cardLayout);
@@ -211,14 +211,12 @@ public class StoreJPanel extends JPanel {
 		btnNewButton_8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// 최종 구매목록
-//				jTabledatas;
 				System.out.println("최종 구매 목록:");
 				for (int i = 0; i < ShoppingBasket.totalPurchaseList.size(); i++) {
 					String purchaseItem = ShoppingBasket.totalPurchaseList.get(i);
 					String purchaseCount = ShoppingBasket.totalPurchaseCountList.get(i);
 					System.out.println(purchaseItem + " - " + purchaseCount + "개");
 				}
-				System.out.println(ShoppingBasket.totalPurchaseCountList.get(1));
 			}
 		});
 		sl_shoppingBasket.putConstraint(SpringLayout.NORTH, btnNewButton_8, 0, SpringLayout.NORTH, btnNewButton_7);
@@ -249,9 +247,11 @@ public class StoreJPanel extends JPanel {
 				if (ShoppingBasket.totalPurchaseList.isEmpty()) {
 					ShoppingBasket.makeTotalPurchaseList();
 				}
+				// jtable
 				String column[] = { "구매목록", "구매개수" };
-				table = new JTable(comboList(), column);
-
+				table.setModel(new DefaultTableModel(comboList(), column));
+//				table = new JTable(comboList(), column);
+				// 초기화
 				scrollPane.setViewportView(table);
 				for (Food f : ShoppingBasket.foodCount.keySet()) {
 					ShoppingBasket.foodCount.put(f, 0);
@@ -322,8 +322,8 @@ public class StoreJPanel extends JPanel {
 		sl_giftCard.putConstraint(SpringLayout.EAST, label_2, 0, SpringLayout.EAST, btnNewButton);
 		giftCard.add(label_2);
 
-		test.getContentPane().add(menuBar);
-		test.setVisible(true);
+		panel.add(menuBar);
+//		panel.setVisible(true);
 
 	}
 
@@ -366,7 +366,7 @@ public class StoreJPanel extends JPanel {
 			}
 		});
 	}
-
+	
 	// 구매목록 2차원 배열로 나타냄
 	public static String[][] comboList() {
 		int size = ShoppingBasket.totalPurchaseList.size();

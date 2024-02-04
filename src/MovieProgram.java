@@ -1,20 +1,26 @@
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
-import javax.swing.border.EmptyBorder;
-
-import javax.swing.JButton;
+import java.awt.BorderLayout;
+import java.awt.CardLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.awt.CardLayout;
-import java.awt.event.ActionEvent;
-import java.awt.Color;
-import javax.swing.JTextField;
-import javax.swing.JPasswordField;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JSeparator;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
+import javax.swing.border.LineBorder;
 
 public class MovieProgram extends JFrame {
 	static JFrame frame;
@@ -41,6 +47,13 @@ public class MovieProgram extends JFrame {
 	static List<List<String>> signUps = new ArrayList<>();
 	static JLabel lblNewLabel_3;
 	private String userId;
+	private JButton btnNewButton_8;
+	private JButton btnNewButton_9;
+	private JSeparator separator;
+	private JPanel panel_1;
+	private JPanel panel_2;
+	private JLabel lblNewLabel_5;
+	private StoreJPanel sj = new StoreJPanel();
 
 
 	public MovieProgram() {
@@ -68,20 +81,31 @@ public class MovieProgram extends JFrame {
 	// 메인화면
 	private void createPanel1() {
 		panel1 = new JPanel();
+		panel1.setBackground(Color.WHITE);
 		panel1.setLayout(null);
 
 		frame.getContentPane().add(panel1, "panel1");
 
-		btnNewButton_3 = new JButton("cart");
+		btnNewButton_3 = new JButton("");
+		btnNewButton_3.setFocusable(false);
+		btnNewButton_3.setBorderPainted(false);
+		btnNewButton_3.setBackground(Color.WHITE);
+		btnNewButton_3.setMargin(new Insets(5, 17, 2, 16));
+		btnNewButton_3.setIcon(new ImageIcon("이미지\\카트.jpg"));
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				cardLayout.show(frame.getContentPane(), "panel6");
 			}
 		});
-		btnNewButton_3.setBounds(334, 7, 60, 23);
+		btnNewButton_3.setBounds(345, 8, 48, 38);
 		panel1.add(btnNewButton_3);
 
-		btnNewButton_4 = new JButton("my");
+		btnNewButton_4 = new JButton("");
+		btnNewButton_4.setBorderPainted(false);
+		btnNewButton_4.setOpaque(false);
+		btnNewButton_4.setIcon(new ImageIcon("이미지\\my.jpg"));
+		btnNewButton_4.setBackground(Color.WHITE);
+		btnNewButton_4.setFocusable(false);
 		btnNewButton_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (lblNewLabel_3.getText() != "로그인 해주세요") { 
@@ -98,32 +122,52 @@ public class MovieProgram extends JFrame {
 //        		cardLayout.show(frame.getContentPane(), "panel7");
 			}
 		});
-		btnNewButton_4.setBounds(405, 8, 60, 23);
+		btnNewButton_4.setBounds(394, 12, 48, 38);
 		panel1.add(btnNewButton_4);
 
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.WHITE);
-		panel.setBounds(31, 40, 441, 40);
+		panel.setBounds(12, 56, 441, 40);
 		panel1.add(panel);
 		panel.setLayout(null);
 		JButton switchButton = new JButton("영화");
+		switchButton.setFocusable(false);
+		switchButton.setOpaque(false);
+		switchButton.setBorderPainted(false);
+		switchButton.setBackground(Color.WHITE);
 		switchButton.setBounds(12, 10, 69, 23);
 		panel.add(switchButton);
 
 		btnNewButton = new JButton("극장");
+		btnNewButton.setBackground(Color.WHITE);
+		btnNewButton.setBorderPainted(false);
+		btnNewButton.setFocusable(false);
 		btnNewButton.setBounds(93, 10, 63, 23);
 		panel.add(btnNewButton);
 
 		btnNewButton_1 = new JButton("예매");
+		btnNewButton_1.setFocusable(false);
+		btnNewButton_1.setBorderPainted(false);
+		btnNewButton_1.setBackground(Color.WHITE);
 		btnNewButton_1.setBounds(181, 10, 69, 23);
 		panel.add(btnNewButton_1);
 
 		btnNewButton_2 = new JButton("스토어");
+		btnNewButton_2.setBackground(Color.WHITE);
+		btnNewButton_2.setBorderPainted(false);
+		btnNewButton_2.setFocusable(false);
 		btnNewButton_2.setBounds(275, 10, 77, 23);
 		panel.add(btnNewButton_2);
+		
+		separator = new JSeparator();
+		separator.setBorder(new LineBorder(Color.RED));
+		separator.setBackground(Color.WHITE);
+		separator.setBounds(-12, 38, 488, 2);
+		panel.add(separator);
 
 		lblNewLabel_3 = new JLabel("로그인 해주세요");
-		lblNewLabel_3.setBounds(85, 11, 203, 15);
+		lblNewLabel_3.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblNewLabel_3.setBounds(191, 11, 140, 35);
 
 		// 환영 메시지 출력
 //        try {
@@ -135,6 +179,44 @@ public class MovieProgram extends JFrame {
 //		}
 
 		panel1.add(lblNewLabel_3);
+		
+		btnNewButton_8 = new JButton("");
+		btnNewButton_8.setFocusable(false);
+		btnNewButton_8.setOpaque(false);
+		btnNewButton_8.setIconTextGap(3);
+		btnNewButton_8.setForeground(Color.BLACK);
+		btnNewButton_8.setBorderPainted(false);
+		btnNewButton_8.setBackground(Color.WHITE);
+		btnNewButton_8.setIcon(new ImageIcon("이미지\\메뉴.JPG"));
+		btnNewButton_8.setBounds(12, 7, 43, 39);
+		panel1.add(btnNewButton_8);
+		
+		btnNewButton_9 = new JButton("");
+		btnNewButton_9.setFocusable(false);
+		btnNewButton_9.setBorderPainted(false);
+		btnNewButton_9.setIcon(new ImageIcon("이미지\\로고.jpg"));
+		btnNewButton_9.setBounds(53, 7, 70, 39);
+		panel1.add(btnNewButton_9);
+		
+		panel_1 = new JPanel();
+		panel_1.setBackground(Color.WHITE);
+		panel_1.setBounds(12, 106, 441, 143);
+		panel1.add(panel_1);
+		
+		JLabel lblNewLabel_4 = new JLabel("");
+		lblNewLabel_4.setIconTextGap(0);
+		lblNewLabel_4.setPreferredSize(new Dimension(443, 140));
+		lblNewLabel_4.setLayout(new BorderLayout());
+		lblNewLabel_4.setIcon(new ImageIcon("이미지\\임시영화.gif"));
+		panel_1.add(lblNewLabel_4);
+		
+		panel_2 = new JPanel();
+		panel_2.setBackground(Color.WHITE);
+		panel_2.setPreferredSize(new Dimension(20, 20));
+		panel_1.add(panel_2);
+		
+		lblNewLabel_5 = new JLabel("상영");
+		panel_2.add(lblNewLabel_5);
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				cardLayout.show(frame.getContentPane(), "panel5");
@@ -212,12 +294,13 @@ public class MovieProgram extends JFrame {
 		panel5 = new JPanel();
 		JButton switchButton = new JButton("Switch to Panel 1");
 		panel5.add(switchButton);
-
+		panel5.add(sj);
+		
 		switchButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				cardLayout.show(frame.getContentPane(), "panel1");
-//                Store.
+				
 			}
 		});
 
