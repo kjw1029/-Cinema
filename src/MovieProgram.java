@@ -43,11 +43,9 @@ public class MovieProgram extends JFrame {
 	private String userId;
 	private JButton btnNewButton_8;
 	private JButton btnNewButton_9;
-	private JSeparator separator;
 	private JPanel panel_1;
 	private JPanel panel_2;
 	private JLabel lblNewLabel_5;
-	private StoreJPanel sj = new StoreJPanel();
 
 
 	public MovieProgram() {
