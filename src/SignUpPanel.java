@@ -1,4 +1,4 @@
-package User;
+
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -7,10 +7,6 @@ import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.MaskFormatter;
-
-//import com.google.gson.Gson;
-//import com.google.gson.GsonBuilder;
-//import com.google.gson.JsonObject;
 
 import javax.swing.JPasswordField;
 import javax.swing.ButtonGroup;
@@ -22,6 +18,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 import java.awt.Font;
@@ -30,6 +28,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JScrollBar;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
+import javax.swing.JFrame;
 import javax.swing.JCheckBox;
 
 public class SignUpPanel extends JPanel {
@@ -43,8 +42,9 @@ public class SignUpPanel extends JPanel {
 	private JRadioButton rdbtnNewRadioButton;
 	private JRadioButton rdbtnNewRadioButton_1;
 	private JLabel lblNewLabel_3;
-	private JComboBox comboBox;
+//	private JComboBox comboBox;
 	private JLabel lblNewLabel_4;
+	
 
 	public SignUpPanel(SignUp s) {
 		SignUp ss = new SignUp();
@@ -77,12 +77,15 @@ public class SignUpPanel extends JPanel {
 				} else {
 					System.out.println("가능");
 					lblNewLabel.setText("가능");
+					
 //					revalidate();
 //					repaint();
 				}
 //				revalidate();
 //				repaint();
 				System.out.println("1");
+				
+				
 			}
 		});
 		passwordField.setBounds(139, 118, 117, 21);
@@ -91,9 +94,14 @@ public class SignUpPanel extends JPanel {
 		JButton btnNewButton = new JButton("중복확인");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (s.checkID(textField.getText())) {
+				if (s.checkID(textField.getText()) && idDuplicateTest(textField.getText())) {
 					JOptionPane.showMessageDialog(SignUpPanel.this, "유효한 아이디 형식", "알림",
 							JOptionPane.INFORMATION_MESSAGE);
+//					btnNewButton.setSelected(true);
+					btnNewButton.setEnabled(false);
+					
+					
+					
 				} else {
 					JOptionPane.showMessageDialog(SignUpPanel.this, "유효하지않은 아이디 형식", "알림",
 							JOptionPane.INFORMATION_MESSAGE);
@@ -148,8 +156,10 @@ public class SignUpPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				if (rdbtnNewRadioButton.isSelected()) {
 					System.out.println("m");
+//					signUpList.add(2, rdbtnNewRadioButton.getText());
 				} else if (rdbtnNewRadioButton_1.isSelected()) {
 					System.out.println("f");
+//					signUpList.add(2, rdbtnNewRadioButton_1.getText());
 				}
 			}
 		};
@@ -161,9 +171,35 @@ public class SignUpPanel extends JPanel {
 		lblNewLabel_3.setBounds(43, 230, 57, 15);
 		add(lblNewLabel_3);
 
-		comboBox = new JComboBox();
-		comboBox.setBounds(139, 227, 56, 21);
+		String[] ageGroups = {"Under 18", "18-24", "25-34", "35-44", "45-54", "55-64", "65 and older"};
+		
+		JComboBox<String> comboBox = new JComboBox<>();
+		comboBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (comboBox.equals("선택하세요")) {
+					System.out.println("de");
+				} else {
+					System.out.println(comboBox.getSelectedItem().toString());
+					System.out.println("nde");
+				}
+//			if (comboBox.equals("선택하세요"))
+//				comboBox.setSelectedIndex(-1);
+			}
+		});
+//		comboBox = new JComboBox();
+		comboBox.addItem("선택하세요");
+		comboBox.addItem("20세 미만");
+		comboBox.addItem("20-29세");
+		comboBox.addItem("30-39세");
+		comboBox.addItem("40-49세");
+		comboBox.addItem("50대 이상");
+		comboBox.setBounds(139, 227, 150, 21);
 		add(comboBox);
+		
+		 // 콤보박스 생성
+		
+		
+		
 
 		lblNewLabel_4 = new JLabel("전화번호");
 		lblNewLabel_4.setBounds(43, 283, 57, 15);
@@ -174,39 +210,77 @@ public class SignUpPanel extends JPanel {
 		formattedTextField.setBounds(139, 280, 139, 21);
 		add(formattedTextField);
 
+		JButton btnNewButton_1 = new JButton("가입하기");
+		
+		btnNewButton_1.setEnabled(false);
+
+		
 		JCheckBox chckbxNewCheckBox = new JCheckBox("가입에 동의합니다.");
+		chckbxNewCheckBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(!chckbxNewCheckBox.isSelected()) {
+					btnNewButton_1.setEnabled(false);
+				} else {
+					btnNewButton_1.setEnabled(true);
+					
+				}
+				
+			}
+		});
+		
+		
+		
+		
 		chckbxNewCheckBox.setBounds(50, 359, 162, 23);
 		add(chckbxNewCheckBox);
-
-		JButton btnNewButton_1 = new JButton("가입하기");
 		btnNewButton_1.addActionListener(new ActionListener() {
+
+
 			public void actionPerformed(ActionEvent e) {
-				if (s.checkID(textField.getText()) && s.checkPassword(passwordField.getText())
+				if (btnNewButton.isEnabled()) {
+					JOptionPane.showMessageDialog(SignUpPanel.this, "아이디 중복확인", "알림",
+							JOptionPane.INFORMATION_MESSAGE);
+				} else if (comboBox.getSelectedItem().toString().equals("선택하세요")){
+					JOptionPane.showMessageDialog(SignUpPanel.this, "연령대확인", "알림",
+							JOptionPane.INFORMATION_MESSAGE);
+				}
+				
+				else {
+			 List<String> signUpList = new ArrayList<String>(2);
+				signUpList.add(0, textField.getText());
+				signUpList.add(1, passwordField.getText());
+				if (rdbtnNewRadioButton.isSelected()) {
+					System.out.println("m");
+					signUpList.add(2, rdbtnNewRadioButton.getText());
+				} else if (rdbtnNewRadioButton_1.isSelected()) {
+					System.out.println("f");
+					signUpList.add(2, rdbtnNewRadioButton_1.getText());
+				}
+				MovieProgram.signUps.add(signUpList);
+				System.out.println(signUpList.get(0));
+				
+				if (s.checkID(textField.getText()) 
+						&& s.checkPassword(passwordField.getText())
 						&& (rdbtnNewRadioButton.isSelected() || rdbtnNewRadioButton_1.isSelected())) {
 					ss.setID(textField.getText());
 					ss.setPassword(passwordField.getText());
 					ss.setAge("10");
 					ss.setGender(rdbtnNewRadioButton.getText());
 					System.out.println(ss.toString());
-//					Gson gson = new GsonBuilder().setPrettyPrinting().create();
 					// 객체를 다시 JSON으로 직렬화
-//					String updatedJsonString = gson.toJson(ss);
-//					String id = ss.getID();
+					String id = ss.getID();
 					
-//					JsonObject obj = new JsonObject();
-//					obj.addProperty(id, updatedJsonString);
-					// 출력
-//					System.out.println("Updated JSON: " + updatedJsonString);
 					
-					 // Json 문자열 -> Map       
-//					Map<String, Object> map = gson.fromJson(updatedJsonString, Map.class);         
-//					// Map 출력       
-//					for (Map.Entry<String, Object> entry : map.entrySet()) {            
-//						System.out.println(entry.getKey() + "=" + entry.getValue()); 
-//						}
-//					
-//					System.out.println(obj.toString());
 					
+					// 가입완료 메시지
+					JOptionPane.showMessageDialog(SignUpPanel.this, "환영합니다!", "알림",
+							JOptionPane.INFORMATION_MESSAGE);
+					SignUpPanel.this.setVisible(false);
+					
+					
+					
+					
+				}
 
 				}
 			}
@@ -221,6 +295,19 @@ public class SignUpPanel extends JPanel {
 //		setSignUp(s);
 	}
 
+	// 아이디 중복 확
+	public boolean idDuplicateTest(String id) {
+		for (List<String> elem : MovieProgram.signUps) {
+			if (id.equals(elem.get(0))) {
+				System.out.println("아이디중복");
+				return false;
+			} 
+		}
+		System.out.println("중복아님");
+		return true;
+	}
+	
+	
 	private JFormattedTextField createPhoneNumberField() {
 		MaskFormatter formatter = null;
 		try {
