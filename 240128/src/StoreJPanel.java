@@ -201,10 +201,12 @@ public class StoreJPanel extends JPanel {
 					if (delete == 0) {
 						ShoppingBasket.totalPurchaseList.remove(selectedRow);
 						ShoppingBasket.totalPurchaseCountList.remove(selectedRow);
+						String column[] = { "구매목록", "구매개수" };
+						table.setModel(new DefaultTableModel(comboList(), column));
 					}
-					// 업데이트된 데이터로 JTable을 다시 그립니다.
-					String column[] = { "구매목록", "구매개수" };
-					table.setModel(new DefaultTableModel(comboList(), column));
+//					// 업데이트된 데이터로 JTable을 다시 그립니다.
+//					String column[] = { "구매목록", "구매개수" };
+//					table.setModel(new DefaultTableModel(comboList(), column));
 				}
 			}
 		});
