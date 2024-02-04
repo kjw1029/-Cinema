@@ -195,6 +195,7 @@ public class StoreJPanel extends JPanel {
 					// 선택한 항목을 삭제합니다.
 					int delete = Integer.parseInt(table.getValueAt(selectedRow, 1).toString()) - 1;
 					table.setValueAt(String.valueOf(delete), selectedRow, 1);
+					// totalPurchaseCountList를 업데이트합니다.
 					ShoppingBasket.totalPurchaseCountList.set(selectedRow, String.valueOf(delete));
 					// 만약 삭제된 개수가 0이 되었다면 해당 항목을 totalPurchaseList에서도 삭제합니다.
 					if (delete == 0) {
@@ -203,21 +204,31 @@ public class StoreJPanel extends JPanel {
 						String column[] = { "구매목록", "구매개수" };
 						table.setModel(new DefaultTableModel(comboList(), column));
 					}
+//					// 업데이트된 데이터로 JTable을 다시 그립니다.
+//					String column[] = { "구매목록", "구매개수" };
+//					table.setModel(new DefaultTableModel(comboList(), column));
 				}
 			}
 		});
+//				int selectedRow = table.getSelectedRow();
+//				if (selectedRow != -1) {
+//					int delete = Integer.parseInt(table.getValueAt(selectedRow, 1).toString()) - 1;
+//					table.setValueAt(String.valueOf(delete), selectedRow, 1);
+//					ShoppingBasket.totalPurchaseCountList.set(table.getSelectedRow(), String.valueOf(delete));
+//				}
+
+//				int delete = Integer.valueOf(ShoppingBasket.totalPurchaseCountList.get(table.getSelectedRow())) - 1;
+//				System.out.println(ShoppingBasket.totalPurchaseCountList.get(table.getSelectedRow()));
+//				String column[] = { "구매목록", "구매개수" };
+//				coboListUpdata();
+//				table = new JTable(jTabledatas, column);
+//				scrollPane.setViewportView(table);
 
 		JButton btnNewButton_8 = new JButton("구매");
 		btnNewButton_8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// 최종 구매목록
 //				jTabledatas;
-				System.out.println("최종 구매 목록:");
-				for (int i = 0; i < ShoppingBasket.totalPurchaseList.size(); i++) {
-					String purchaseItem = ShoppingBasket.totalPurchaseList.get(i);
-					String purchaseCount = ShoppingBasket.totalPurchaseCountList.get(i);
-					System.out.println(purchaseItem + " - " + purchaseCount + "개");
-				}
 				System.out.println(ShoppingBasket.totalPurchaseCountList.get(1));
 			}
 		});
@@ -246,19 +257,18 @@ public class StoreJPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				cardLayout.show(cards, "장바구니");
-				if (ShoppingBasket.totalPurchaseList.isEmpty()) {
-					ShoppingBasket.makeTotalPurchaseList();
-				}
-				String column[] = { "구매목록", "구매개수" };
-				table = new JTable(comboList(), column);
-
-				scrollPane.setViewportView(table);
+				ShoppingBasket.makeTotalPurchaseList();
 				for (Food f : ShoppingBasket.foodCount.keySet()) {
 					ShoppingBasket.foodCount.put(f, 0);
 				}
 				for (GiftCard g : ShoppingBasket.giftCount.keySet()) {
 					ShoppingBasket.giftCount.put(g, 0);
 				}
+				String column[] = { "구매목록", "구매개수" };
+				table = new JTable(comboList(), column);
+				coboListUpdata();
+				System.out.println(ShoppingBasket.totalPurchaseCountList.get(1));
+				scrollPane.setViewportView(table);
 			}
 		});
 
@@ -379,6 +389,22 @@ public class StoreJPanel extends JPanel {
 		return jTabledatas;
 
 	}
+
+	public static void coboListUpdata() {
+		int size = ShoppingBasket.totalPurchaseList.size();
+		for (int i = 0; i < size; i++) {
+			jTabledatas[i][0] = ShoppingBasket.totalPurchaseList.get(i);
+			jTabledatas[i][1] = ShoppingBasket.totalPurchaseCountList.get(i);
+		}
+	}
+
+//		int size = ShoppingBasket.totalPurchaseList.size();
+//		StoreJPanel.jTabledatas = new String[size][2];
+//
+//		for (int i = 0; i < size; i++) {
+//			jTabledatas[i][0] = ShoppingBasket.totalPurchaseList.get(i);
+//			jTabledatas[i][1] = ShoppingBasket.totalPurchaseCountList.get(i);
+//		}
 
 	public static void main(String[] args) {
 		new StoreJPanel();
