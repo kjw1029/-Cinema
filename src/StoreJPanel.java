@@ -14,40 +14,41 @@ import javax.swing.SpringLayout;
 import javax.swing.table.DefaultTableModel;
 
 public class StoreJPanel extends JPanel {
-	private JFrame test;
+	private JPanel test;
 	private CardLayout cardLayout;
 	private JPanel cards;
 	protected static JTable table;
 	protected static String[][] jTabledatas;
 
 	public StoreJPanel() {
-		test = new JFrame();
 		Store.Store();
-
-		test.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		test.setBounds(100, 100, 600, 600);
-		SpringLayout springLayout = new SpringLayout();
-		test.getContentPane().setLayout(springLayout);
+		test = new JPanel();
+//
+//		test.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		test.setBounds(100, 100, 600, 600);
+//		SpringLayout springLayout = new SpringLayout();
+//		test.setLayout(springLayout);
+		
 
 		JPanel panel = new JPanel();
-		springLayout.putConstraint(SpringLayout.NORTH, panel, -453, SpringLayout.SOUTH, test.getContentPane());
-		springLayout.putConstraint(SpringLayout.SOUTH, panel, -10, SpringLayout.SOUTH, test.getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, panel, 576, SpringLayout.WEST, test.getContentPane());
-		test.getContentPane().add(panel);
+//		springLayout.putConstraint(SpringLayout.NORTH, panel, -453, SpringLayout.SOUTH, test.getRootPane());
+//		springLayout.putConstraint(SpringLayout.SOUTH, panel, -10, SpringLayout.SOUTH, test.getRootPane());
+//		springLayout.putConstraint(SpringLayout.EAST, panel, 576, SpringLayout.WEST, test.getRootPane());
+		panel.setPreferredSize(new Dimension(600,600));
 
 		JMenuBar menuBar = new JMenuBar();
-		springLayout.putConstraint(SpringLayout.NORTH, menuBar, 30, SpringLayout.NORTH, test.getContentPane());
-		springLayout.putConstraint(SpringLayout.WEST, menuBar, 10, SpringLayout.WEST, test.getContentPane());
-		springLayout.putConstraint(SpringLayout.SOUTH, menuBar, -23, SpringLayout.NORTH, panel);
-		springLayout.putConstraint(SpringLayout.EAST, menuBar, -31, SpringLayout.EAST, test.getContentPane());
-		springLayout.putConstraint(SpringLayout.WEST, panel, 0, SpringLayout.WEST, menuBar);
+//		springLayout.putConstraint(SpringLayout.NORTH, menuBar, 30, SpringLayout.NORTH, test.getRootPane());
+//		springLayout.putConstraint(SpringLayout.WEST, menuBar, 10, SpringLayout.WEST, test.getRootPane());
+//		springLayout.putConstraint(SpringLayout.SOUTH, menuBar, -23, SpringLayout.NORTH, panel);
+//		springLayout.putConstraint(SpringLayout.EAST, menuBar, -31, SpringLayout.EAST, test.getRootPane());
+//		springLayout.putConstraint(SpringLayout.WEST, panel, 0, SpringLayout.WEST, menuBar);
 		SpringLayout sl_panel = new SpringLayout();
 		panel.setLayout(sl_panel);
 
 		cards = new JPanel();
-		sl_panel.putConstraint(SpringLayout.NORTH, cards, 0, SpringLayout.NORTH, panel);
+		sl_panel.putConstraint(SpringLayout.NORTH, cards, 147, SpringLayout.NORTH, panel);
 		sl_panel.putConstraint(SpringLayout.WEST, cards, 0, SpringLayout.WEST, panel);
-		sl_panel.putConstraint(SpringLayout.SOUTH, cards, 443, SpringLayout.NORTH, panel);
+		sl_panel.putConstraint(SpringLayout.SOUTH, cards, -10, SpringLayout.SOUTH, panel);
 		sl_panel.putConstraint(SpringLayout.EAST, cards, 566, SpringLayout.WEST, panel);
 		cardLayout = new CardLayout();
 		cards.setLayout(cardLayout);
@@ -195,7 +196,6 @@ public class StoreJPanel extends JPanel {
 					// 선택한 항목을 삭제합니다.
 					int delete = Integer.parseInt(table.getValueAt(selectedRow, 1).toString()) - 1;
 					table.setValueAt(String.valueOf(delete), selectedRow, 1);
-					// totalPurchaseCountList를 업데이트합니다.
 					ShoppingBasket.totalPurchaseCountList.set(selectedRow, String.valueOf(delete));
 					// 만약 삭제된 개수가 0이 되었다면 해당 항목을 totalPurchaseList에서도 삭제합니다.
 					if (delete == 0) {
@@ -204,25 +204,9 @@ public class StoreJPanel extends JPanel {
 						String column[] = { "구매목록", "구매개수" };
 						table.setModel(new DefaultTableModel(comboList(), column));
 					}
-//					// 업데이트된 데이터로 JTable을 다시 그립니다.
-//					String column[] = { "구매목록", "구매개수" };
-//					table.setModel(new DefaultTableModel(comboList(), column));
 				}
 			}
 		});
-//				int selectedRow = table.getSelectedRow();
-//				if (selectedRow != -1) {
-//					int delete = Integer.parseInt(table.getValueAt(selectedRow, 1).toString()) - 1;
-//					table.setValueAt(String.valueOf(delete), selectedRow, 1);
-//					ShoppingBasket.totalPurchaseCountList.set(table.getSelectedRow(), String.valueOf(delete));
-//				}
-
-//				int delete = Integer.valueOf(ShoppingBasket.totalPurchaseCountList.get(table.getSelectedRow())) - 1;
-//				System.out.println(ShoppingBasket.totalPurchaseCountList.get(table.getSelectedRow()));
-//				String column[] = { "구매목록", "구매개수" };
-//				coboListUpdata();
-//				table = new JTable(jTabledatas, column);
-//				scrollPane.setViewportView(table);
 
 		JButton btnNewButton_8 = new JButton("구매");
 		btnNewButton_8.addActionListener(new ActionListener() {
@@ -258,17 +242,39 @@ public class StoreJPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				cardLayout.show(cards, "장바구니");
 				ShoppingBasket.makeTotalPurchaseList();
+				if (ShoppingBasket.totalPurchaseList.isEmpty()) {
+					ShoppingBasket.makeTotalPurchaseList();
+				}
+				// jtable
+				String column[] = { "구매목록", "구매개수" };
+				table.setModel(new DefaultTableModel(comboList(), column));
+//				table = new JTable(comboList(), column);
+				// 초기화
+				scrollPane.setViewportView(table);
+				if (ShoppingBasket.totalPurchaseList.isEmpty()) {
+					ShoppingBasket.makeTotalPurchaseList();
+				}
+				// jtable
+				String column[] = { "구매목록", "구매개수" };
+				table.setModel(new DefaultTableModel(comboList(), column));
+//				table = new JTable(comboList(), column);
+				// 초기화
+				scrollPane.setViewportView(table);
+				if (ShoppingBasket.totalPurchaseList.isEmpty()) {
+					ShoppingBasket.makeTotalPurchaseList();
+				}
+				// jtable
+				String column[] = { "구매목록", "구매개수" };
+				table.setModel(new DefaultTableModel(comboList(), column));
+//				table = new JTable(comboList(), column);
+				// 초기화
+				scrollPane.setViewportView(table);
 				for (Food f : ShoppingBasket.foodCount.keySet()) {
 					ShoppingBasket.foodCount.put(f, 0);
 				}
 				for (GiftCard g : ShoppingBasket.giftCount.keySet()) {
 					ShoppingBasket.giftCount.put(g, 0);
 				}
-				String column[] = { "구매목록", "구매개수" };
-				table = new JTable(comboList(), column);
-				coboListUpdata();
-				System.out.println(ShoppingBasket.totalPurchaseCountList.get(1));
-				scrollPane.setViewportView(table);
 			}
 		});
 

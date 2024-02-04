@@ -21,28 +21,6 @@ public class ShoppingBasket {
 		GiftCardPurchaseList.add(giftCard);
 	}
 
-	// 구매목록에서 음식 하나 감소
-	public static void deletefoodPurchaseList(Food food) {
-		for (int i = 0; i < foodPurchaseList.size(); i++) {
-			if (foodPurchaseList.get(i).equals(food.getName())) {
-				foodPurchaseList.remove(i);
-				foodCount.put(food, foodCount.getOrDefault(food, 0) - 1);
-				break;
-			}
-		}
-	}
-
-	// 구매목록에서 기프트 카드 하나 감소
-	public static void deleteGiftCardPurchaseList(GiftCard giftcard) {
-		for (int i = 0; i < GiftCardPurchaseList.size(); i++) {
-			if (GiftCardPurchaseList.get(i).equals(giftcard.getName())) {
-				GiftCardPurchaseList.remove(i);
-				giftCount.put(giftcard, giftCount.getOrDefault(giftcard, 0) - 1);
-				break;
-			}
-		}
-	}
-
 	// 구매 리스트 하나로 합치기, 카운트 갱신
 	public static void makeTotalPurchaseList() {
 		countTotalPurchaseList();
@@ -68,6 +46,7 @@ public class ShoppingBasket {
 				totalPurchaseCountList.set(index, totalCount);
 			}
 		}
+		
 
 	}
 
@@ -81,17 +60,4 @@ public class ShoppingBasket {
 		}
 	}
 
-//	// 구매 리스트 카운트 추가...ㅠㅠ
-//	public static void addCountTotalPurchaseList() {
-//		for (int i = 0; i < totalPurchaseList.size(); i++) {
-//			for (Food f : foodCount.keySet()) {
-//				if (totalPurchaseList.get(i).equals(f.getName())) {
-//					String totalCount = String.valueOf(foodCount.get(f));
-//					totalPurchaseList.set(i, totalPurchaseList.get(i) + totalCount);
-////					totalPurchaseList.(i, totalPurchaseList.get(i) + totalCount);
-//					System.out.println("확ㅇ");
-//				}
-//			}
-//		}
-//	}
 }
