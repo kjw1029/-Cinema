@@ -119,7 +119,6 @@ public class MovieProgram extends JFrame {
 				} else {
 					// 비회원 조회시 로그인창 출력
 					SignInPanel sp = new SignInPanel();
-					frame.getContentPane().add(sp);
 					frame.getContentPane().add(sp, "로그인");
 					cardLayout.show(frame.getContentPane(), "로그인");
 				}
@@ -165,7 +164,9 @@ public class MovieProgram extends JFrame {
 		panel1.add(lblNewLabel_3);
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				cardLayout.show(frame.getContentPane(), "panel5");
+				StoreJPanel pnlStore = new StoreJPanel();
+				frame.getContentPane().add(pnlStore, "스토어");
+				cardLayout.show(frame.getContentPane(), "스토어");
 			}
 		});
 		btnNewButton_1.addActionListener(new ActionListener() {
