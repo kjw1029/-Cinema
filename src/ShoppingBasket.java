@@ -32,7 +32,6 @@ public class ShoppingBasket {
 			} else if (totalPurchaseList.contains(f.getName()) ){
 				int index = totalPurchaseList.indexOf(f.getName());
 				totalPurchaseCountList.set(index, totalCount);
-				
 				}
 			}
 		
