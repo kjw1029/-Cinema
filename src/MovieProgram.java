@@ -47,8 +47,31 @@ public class MovieProgram extends JFrame {
 	private JPanel panel_2;
 	private JLabel lblNewLabel_5;
 
+	
+	
 
 	public MovieProgram() {
+		
+		// 매니저 아이디 생성
+		if (signUps.size()==0) {
+			List<String> signUpList = new ArrayList<String>(2);
+			// 아이디
+			signUpList.add(0, "admin");
+			// 비밀번호
+			signUpList.add(1, "1234");
+			// 성별
+			signUpList.add(2, "관리자");
+			// 연령대
+			signUpList.add(3, "0세");
+			// 전화번호
+			signUpList.add(4, "010-1234-1234");
+			signUps.add(signUpList);
+		}
+		
+		System.out.println(signUps.toString());
+		
+		
+		
 		List<String> signUpTitles = Arrays.asList("아이디", "비밀번호", "성별", "연령대", "전화번호");
 		signUps.add(signUpTitles);
 		

@@ -44,17 +44,19 @@ public class SignInPanel extends JPanel {
 							JOptionPane.INFORMATION_MESSAGE);
 				} else {
 					for (List<String> elem : MovieProgram.signUps) {
-
-						if (!userId.equals(elem.get(0))) {
-							JOptionPane.showMessageDialog(SignInPanel.this, "올바른 아이디를 입력하세요", "알림",
-									JOptionPane.INFORMATION_MESSAGE);
-						} else if (userId.equals(elem.get(0)) && !userPassword.equals(elem.get(1))) {
-							JOptionPane.showMessageDialog(SignInPanel.this, "올바른 비밀번호를 입력하세요", "알림",
-									JOptionPane.INFORMATION_MESSAGE);
-						} else if (userId.equals(elem.get(0)) && userPassword.equals(elem.get(1))) {
+						if (userId.equals(elem.get(0)) && userPassword.equals(elem.get(1))) {
 							System.out.println(userId + "로그인 성공");
 							MovieProgram.lblNewLabel_3.setText(userId + "님 환영합니다");
 							setVisible(false);
+							return;
+						} else if (userId.equals(elem.get(0)) && !userPassword.equals(elem.get(1))) {
+							JOptionPane.showMessageDialog(SignInPanel.this, "올바른 비밀번호를 입력하세요", "알림",
+									JOptionPane.INFORMATION_MESSAGE);
+							return;
+						} else if (!userId.equals(elem.get(0))) {
+							JOptionPane.showMessageDialog(SignInPanel.this, "올바른 아이디를 입력하세요", "알림",
+									JOptionPane.INFORMATION_MESSAGE);
+							return;
 						}
 					}
 				}
