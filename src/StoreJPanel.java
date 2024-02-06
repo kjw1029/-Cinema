@@ -138,16 +138,16 @@ public class StoreJPanel extends JPanel {
 					int delete = Integer.parseInt(table.getValueAt(selectedRow, 1).toString()) - 1;
 					table.setValueAt(String.valueOf(delete), selectedRow, 1);
 					ShoppingBasket.totalPurchaseCountList.set(selectedRow, String.valueOf(delete));
-					for (String s : ShoppingBasket.totalPurchaseList) {
-						for (Food f : StoreMenu.foodmenu) {
-							if (f.getName().equals(s)) {
-								amount -= f.getPrice();
-							}
+					for (Food f : StoreMenu.foodmenu) {
+						if (table.getValueAt(table.getSelectedRow(), 0).equals(f.getName())) {
+							amount -= f.getPrice();
+							lblNewLabel_5.setText(String.valueOf(amount));
 						}
-						for (GiftCard g : StoreMenu.giftCardList) {
-							if (g.getName().equals(s)) {
-								amount -= g.getPrice();
-							}
+					}
+					for (GiftCard g : StoreMenu.giftCardList) {
+						if (table.getValueAt(table.getSelectedRow(), 0).equals(g.getName())) {
+							amount -= g.getPrice();
+							lblNewLabel_5.setText(String.valueOf(amount));
 						}
 					}
 					// 삭제되는 구매목록에 해당하는 카운트 초기화 필요
@@ -156,21 +156,26 @@ public class StoreJPanel extends JPanel {
 						ShoppingBasket.totalPurchaseCountList.remove(selectedRow);
 						String column[] = { "구매목록", "구매개수" };
 						table.setModel(new DefaultTableModel(comboList(), column));
-						for (String s : ShoppingBasket.totalPurchaseList) {
-							for (Food f : StoreMenu.foodmenu) {
-								if (f.getName().equals(s)) {
-									amount -= f.getPrice();
-								}
+						for (Food f : StoreMenu.foodmenu) {
+							if (table.getValueAt(table.getSelectedRow(), 0).equals(f.getName())) {
+								amount -= f.getPrice();
+								lblNewLabel_5.setText(String.valueOf(amount));
 							}
-							for (GiftCard g : StoreMenu.giftCardList) {
-								if (g.getName().equals(s)) {
-									amount -= g.getPrice();
-								}
+						}
+						for (GiftCard gift : StoreMenu.giftCardList) {
+							if (table.getValueAt(table.getSelectedRow(), 0).equals(gift.getName())) {
+								amount -= gift.getPrice();
+								lblNewLabel_5.setText(String.valueOf(amount));
 							}
+						}
+						for (Food f : ShoppingBasket.foodCount.keySet()) {
+							ShoppingBasket.foodCount.put(f, 0);
+						}
+						for (GiftCard g : ShoppingBasket.giftCount.keySet()) {
+							ShoppingBasket.giftCount.put(g, 0);
 						}
 					}
 				}
-				lblNewLabel_5.setText(String.valueOf(amount));
 			}
 		});
 
