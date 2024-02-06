@@ -66,7 +66,26 @@ public class MovieProgram extends JFrame {
 			// 전화번호
 			signUpList.add(4, "010-1234-1234");
 			signUps.add(signUpList);
+			
+			
+			// 테스트용 계정
+			List<String> signUpList2 = new ArrayList<String>(2);
+			// 아이디
+			signUpList2.add(0, "asdf");
+			// 비밀번호
+			signUpList2.add(1, "1234");
+			// 성별
+			signUpList2.add(2, "관리자");
+			// 연령대
+			signUpList2.add(3, "0세");
+			// 전화번호
+			signUpList2.add(4, "010-1234-1234");
+			signUps.add(signUpList2);
+			
+			
+			
 		}
+		
 		
 		System.out.println(signUps.toString());
 		
@@ -122,7 +141,6 @@ public class MovieProgram extends JFrame {
 					frame.getContentPane().add(sp, "로그인");
 					cardLayout.show(frame.getContentPane(), "로그인");
 				}
-//        		cardLayout.show(frame.getContentPane(), "panel7");
 			}
 		});
 		btnNewButton_4.setBounds(405, 8, 60, 23);
@@ -133,11 +151,11 @@ public class MovieProgram extends JFrame {
 		panel.setBounds(31, 40, 441, 40);
 		panel1.add(panel);
 		panel.setLayout(null);
-		JButton switchButton = new JButton("영화");
+		JButton switchButton = new JButton("홈");
 		switchButton.setBounds(12, 10, 69, 23);
 		panel.add(switchButton);
 
-		btnNewButton = new JButton("극장");
+		btnNewButton = new JButton("영화");
 		btnNewButton.setBounds(93, 10, 63, 23);
 		panel.add(btnNewButton);
 
@@ -151,15 +169,6 @@ public class MovieProgram extends JFrame {
 
 		lblNewLabel_3 = new JLabel("로그인 해주세요");
 		lblNewLabel_3.setBounds(85, 11, 203, 15);
-
-		// 환영 메시지 출력
-//        try {
-//        	lblNewLabel_3.setText(s.getID() + "님 환영합니다.");
-//		} catch (NullPointerException e) {
-//			System.out.println("비회");
-//		} finally {
-//		lblNewLabel_3.setText("로그인 해주세요");
-//		}
 
 		panel1.add(lblNewLabel_3);
 		btnNewButton_2.addActionListener(new ActionListener() {
@@ -176,14 +185,16 @@ public class MovieProgram extends JFrame {
 		});
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				cardLayout.show(frame.getContentPane(), "panel3");
+				Menu_Movie pnlMovie = new Menu_Movie();
+				frame.getContentPane().add(pnlMovie, "영화");
+				cardLayout.show(frame.getContentPane(), "영화");
 			}
 		});
 
 		switchButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				cardLayout.show(frame.getContentPane(), "panel2");
+				cardLayout.show(frame.getContentPane(), "panel1");
 			}
 		});
 	}
@@ -302,9 +313,7 @@ public class MovieProgram extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				userId = textField.getText();
 				String userPassword = passwordField.getText();
-//        		SignUp s = new si
-//        		JPanel signIn = new SignUp();
-
+				
 				for (List<String> elem : MovieProgram.signUps) {
 					if (userId.equals(elem.get(0)) && userPassword.equals(elem.get(1))) {
 						System.out.println(userId + "로그인 성공");
@@ -329,24 +338,7 @@ public class MovieProgram extends JFrame {
 				frame.getContentPane().add(p);
 				frame.getContentPane().add(p, "회원가입");
 				cardLayout.show(frame.getContentPane(), "회원가입");
-//        		str = p.getJson(p.)
-//        	    JsonElement jsonElem = JsonParser.parseString(p.getGson(p.obj.toString()));
-//        		
 				System.out.println(signUps.toString());
-//        		str = p.getJson();
-//        		System.out.println("str" + str);
-//        		System.out.println("test" + gson.toString());
-//        		
-//        		
-//        		
-//        		 JsonObject jsonObject = jsonElem.getAsJsonObject();
-//        		 System.out.println(jsonObject.toString());
-//        		
-////        		// JSON 데이터를 변수에서 읽어와서 자바 객체로 역직렬화
-//        	      //  Person receivedPerson = gson.fromJson(SharedData.jsonData, Person.class);
-//
-//        		receivedSignUp = gson.fromJson(SharedData.jsonData, SignUp.class);
-//        		System.out.println("m아이디"+receivedSignUp.getID());
 			}
 		});
 		btnNewButton_6.setBounds(109, 228, 97, 23);
@@ -369,9 +361,6 @@ public class MovieProgram extends JFrame {
 		panel7.add(lblNewLabel_2);
 	}
 
-	public String setJson(String g) {
-		return str += g;
-	}
 
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {

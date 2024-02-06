@@ -25,7 +25,7 @@ public class SignInPanel extends JPanel {
 		switchButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				setVisible(false); 
+				setVisible(false);
 			}
 		});
 
@@ -49,18 +49,28 @@ public class SignInPanel extends JPanel {
 							MovieProgram.lblNewLabel_3.setText(userId + "님 환영합니다");
 							setVisible(false);
 							return;
-						} else if (userId.equals(elem.get(0)) && !userPassword.equals(elem.get(1))) {
-							JOptionPane.showMessageDialog(SignInPanel.this, "올바른 비밀번호를 입력하세요", "알림",
-									JOptionPane.INFORMATION_MESSAGE);
-							return;
-						} else if (!userId.equals(elem.get(0))) {
-							JOptionPane.showMessageDialog(SignInPanel.this, "올바른 아이디를 입력하세요", "알림",
-									JOptionPane.INFORMATION_MESSAGE);
-							return;
+						}
+					}
+					for (int i = 0; i < MovieProgram.signUps.size(); i++) {
+						if (userId.equals(MovieProgram.signUps.get(i).get(0))
+								&& !userPassword.equals(MovieProgram.signUps.get(i).get(1))) {
+							if (i != -1) {
+								JOptionPane.showMessageDialog(SignInPanel.this, "올바른 비밀번호를 입력하세요", "알림",
+										JOptionPane.INFORMATION_MESSAGE);
+								return;
+							}
+						}
+					}
+					for (int i = 0; i < MovieProgram.signUps.size(); i++) {
+						if (!userId.equals(MovieProgram.signUps.get(i).get(0))) {
+							if (i != -1) {
+								JOptionPane.showMessageDialog(SignInPanel.this, "올바른 아이디를 입력하세요", "알림",
+										JOptionPane.INFORMATION_MESSAGE);
+								return;
+							}
 						}
 					}
 				}
-
 			}
 		});
 		btnNewButton_5.setBounds(313, 158, 97, 23);
