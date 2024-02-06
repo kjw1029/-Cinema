@@ -21,11 +21,7 @@ public class Menu_Movie extends JPanel {
 			int length = MovieProgram.lblNewLabel_3.getText().length();
 		System.out.println(MovieProgram.lblNewLabel_3.getText().substring(0, length - 7));
 		} else {
-			
-			System.out.println(MovieProgram.lblNewLabel_3.getText());
+			System.out.println("비회원");
 		}
-		System.out.println("length: " + MovieProgram.lblNewLabel_3.getText().length());
-		
-		
 	}
 }
