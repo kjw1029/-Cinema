@@ -32,8 +32,8 @@ public class StoreJPanel extends JPanel {
 		Store.Store();
 
 		JPanel panel = new JPanel();
-		panel.setBounds(10, 75, 566, 443);
-		panel.setPreferredSize(new Dimension(600, 600));
+		panel.setBounds(16, 5, 650, 450);
+		panel.setPreferredSize(new Dimension(650, 450));
 		panel.setLayout(null);
 
 		JMenuBar menuBar = new JMenuBar();
@@ -43,8 +43,8 @@ public class StoreJPanel extends JPanel {
 		panel.add(menuBar);
 
 		cards = new JPanel();
-		cards.setBounds(0, 80, 584, 450);
-		cards.setPreferredSize(new Dimension(500, 450));
+		cards.setBounds(0, 80, 584, 360);
+		cards.setPreferredSize(new Dimension(600, 350));
 		cardLayout = new CardLayout();
 		cards.setLayout(cardLayout);
 		panel.add(cards);
@@ -87,30 +87,30 @@ public class StoreJPanel extends JPanel {
 		beverage.setLayout(null);
 
 		JButton btnNewButton_4 = new JButton("콜라");
-		btnNewButton_4.setBounds(25, 5, 83, 156);
+		btnNewButton_4.setBounds(25, 5, 113, 156);
 		beverage.add(btnNewButton_4);
 		foodPurchaseList(btnNewButton_4);
 
 		JButton btnNewButton_5 = new JButton("커피");
-		btnNewButton_5.setBounds(150, 5, 69, 156);
+		btnNewButton_5.setBounds(150, 5, 106, 156);
 		beverage.add(btnNewButton_5);
 		foodPurchaseList(btnNewButton_5);
 
 		JButton btnNewButton_6 = new JButton("에이드");
-		btnNewButton_6.setBounds(228, 34, 143, 127);
+		btnNewButton_6.setBounds(279, 5, 100, 156);
 		beverage.add(btnNewButton_6);
 		foodPurchaseList(btnNewButton_6);
 
 		JLabel lblNewLabel_2 = new JLabel("New label");
-		lblNewLabel_2.setBounds(286, 9, 57, 15);
+		lblNewLabel_2.setBounds(35, 177, 57, 15);
 		beverage.add(lblNewLabel_2);
 
 		JLabel lblNewLabel_3 = new JLabel("New label");
-		lblNewLabel_3.setBounds(348, 9, 57, 15);
+		lblNewLabel_3.setBounds(150, 171, 57, 15);
 		beverage.add(lblNewLabel_3);
 
 		JLabel lblNewLabel_4 = new JLabel("New label");
-		lblNewLabel_4.setBounds(410, 9, 57, 15);
+		lblNewLabel_4.setBounds(279, 177, 57, 15);
 		beverage.add(lblNewLabel_4);
 
 		JPanel shoppingBasket = new JPanel();
@@ -219,6 +219,7 @@ public class StoreJPanel extends JPanel {
 				lblNewLabel_5.setText(String.valueOf(amount));
 			}
 		});
+		setLayout(null);
 
 		JPanel giftCard = new JPanel();
 		giftCard.setBounds(0, 111, 584, 450);

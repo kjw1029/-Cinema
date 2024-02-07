@@ -47,9 +47,6 @@ public class MovieProgram extends JFrame {
 	private JPanel panel_2;
 	private JLabel lblNewLabel_5;
 
-	
-	
-
 	public MovieProgram() {
 		
 		// 매니저 아이디 생성

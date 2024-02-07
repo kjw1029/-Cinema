@@ -13,6 +13,11 @@ public class Movies {
 		this.director = director;
 		this.actor = actor;
 	}
+	
+	public Movies() {
+		super();
+	}
+
 	public String getTitle() {
 		return title;
 	}
