@@ -91,9 +91,9 @@ public class MovieProgram extends JFrame {
 		List<String> signUpTitles = Arrays.asList("아이디", "비밀번호", "성별", "연령대", "전화번호");
 		signUps.add(signUpTitles);
 		
-		frame = new JFrame("Panel Switch Example");
+		frame = new JFrame("휴대폰");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(500, 500);
+		frame.setSize(350, 600);
 
 		cardLayout = new CardLayout();
 		frame.getContentPane().setLayout(cardLayout);
@@ -122,7 +122,7 @@ public class MovieProgram extends JFrame {
 				cardLayout.show(frame.getContentPane(), "panel6");
 			}
 		});
-		btnNewButton_3.setBounds(334, 7, 60, 23);
+		btnNewButton_3.setBounds(195, 7, 60, 23);
 		panel1.add(btnNewButton_3);
 
 		btnNewButton_4 = new JButton("my");
@@ -140,28 +140,28 @@ public class MovieProgram extends JFrame {
 				}
 			}
 		});
-		btnNewButton_4.setBounds(405, 8, 60, 23);
+		btnNewButton_4.setBounds(262, 7, 60, 23);
 		panel1.add(btnNewButton_4);
 
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.WHITE);
-		panel.setBounds(31, 40, 441, 40);
+		panel.setBounds(0, 40, 387, 40);
 		panel1.add(panel);
 		panel.setLayout(null);
 		JButton switchButton = new JButton("홈");
-		switchButton.setBounds(12, 10, 69, 23);
+		switchButton.setBounds(11, 10, 69, 23);
 		panel.add(switchButton);
 
 		btnNewButton = new JButton("영화");
-		btnNewButton.setBounds(93, 10, 63, 23);
+		btnNewButton.setBounds(92, 10, 63, 23);
 		panel.add(btnNewButton);
 
 		btnNewButton_1 = new JButton("예매");
-		btnNewButton_1.setBounds(181, 10, 69, 23);
+		btnNewButton_1.setBounds(167, 10, 69, 23);
 		panel.add(btnNewButton_1);
 
 		btnNewButton_2 = new JButton("스토어");
-		btnNewButton_2.setBounds(275, 10, 77, 23);
+		btnNewButton_2.setBounds(248, 10, 77, 23);
 		panel.add(btnNewButton_2);
 
 		lblNewLabel_3 = new JLabel("로그인 해주세요");
@@ -183,6 +183,7 @@ public class MovieProgram extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Menu_Movie pnlMovie = new Menu_Movie();
+				
 				frame.getContentPane().add(pnlMovie, "영화");
 				cardLayout.show(frame.getContentPane(), "영화");
 			}
