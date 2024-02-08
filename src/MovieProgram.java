@@ -58,9 +58,6 @@ public class MovieProgram extends JFrame {
 	private JLabel lblNewLabel_5;
 	private JScrollPane scrollPane;
 
-	
-	
-
 	public MovieProgram() {
 		
 		// 매니저 아이디 생성
