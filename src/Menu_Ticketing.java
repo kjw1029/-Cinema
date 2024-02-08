@@ -20,23 +20,20 @@ public class Menu_Ticketing extends JFrame {
 		}
 	}
 
-	// 좌석 선택, 버튼에 텍스트 주고 잘라서 비교, void?? 반호나??
+	// 좌석 선택, 버튼에 텍스트 주고 잘라서 비교, void?? 반환??
 	// 클릭마다 좌석 상태변경, 좌석 반환
-	public static Seats selectSeats(JButton btn) {
+	public static void selectSeats(JButton btn) {
 		for (Seats s : Theater.seatslist) {
 			String row = btn.getText().substring(0, 1);
 			String col = btn.getText().substring(1, 2);
 			if (s.getRow().equals(row) && s.getCol().equals(col)) {
 				if (s.isReservationStatus() == true) {
 					s.setReservationStatus(false);
-					return s;
 				} else {
 					s.setReservationStatus(true);
 				}
 			}
-
 		}
-		return null;
 	}
 	
 	// 티켓 생성

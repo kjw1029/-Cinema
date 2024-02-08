@@ -10,6 +10,8 @@ public class ShoppingBasket {
 	protected static Map<Food, Integer> foodCount = new HashMap<>();
 	protected static Map<GiftCard, Integer> giftCount = new HashMap<>();
 	protected static List<String> totalPurchaseCountList = new ArrayList<String>();
+	protected static List<String> totalLastPurchaseList = new ArrayList<>();
+	protected static List<String> signUpPurchaseList = new ArrayList<>();
 
 	// 음시 구매록목 추가
 	public static void addfoodPurchaseList(Food food) {
@@ -56,6 +58,11 @@ public class ShoppingBasket {
 		}
 		for (GiftCard g : GiftCardPurchaseList) {
 			giftCount.put(g, giftCount.getOrDefault(g, 0) + 1);
+		}
+	}
+	public static void maketotalLastPurchaseList() {
+		for (int i = 0; i < totalPurchaseList.size(); i++) {
+			totalLastPurchaseList.add(totalPurchaseList.get(i) + totalPurchaseCountList.get(i));
 		}
 	}
 

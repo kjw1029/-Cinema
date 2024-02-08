@@ -1,31 +1,56 @@
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JToggleButton;
 
-public class Theater {
+public class Theater extends JPanel {
 	private Seats seats;
 	protected static List<Seats> seatslist = new ArrayList<>();
+	private JPanel panel;
 
 	public Theater() {
-
+		setLayout(null);
+		
+		panel = new JPanel();
+		panel.setBounds(61, 10, 160, 173);
+		add(panel);
+		
+		makeSeats(panel);
 	}
 
 	// 좌석 생성, 행에 따라 좌석 타입 다르게 0 ~3행까지 일반 4행 커플 5행 리클라이너
-	public void makeSeats() {
-		for (int j = 1; j <= 6; j++) {
-			for (int i = 1; i <= 20; i++) {
-				if (j != 5 && j != 6) {
-					seatslist.add(new Seats(String.valueOf(j), String.valueOf(i), "일반", 12000, true));
-				} else if (j == 5) {
-					seatslist.add(new Seats(String.valueOf(j), String.valueOf(i), "커플", 24000, true));
-				} else if (j == 6) {
-					seatslist.add(new Seats(String.valueOf(j), String.valueOf(i), "리클라이너", 25000, true));
-				}
-			}
-		}
+	public void makeSeats(JPanel jpanel) {
+	    List<Character> rows = Arrays.asList('A', 'B', 'C', 'D');
+	    for (char row : rows) {
+	        for (int i = 1; i <= 20; i++) {
+	            String seatNumber = row + "-" + i;
+	            JToggleButton jtbtn = new JToggleButton(seatNumber);
+	            jpanel.add(jtbtn);
+	            if (row != 'C' && row != 'D') {
+	                seatslist.add(new Seats(row + "-", String.valueOf(i), "일반", 12000, true));
+	            } else if (row == 'C') {
+	                seatslist.add(new Seats(row + "-", String.valueOf(i), "커플", 24000, true));
+	            } else if (row == 'D') {
+	                seatslist.add(new Seats(row + "-", String.valueOf(i), "리클라이너", 25000, true));
+	            }
+	        }
+	    }
 	}
-
+	
+	public void jtoggleButtonChangeListener (JToggleButton jtbtn) {
+		jtbtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				e.getActionCommand();
+			}
+		});
+	}
 	// 좌석 출력 col 1 나오게 같이 고민해주세요
 	public void printSeats() {
 		for (int i = 0; i <= seatslist.size(); i++) {
@@ -41,12 +66,10 @@ public class Theater {
 
 	public static void main(String[] args) {
 		Theater th = new Theater();
-		th.makeSeats();
 		th.printSeats();
 		
 		// 값 테스트 좌석 반환및 상태변경
 		System.out.println();
 		JButton btn = new JButton("16");
-		System.out.println(Menu_Ticketing.selectSeats(btn).toString());
 	}
 }
