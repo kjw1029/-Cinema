@@ -117,6 +117,12 @@ public class MovieProgram extends JFrame {
 		createPanel6();
 		createPanel7();
 
+		
+		MenubarPanel pnl = new MenubarPanel();
+		pnl.switchButton.setLocation(12, 47);
+		pnl.setBounds(0, 0, 400, 80);
+		panel1.add(pnl);
+		
 		frame.setVisible(true);
 	}
 
@@ -154,61 +160,62 @@ public class MovieProgram extends JFrame {
 		btnNewButton_4.setBounds(262, 7, 60, 23);
 		panel1.add(btnNewButton_4);
 
-		JPanel panel = new JPanel();
-		panel.setBackground(Color.WHITE);
-		panel.setBounds(0, 40, 387, 40);
-		panel1.add(panel);
-		panel.setLayout(null);
-		JButton switchButton = new JButton("홈");
-		switchButton.setBounds(11, 10, 69, 23);
-		panel.add(switchButton);
+		
+//		JPanel panel = new JPanel();
+//		panel.setBackground(Color.WHITE);
+//		panel.setBounds(0, 40, 387, 40);
+//		panel1.add(panel);
+//		panel.setLayout(null);
+//		JButton switchButton = new JButton("홈");
+//		switchButton.setBounds(11, 10, 69, 23);
+//		panel.add(switchButton);
+//
+//		btnNewButton = new JButton("영화");
+//		btnNewButton.setBounds(92, 10, 63, 23);
+//		panel.add(btnNewButton);
+//
+//		btnNewButton_1 = new JButton("예매");
+//		btnNewButton_1.setBounds(167, 10, 69, 23);
+//		panel.add(btnNewButton_1);
+//
+//		btnNewButton_2 = new JButton("스토어");
+//		btnNewButton_2.setBounds(248, 10, 77, 23);
+//		panel.add(btnNewButton_2);
+//
+//		lblNewLabel_3 = new JLabel("로그인 해주세요");
+//		lblNewLabel_3.setBounds(85, 11, 203, 15);
 
-		btnNewButton = new JButton("영화");
-		btnNewButton.setBounds(92, 10, 63, 23);
-		panel.add(btnNewButton);
+//		panel1.add(lblNewLabel_3);
+//		btnNewButton_2.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				StoreJPanel pnlStore = new StoreJPanel();
+//				frame.getContentPane().add(pnlStore, "스토어");
+//				cardLayout.show(frame.getContentPane(), "스토어");
+//			}
+//		});
+//		btnNewButton_1.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				cardLayout.show(frame.getContentPane(), "panel4");
+//			}
+//		});
+//		btnNewButton.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				Menu_Movie pnlMovie = new Menu_Movie();
+//				
+//				frame.getContentPane().add(pnlMovie, "영화");
+//				cardLayout.show(frame.getContentPane(), "영화");
+//			}
+//		});
 
-		btnNewButton_1 = new JButton("예매");
-		btnNewButton_1.setBounds(167, 10, 69, 23);
-		panel.add(btnNewButton_1);
-
-		btnNewButton_2 = new JButton("스토어");
-		btnNewButton_2.setBounds(248, 10, 77, 23);
-		panel.add(btnNewButton_2);
-
-		lblNewLabel_3 = new JLabel("로그인 해주세요");
-		lblNewLabel_3.setBounds(85, 11, 203, 15);
-
-		panel1.add(lblNewLabel_3);
-		btnNewButton_2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				StoreJPanel pnlStore = new StoreJPanel();
-				frame.getContentPane().add(pnlStore, "스토어");
-				cardLayout.show(frame.getContentPane(), "스토어");
-			}
-		});
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				cardLayout.show(frame.getContentPane(), "panel4");
-			}
-		});
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Menu_Movie pnlMovie = new Menu_Movie();
-				
-				frame.getContentPane().add(pnlMovie, "영화");
-				cardLayout.show(frame.getContentPane(), "영화");
-			}
-		});
-
-		switchButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-		         JScrollBar verticalScrollBar = scrollPane.getVerticalScrollBar();
-	                verticalScrollBar.setValue(verticalScrollBar.getMinimum());
-				cardLayout.show(frame.getContentPane(), "panel1");
-				
-			}
-		});
+//		switchButton.addActionListener(new ActionListener() {
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//		         JScrollBar verticalScrollBar = scrollPane.getVerticalScrollBar();
+//	                verticalScrollBar.setValue(verticalScrollBar.getMinimum());
+//				cardLayout.show(frame.getContentPane(), "panel1");
+//				
+//			}
+//		});
 	}
 
 	// 영화 메뉴
@@ -399,10 +406,12 @@ public class MovieProgram extends JFrame {
 //					@Override
 //					protected void paintThumb(Graphics g, JComponent c, Rectangle trackBounds) {
 ////						// 스크롤바 thumb을 그립니다.
-////						g.setColor(Color.GRAY);
+////						g.setColor(Color.black);
+//						g.setColor(Color.GRAY);
+//						g.fillRect(trackBounds.x, trackBounds.y, 8, trackBounds.height);
 ////						g.fillRoundRect(trackBounds.x + 4, trackBounds.y, 12, trackBounds.height, 15, 7);
 //					}
-////
+//////
 //					@Override
 //					protected JButton createDecreaseButton(int orientation) {
 //						return createZeroButton();
