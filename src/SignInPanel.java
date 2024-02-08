@@ -8,13 +8,14 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import java.awt.Font;
 
 public class SignInPanel extends JPanel {
 	public SignInPanel() {
 		setLayout(null);
 
 		JTextField textField = new JTextField();
-		textField.setBounds(81, 92, 116, 21);
+		textField.setBounds(93, 139, 212, 21);
 		add(textField);
 		textField.setColumns(10);
 
@@ -30,7 +31,7 @@ public class SignInPanel extends JPanel {
 		});
 
 		JPasswordField passwordField = new JPasswordField();
-		passwordField.setBounds(81, 136, 116, 21);
+		passwordField.setBounds(93, 191, 212, 21);
 		add(passwordField);
 
 		JButton btnNewButton_5 = new JButton("로그인");
@@ -73,7 +74,7 @@ public class SignInPanel extends JPanel {
 				}
 			}
 		});
-		btnNewButton_5.setBounds(226, 110, 76, 23);
+		btnNewButton_5.setBounds(177, 250, 140, 35);
 		add(btnNewButton_5);
 
 		JButton btnNewButton_6 = new JButton("회원가입");
@@ -87,24 +88,28 @@ public class SignInPanel extends JPanel {
 				System.out.println(MovieProgram.signUps.toString());
 			}
 		});
-		btnNewButton_6.setBounds(29, 189, 97, 23);
+		btnNewButton_6.setBounds(25, 250, 140, 35);
 		add(btnNewButton_6);
 
-		JButton btnNewButton_7 = new JButton("아이디 찾기");
-		btnNewButton_7.setBounds(148, 189, 97, 23);
+		JButton btnNewButton_7 = new JButton("아이디찾기");
+		btnNewButton_7.setBounds(25, 316, 93, 23);
 		add(btnNewButton_7);
 
 		JLabel lblNewLabel = new JLabel("CGV");
-		lblNewLabel.setBounds(113, 47, 103, 35);
+		lblNewLabel.setFont(new Font("맑은 고딕", Font.PLAIN, 20));
+		lblNewLabel.setBounds(138, 64, 57, 35);
 		add(lblNewLabel);
 
 		JLabel lblNewLabel_1 = new JLabel("아이디");
-		lblNewLabel_1.setBounds(12, 91, 57, 15);
+		lblNewLabel_1.setBounds(25, 142, 57, 15);
 		add(lblNewLabel_1);
 
 		JLabel lblNewLabel_2 = new JLabel("비밀번호");
-		lblNewLabel_2.setBounds(12, 139, 57, 15);
+		lblNewLabel_2.setBounds(25, 194, 57, 15);
 		add(lblNewLabel_2);
+		
+		JButton btnNewButton = new JButton("비밀번호찾기");
+		btnNewButton.setBounds(130, 316, 111, 23);
+		add(btnNewButton);
 	}
-
 }

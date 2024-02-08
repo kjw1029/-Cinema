@@ -2,8 +2,11 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
-
+import javax.swing.plaf.basic.BasicScrollBarUI;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JComponent;
+
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -11,10 +14,17 @@ import java.util.List;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Rectangle;
+
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
+import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JTabbedPane;
 
 public class MovieProgram extends JFrame {
 	static JFrame frame;
@@ -46,6 +56,7 @@ public class MovieProgram extends JFrame {
 	private JPanel panel_1;
 	private JPanel panel_2;
 	private JLabel lblNewLabel_5;
+	private JScrollPane scrollPane;
 
 	
 	
@@ -195,7 +206,10 @@ public class MovieProgram extends JFrame {
 		switchButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+		         JScrollBar verticalScrollBar = scrollPane.getVerticalScrollBar();
+	                verticalScrollBar.setValue(verticalScrollBar.getMinimum());
 				cardLayout.show(frame.getContentPane(), "panel1");
+				
 			}
 		});
 	}
@@ -360,6 +374,65 @@ public class MovieProgram extends JFrame {
 		JLabel lblNewLabel_2 = new JLabel("비밀번호");
 		lblNewLabel_2.setBounds(64, 184, 57, 15);
 		panel7.add(lblNewLabel_2);
+		
+		
+		
+		
+		
+		// 스크롤
+		// JPanel을 생성하고 JButton을 추가합니다.
+				JPanel panel23 = new JPanel();
+				panel23.setLayout(new BoxLayout(panel23, BoxLayout.Y_AXIS));
+				
+				for (int i = 1; i <= 30; i++) {
+					panel23.add(new JButton("Button " + i));
+				}
+//				setLayout(null);
+//		        panel.add(new JButton("Button"));
+
+				scrollPane = new JScrollPane(panel23);
+				scrollPane.setBounds(2, 85, 330, 472);
+
+				// 스크롤 패널을 프레임에 추가합니다.
+				panel1.add(scrollPane);
+
+				// 세로 스크롤바 커스터마이징
+//				JScrollBar verticalScrollBar = scrollPane.getVerticalScrollBar();
+//				verticalScrollBar.setUI(new BasicScrollBarUI() {
+//					@Override
+//					protected void paintThumb(Graphics g, JComponent c, Rectangle trackBounds) {
+////						// 스크롤바 thumb을 그립니다.
+////						g.setColor(Color.GRAY);
+////						g.fillRoundRect(trackBounds.x + 4, trackBounds.y, 12, trackBounds.height, 15, 7);
+//					}
+////
+//					@Override
+//					protected JButton createDecreaseButton(int orientation) {
+//						return createZeroButton();
+//					}
+//
+//					@Override
+//					protected JButton createIncreaseButton(int orientation) {
+//						return createZeroButton();
+//					}
+//
+//					private JButton createZeroButton() {
+//						JButton button = new JButton();
+//						Dimension zeroDim = new Dimension(0, 0);
+//						button.setPreferredSize(zeroDim);
+//						button.setMinimumSize(zeroDim);
+//						button.setMaximumSize(zeroDim);
+//						return button;
+//					}
+//				});
+
+				JPanel panel_1 = new JPanel();
+				panel_1.setBounds(2, 350, 284, 31);
+				frame.getContentPane().add(panel_1);
+
+				JLabel lblNewLabel1 = new JLabel("dsfdsfs");
+				panel_1.add(lblNewLabel1);
+		
 	}
 
 
