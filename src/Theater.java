@@ -109,15 +109,6 @@ public class Theater extends JPanel {
 		
 		
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 	}
 
 	// 좌석 생성, 행에 따라 좌석 타입 다르게 0 ~3행까지 일반 4행 커플 5행 리클라이너
@@ -126,17 +117,18 @@ public class Theater extends JPanel {
 		for (char row : rows) {
 			for (int i = 1; i <= 20; i++) {
 				String seatNumber = String.format("%c-%02d", row, i);
+				String seatCol = String.format("%02d", i); 
 				JToggleButton jtbtn = new JToggleButton(seatNumber); // 토클 버튼, 이름 생성
 				jpanel.add(jtbtn); // 패널에 버튼 부착
 				jtoggleButtonChangeListener(jtbtn); // 액션 리스너 부착, 리스너가 버튼 클릭시 좌석예매 가능 여부 트루펄스로변환
 				tbtn.add(jtbtn); // 나중에 초기화를 한번에 하기위해서 리스트에 보관
 
 				if (row != 'C' && row != 'D') {
-					seatslist.add(new Seats(row + "-", String.valueOf(i), "일반", 12000, 0));
+					seatslist.add(new Seats(row + "-", seatCol, "일반", 12000, 0));
 				} else if (row == 'C') {
-					seatslist.add(new Seats(row + "-", String.valueOf(i), "커플", 24000, 0));
+					seatslist.add(new Seats(row + "-", seatCol, "커플", 24000, 0));
 				} else if (row == 'D') {
-					seatslist.add(new Seats(row + "-", String.valueOf(i), "리클라이너", 25000, 0));
+					seatslist.add(new Seats(row + "-", seatCol, "리클라이너", 25000, 0));
 				}
 			}
 		}
