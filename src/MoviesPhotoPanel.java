@@ -5,11 +5,11 @@ public class MoviesPhotoPanel extends JPanel {
 
     private int radius;
 
-    public MoviesPhotoPanel(int radius, String title, int x, int y) {
+    public MoviesPhotoPanel(int radius, String title) {
         super();
         this.radius = radius;
         setOpaque(false); // 투명한 패널 설정
-        setPanel(this, x, y);
+        setPanel(this);
         setPhoto(this, title);
     }
 
@@ -30,16 +30,16 @@ public class MoviesPhotoPanel extends JPanel {
     }
     
     // 패널 꾸미기
-    public static void setPanel(MoviesPhotoPanel pnl, int x, int y) {
+    public static void setPanel(MoviesPhotoPanel pnl) {
     	pnl.setBackground(Color.WHITE);
-        pnl.setLayout(new BorderLayout());
-        pnl.setPreferredSize(new Dimension(x, y)); // 패널의 크기 설정
+//        pnl.setLayout(new BorderLayout());
+//        pnl.setPreferredSize(new Dimension(x, y)); // 패널의 크기 설정
     }
     
     // 사진 추가
     public static void setPhoto(MoviesPhotoPanel pnl, String str) {
     	JLabel label = new JLabel(str);
-        label.setHorizontalAlignment(SwingConstants.CENTER);
-        pnl.add(label, BorderLayout.CENTER);
+//        label.setHorizontalAlignment(SwingConstants.CENTER);
+        pnl.add(label);
     }
 }
