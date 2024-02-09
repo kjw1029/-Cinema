@@ -1,12 +1,16 @@
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class MenubarPanel extends JPanel {
     public static JButton switchButton;
+	static JLabel lblNewLabel_3;
 
 	public MenubarPanel() {
     	setBackground(Color.WHITE);
@@ -17,10 +21,28 @@ public class MenubarPanel extends JPanel {
         switchButton = new JButton("홈");
         switchButton.setBounds(27, 47, 69, 23);
         add(switchButton);
+        switchButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				MovieProgram.cardLayout.show(MovieProgram.pnlMain, "panel1");
+//				MovieProgram.pnl.setVisible(true);
+			}
+		});
+
 
         JButton btnNewButton = new JButton("영화");
         btnNewButton.setBounds(90, 47, 63, 23);
         add(btnNewButton);
+
+
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Menu_Movie pnlMovie = new Menu_Movie();
+				
+				MovieProgram.pnlMain.add(pnlMovie, "영화");
+				MovieProgram.cardLayout.show(MovieProgram.pnlMain, "영화");
+			}
+		});
 
         JButton btnNewButton_1 = new JButton("예매");
         btnNewButton_1.setBounds(165, 47, 69, 23);
@@ -29,10 +51,51 @@ public class MenubarPanel extends JPanel {
         JButton btnNewButton_2 = new JButton("스토어");
         btnNewButton_2.setBounds(240, 47, 77, 23);
         add(btnNewButton_2);
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				StoreJPanel pnlStore = new StoreJPanel();
+				MovieProgram.pnlMain.add(pnlStore, "스토어");
+				MovieProgram.cardLayout.show(MovieProgram.pnlMain, "스토어");
+			}
+		});
 
-        JLabel lblNewLabel_3 = new JLabel("로그인 해주세요");
+
+        lblNewLabel_3 = new JLabel("로그인 해주세요");
         lblNewLabel_3.setBounds(133, 10, 98, 15); // 라벨의 위치를 조정
         add(lblNewLabel_3);
+        
+        JButton btnNewButton_3 = new JButton("cart");
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MovieProgram.cardLayout.show(MovieProgram.pnlMain, "panel6");
+			}
+		});
+		btnNewButton_3.setBounds(195, 7, 60, 23);
+		add(btnNewButton_3);
+
+		JButton btnNewButton_4 = new JButton("로그인");
+		btnNewButton_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (MenubarPanel.lblNewLabel_3.getText() != "로그인 해주세요") { 
+					// 로그인 성공시 마이메뉴 출력
+					JOptionPane.showMessageDialog(MovieProgram.frame, "로그인 성공(임시)", "알림",
+							JOptionPane.INFORMATION_MESSAGE);
+				} else {
+					// 비회원 조회시 로그인창 출력
+					SignInPanel sp = new SignInPanel();
+//					frame.getContentPane().add(sp, "로그인");
+					MovieProgram.pnlMain.add(sp, "로그인");
+//					pnl.setVisible(false);
+
+					MovieProgram.cardLayout.show(MovieProgram.pnlMain, "로그인");
+				}
+			}
+		});
+		btnNewButton_4.setBounds(262, 7, 60, 23);
+		add(btnNewButton_4);
+        
+        
+        
     }
 	
 //
