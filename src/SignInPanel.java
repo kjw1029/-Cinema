@@ -19,16 +19,16 @@ public class SignInPanel extends JPanel {
 		add(textField);
 		textField.setColumns(10);
 
-		JButton switchButton = new JButton("메인");
-		switchButton.setBounds(12, 10, 70, 23);
-		add(switchButton);
-
-		switchButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
-			}
-		});
+//		JButton switchButton = new JButton("메인");
+//		switchButton.setBounds(12, 10, 70, 23);
+//		add(switchButton);
+//
+//		switchButton.addActionListener(new ActionListener() {
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				setVisible(false);
+//			}
+//		});
 
 		JPasswordField passwordField = new JPasswordField();
 		passwordField.setBounds(93, 191, 212, 21);
@@ -83,8 +83,8 @@ public class SignInPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				SignUp s = new SignUp();
 				SignUpPanel p = new SignUpPanel(s);
-				MovieProgram.frame.getContentPane().add(p, "회원가입");
-				MovieProgram.cardLayout.show(MovieProgram.frame.getContentPane(), "회원가입");
+				MovieProgram.pnlMain.add(p, "회원가입");
+				MovieProgram.cardLayout.show(MovieProgram.pnlMain, "회원가입");
 				System.out.println(MovieProgram.signUps.toString());
 			}
 		});

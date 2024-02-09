@@ -51,7 +51,7 @@ public class SignUpPanel extends JPanel {
 		JButton btnNewButton_2 = new JButton("이전");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MovieProgram.cardLayout.show(MovieProgram.frame.getContentPane(), "로그인");
+				MovieProgram.cardLayout.show(MovieProgram.pnlMain, "로그인");
 
 			}
 		});
