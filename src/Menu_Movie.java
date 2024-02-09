@@ -34,9 +34,11 @@ public class Menu_Movie extends JPanel {
 //		chckbxNewCheckBox.setBounds(279, 7, 128, 23);
 //		chckbxNewCheckBox.setSelected(false);
 //		buttonPanel.add(chckbxNewCheckBox);
+		
+		
 		// 다음 카드로 이동하는 버튼 생성
 		JButton nextButton = new JButton("전체 보기");
-		nextButton.setBounds(62, 6, 103, 29);
+		nextButton.setBounds(183, 44, 103, 29);
 		nextButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -45,7 +47,7 @@ public class Menu_Movie extends JPanel {
 		});
 		
 		JButton nextButton2 = new JButton("현재 상영작");
-		nextButton2.setBounds(164, 6, 103, 29);
+		nextButton2.setBounds(298, 44, 103, 29);
 		nextButton2.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -54,10 +56,15 @@ public class Menu_Movie extends JPanel {
 		});
 		buttonPanel = new JPanel();
 		buttonPanel.setLayout(null);
-		buttonPanel.setBounds(0, 40, 800, 500);
+		buttonPanel.setBounds(0, 0, 800, 500);
 		buttonPanel.add(nextButton);
 		buttonPanel.add(nextButton2);
 		add(buttonPanel);
+		
+		JLabel lblNewLabel_6 = new JLabel("무비차트");
+		lblNewLabel_6.setFont(new Font("Lucida Grande", Font.BOLD, 23));
+		lblNewLabel_6.setBounds(78, 35, 93, 29);
+		buttonPanel.add(lblNewLabel_6);
 
 		// 카드로 사용할 패널 생성
 		TotalMovie now = new TotalMovie();
@@ -71,6 +78,10 @@ public class Menu_Movie extends JPanel {
 		// 카드 패널에 카드 추가
 		pnlMain.add(now, "전체 보기");
 		pnlMain.add(card2, "현재 상영작");
+		
+		JLabel lblNewLabel_5 = new JLabel("New label");
+		lblNewLabel_5.setBounds(72, 12, 61, 16);
+		add(lblNewLabel_5);
 
 
     }

@@ -7,19 +7,20 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import java.awt.Font;
 
 public class MenubarPanel extends JPanel {
     public static JButton switchButton;
 	static JLabel lblNewLabel_3;
 
 	public MenubarPanel() {
-    	setBackground(Color.WHITE);
+    	setBackground(Color.LIGHT_GRAY);
         setLayout(null);
 //        setBackground(Color.LIGHT_GRAY);
-        setBounds(0, 0, 400, 80); // 패널의 크기를 적절하게 설정
+        setBounds(0, 0, 800, 89); // 패널의 크기를 적절하게 설정
 
         switchButton = new JButton("홈");
-        switchButton.setBounds(27, 47, 69, 23);
+        switchButton.setBounds(168, 43, 63, 31);
         add(switchButton);
         switchButton.addActionListener(new ActionListener() {
 			@Override
@@ -31,7 +32,7 @@ public class MenubarPanel extends JPanel {
 
 
         JButton btnNewButton = new JButton("영화");
-        btnNewButton.setBounds(90, 47, 63, 23);
+        btnNewButton.setBounds(320, 47, 63, 23);
         add(btnNewButton);
 
 
@@ -45,11 +46,11 @@ public class MenubarPanel extends JPanel {
 		});
 
         JButton btnNewButton_1 = new JButton("예매");
-        btnNewButton_1.setBounds(165, 47, 69, 23);
+        btnNewButton_1.setBounds(475, 47, 69, 23);
         add(btnNewButton_1);
 
         JButton btnNewButton_2 = new JButton("스토어");
-        btnNewButton_2.setBounds(240, 47, 77, 23);
+        btnNewButton_2.setBounds(595, 47, 77, 23);
         add(btnNewButton_2);
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -61,7 +62,7 @@ public class MenubarPanel extends JPanel {
 
 
         lblNewLabel_3 = new JLabel("로그인 해주세요");
-        lblNewLabel_3.setBounds(133, 10, 98, 15); // 라벨의 위치를 조정
+        lblNewLabel_3.setBounds(492, 10, 98, 15); // 라벨의 위치를 조정
         add(lblNewLabel_3);
         
         JButton btnNewButton_3 = new JButton("cart");
@@ -70,7 +71,7 @@ public class MenubarPanel extends JPanel {
 				MovieProgram.cardLayout.show(MovieProgram.pnlMain, "panel6");
 			}
 		});
-		btnNewButton_3.setBounds(195, 7, 60, 23);
+		btnNewButton_3.setBounds(612, 7, 60, 23);
 		add(btnNewButton_3);
 
 		JButton btnNewButton_4 = new JButton("로그인");
@@ -91,8 +92,13 @@ public class MenubarPanel extends JPanel {
 				}
 			}
 		});
-		btnNewButton_4.setBounds(262, 7, 60, 23);
+		btnNewButton_4.setBounds(684, 7, 60, 23);
 		add(btnNewButton_4);
+		
+		JLabel lblNewLabel = new JLabel("CGV");
+		lblNewLabel.setFont(new Font("Lucida Grande", Font.BOLD, 25));
+		lblNewLabel.setBounds(30, 23, 63, 31);
+		add(lblNewLabel);
         
         
         
