@@ -4,9 +4,9 @@ public class Seats {
 	private String col;
 	private String seatType;
 	private int amount;
-	private boolean reservationStatus;
+	private int reservationStatus; //0 선택가능 1 선택완료 2 예약완료
 
-	public Seats(String row, String col, String seatType, int amount, boolean reservationStatus) {
+	public Seats(String row, String col, String seatType, int amount, int reservationStatus) {
 		super();
 		this.row = row;
 		this.col = col;
@@ -19,39 +19,39 @@ public class Seats {
 		return row;
 	}
 
-	public String getCol() {
-		return col;
-	}
-
-	public String getSeatType() {
-		return seatType;
-	}
-
-	public int getAmount() {
-		return amount;
-	}
-
-	public boolean isReservationStatus() {
-		return reservationStatus;
-	}
-
 	public void setRow(String row) {
 		this.row = row;
+	}
+
+	public String getCol() {
+		return col;
 	}
 
 	public void setCol(String col) {
 		this.col = col;
 	}
 
+	public String getSeatType() {
+		return seatType;
+	}
+
 	public void setSeatType(String seatType) {
 		this.seatType = seatType;
+	}
+
+	public int getAmount() {
+		return amount;
 	}
 
 	public void setAmount(int amount) {
 		this.amount = amount;
 	}
 
-	public void setReservationStatus(boolean reservationStatus) {
+	public int getReservationStatus() {
+		return reservationStatus;
+	}
+
+	public void setReservationStatus(int reservationStatus) {
 		this.reservationStatus = reservationStatus;
 	}
 
@@ -60,5 +60,5 @@ public class Seats {
 		return "Seats [row=" + row + ", col=" + col + ", seatType=" + seatType + ", amount=" + amount
 				+ ", reservationStatus=" + reservationStatus + "]";
 	}
-
+	
 }
