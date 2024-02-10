@@ -11,8 +11,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JToggleButton;
 
 public class Menu_Ticketing extends JPanel {
-	private Movies movies = new Movies(); // 영화?????? 테스트
-	private List<Movies> MoviesList = new ArrayList<>(); // 영화목록
+//	private Movies movies; // 영화?????? 테스트
+//	private List<Movies> MoviesList = new ArrayList<>(); // 영화목록
 //	private static List<Ticket> TicketList; //구매된 티켓 리스트
 	private JPanel panel;
 	private JPanel panel_1;
