@@ -47,6 +47,14 @@ public class MenubarPanel extends JPanel {
         JButton btnNewButton_1 = new JButton("예매");
         btnNewButton_1.setBounds(165, 47, 69, 23);
         add(btnNewButton_1);
+        btnNewButton_1.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Menu_Ticketing pnlTicketing = new Menu_Ticketing();
+				MovieProgram.pnlMain.add(pnlTicketing, "예매");
+				MovieProgram.cardLayout.show(MovieProgram.pnlMain, "예매");
+			}
+		});
 
         JButton btnNewButton_2 = new JButton("스토어");
         btnNewButton_2.setBounds(240, 47, 77, 23);

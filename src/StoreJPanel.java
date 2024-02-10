@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import java.awt.GridLayout;
 
 public class StoreJPanel extends JPanel {
 	private CardLayout cardLayout;
@@ -30,12 +31,12 @@ public class StoreJPanel extends JPanel {
 		Store.Store();
 
 		JPanel panel = new JPanel();
-		panel.setBounds(0, 0, 350, 600);
-		panel.setPreferredSize(new Dimension(650, 450));
+		panel.setBounds(0, 0, 800, 599);
+		panel.setPreferredSize(new Dimension(800, 600));
 		panel.setLayout(null);
 
 		cards = new JPanel();
-		cards.setBounds(0, 156, 350, 444);
+		cards.setBounds(0, 40, 800, 560);
 		cards.setPreferredSize(new Dimension(350, 600));
 		cardLayout = new CardLayout();
 		cards.setLayout(cardLayout);
@@ -235,51 +236,51 @@ public class StoreJPanel extends JPanel {
 		giftCard.add(label_2);
 
 		add(panel);
-		
-				JButton btnGiftCard = new JButton("기프트카드");
-				btnGiftCard.setBounds(0, 112, 93, 23);
-				panel.add(btnGiftCard);
-				showListener(btnGiftCard);
-				
-						JButton btnPopcorn = new JButton("팝콘");
-						btnPopcorn.setBounds(89, 112, 57, 23);
-						panel.add(btnPopcorn);
-						showListener(btnPopcorn);
-						
-								JButton btnBeverage = new JButton("음료");
-								btnBeverage.setBounds(145, 112, 57, 23);
-								panel.add(btnBeverage);
-								showListener(btnBeverage);
-								
-										JButton btnshoppingBasket = new JButton("장바구니");
-										btnshoppingBasket.setBounds(200, 112, 81, 23);
-										panel.add(btnshoppingBasket);
 										
-										JButton btnNewButton_9 = new JButton("이전");
-										btnNewButton_9.setBounds(281, 112, 57, 23);
-										panel.add(btnNewButton_9);
-										btnNewButton_9.addActionListener(new ActionListener() {
-											public void actionPerformed(ActionEvent e) {
-												MovieProgram.cardLayout.show(MovieProgram.frame.getContentPane(), "로그인");
-											}
-										});
+										JPanel panel_1 = new JPanel();
+										panel_1.setBounds(0, 0, 800, 33);
+										panel.add(panel_1);
+												panel_1.setLayout(new GridLayout(0, 5, 0, 0));
 										
-										// 클릭시 음식, 기프트카드 리스트 하나의 List<string>에 담고 카운트, jtable 생성
-										btnshoppingBasket.addActionListener(new ActionListener() {
-											@Override
-											public void actionPerformed(ActionEvent e) {
-												cardLayout.show(cards, "장바구니");
-												ShoppingBasket.makeTotalPurchaseList();
-												ShoppingBasket.foodPurchaseList.clear();
-												ShoppingBasket.GiftCardPurchaseList.clear();
-
-												String column[] = { "구매목록", "구매개수" };
-												table.setModel(new DefaultTableModel(comboList(), column));
-
+												JButton btnGiftCard = new JButton("기프트카드");
+												panel_1.add(btnGiftCard);
+												showListener(btnGiftCard);
 												
-												lblNewLabel_5.setText(String.valueOf(amount));
-											}
-										});
+														JButton btnPopcorn = new JButton("팝콘");
+														panel_1.add(btnPopcorn);
+														showListener(btnPopcorn);
+														
+																JButton btnBeverage = new JButton("음료");
+																panel_1.add(btnBeverage);
+																showListener(btnBeverage);
+																
+																		JButton btnshoppingBasket = new JButton("장바구니");
+																		panel_1.add(btnshoppingBasket);
+																		
+																		JButton btnNewButton_9 = new JButton("이전");
+																		panel_1.add(btnNewButton_9);
+																		btnNewButton_9.addActionListener(new ActionListener() {
+																			public void actionPerformed(ActionEvent e) {
+																				MovieProgram.cardLayout.show(MovieProgram.frame.getContentPane(), "로그인");
+																			}
+																		});
+																		
+																		// 클릭시 음식, 기프트카드 리스트 하나의 List<string>에 담고 카운트, jtable 생성
+																		btnshoppingBasket.addActionListener(new ActionListener() {
+																			@Override
+																			public void actionPerformed(ActionEvent e) {
+																				cardLayout.show(cards, "장바구니");
+																				ShoppingBasket.makeTotalPurchaseList();
+																				ShoppingBasket.foodPurchaseList.clear();
+																				ShoppingBasket.GiftCardPurchaseList.clear();
+
+																				String column[] = { "구매목록", "구매개수" };
+																				table.setModel(new DefaultTableModel(comboList(), column));
+
+																				
+																				lblNewLabel_5.setText(String.valueOf(amount));
+																			}
+																		});
 
 	}
 

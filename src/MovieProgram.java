@@ -131,7 +131,7 @@ public class MovieProgram extends JFrame {
 		pnl = new MenubarPanel();
 		pnl.switchButton.setLocation(12, 47);
 		pnl.setBounds(0, 0, 800, 80);
-	frame.getContentPane().add(pnl);
+		frame.getContentPane().add(pnl);
 		
 		frame.setVisible(true);
 	}
