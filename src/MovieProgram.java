@@ -14,8 +14,11 @@ import java.util.List;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.GridLayout;
 import java.awt.Rectangle;
 
 import javax.swing.JTextField;
@@ -25,6 +28,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
+import java.awt.BorderLayout;
 
 public class MovieProgram extends JFrame {
 	static JFrame frame;
@@ -59,11 +66,12 @@ public class MovieProgram extends JFrame {
 	private JScrollPane scrollPane;
 	static JPanel pnlMain;
 	static MenubarPanel pnl;
+	private JPanel pnlM;
 
 	public MovieProgram() {
-		
+
 		// 매니저 아이디 생성
-		if (signUps.size()==0) {
+		if (signUps.size() == 0) {
 			List<String> signUpList = new ArrayList<String>(2);
 			// 아이디
 			signUpList.add(0, "admin");
@@ -76,8 +84,7 @@ public class MovieProgram extends JFrame {
 			// 전화번호
 			signUpList.add(4, "010-1234-1234");
 			signUps.add(signUpList);
-			
-			
+
 			// 테스트용 계정
 			List<String> signUpList2 = new ArrayList<String>(2);
 			// 아이디
@@ -91,19 +98,14 @@ public class MovieProgram extends JFrame {
 			// 전화번호
 			signUpList2.add(4, "010-1234-1234");
 			signUps.add(signUpList2);
-			
-			
-			
+
 		}
-		
-		
+
 		System.out.println(signUps.toString());
-		
-		
-		
+
 		List<String> signUpTitles = Arrays.asList("아이디", "비밀번호", "성별", "연령대", "전화번호");
 		signUps.add(signUpTitles);
-		
+
 		frame = new JFrame("휴대폰");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(800, 600);
@@ -115,7 +117,6 @@ public class MovieProgram extends JFrame {
 		pnlMain.setLayout(cardLayout);
 		pnlMain.setBounds(0, 80, 800, 500);
 		frame.getContentPane().add(pnlMain);
-		
 
 		createPanel1();
 //		createPanel2();
@@ -125,14 +126,10 @@ public class MovieProgram extends JFrame {
 //		createPanel6();
 //		createPanel7();
 
-		
-		
-		
 		pnl = new MenubarPanel();
-		pnl.switchButton.setLocation(12, 47);
+//		pnl.switchButton.setLocation(12, 47);
 		pnl.setBounds(0, 0, 800, 80);
 		frame.getContentPane().add(pnl);
-		
 		frame.setVisible(true);
 	}
 
@@ -141,321 +138,91 @@ public class MovieProgram extends JFrame {
 		panel1 = new JPanel();
 		panel1.setLayout(null);
 
-//		frame.getContentPane().add(panel1, "panel1");
 		pnlMain.add(panel1, "panel1");
 		panel1.setBounds(0, 80, 350, 500);
-//		btnNewButton_3 = new JButton("cart");
-//		btnNewButton_3.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				cardLayout.show(pnlMain, "panel6");
-//			}
-//		});
-//		btnNewButton_3.setBounds(195, 7, 60, 23);
-//		panel1.add(btnNewButton_3);
-//
-//		btnNewButton_4 = new JButton("my");
-//		btnNewButton_4.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				if (MenubarPanel.lblNewLabel_3.getText() != "로그인 해주세요") { 
-//					// 로그인 성공시 마이메뉴 출력
-//					JOptionPane.showMessageDialog(MovieProgram.this, "로그인 성공(임시)", "알림",
-//							JOptionPane.INFORMATION_MESSAGE);
-//				} else {
-//					// 비회원 조회시 로그인창 출력
-//					SignInPanel sp = new SignInPanel();
-////					frame.getContentPane().add(sp, "로그인");
-//					pnlMain.add(sp, "로그인");
-////					pnl.setVisible(false);
-//
-//					cardLayout.show(pnlMain, "로그인");
-//				}
-//			}
-//		});
-//		btnNewButton_4.setBounds(262, 7, 60, 23);
-//		panel1.add(btnNewButton_4);
 
-		
-//		JPanel panel = new JPanel();
-//		panel.setBackground(Color.WHITE);
-//		panel.setBounds(0, 40, 387, 40);
-//		panel1.add(panel);
-//		panel.setLayout(null);
-//		JButton switchButton = new JButton("홈");
-//		switchButton.setBounds(11, 10, 69, 23);
-//		panel.add(switchButton);
-//
-//		btnNewButton = new JButton("영화");
-//		btnNewButton.setBounds(92, 10, 63, 23);
-//		panel.add(btnNewButton);
-//
-//		btnNewButton_1 = new JButton("예매");
-//		btnNewButton_1.setBounds(167, 10, 69, 23);
-//		panel.add(btnNewButton_1);
-//
-//		btnNewButton_2 = new JButton("스토어");
-//		btnNewButton_2.setBounds(248, 10, 77, 23);
-//		panel.add(btnNewButton_2);
-//
-//		lblNewLabel_3 = new JLabel("로그인 해주세요");
-//		lblNewLabel_3.setBounds(85, 11, 203, 15);
-
-//		panel1.add(lblNewLabel_3);
-//		btnNewButton_2.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				StoreJPanel pnlStore = new StoreJPanel();
-//				frame.getContentPane().add(pnlStore, "스토어");
-//				cardLayout.show(frame.getContentPane(), "스토어");
-//			}
-//		});
-//		btnNewButton_1.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				cardLayout.show(frame.getContentPane(), "panel4");
-//			}
-//		});
-//		btnNewButton.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				Menu_Movie pnlMovie = new Menu_Movie();
-//				
-//				frame.getContentPane().add(pnlMovie, "영화");
-//				cardLayout.show(frame.getContentPane(), "영화");
-//			}
-//		});
-
-//		switchButton.addActionListener(new ActionListener() {
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//		         JScrollBar verticalScrollBar = scrollPane.getVerticalScrollBar();
-//	                verticalScrollBar.setValue(verticalScrollBar.getMinimum());
-//				cardLayout.show(frame.getContentPane(), "panel1");
-//				
-//			}
-//		});
-//	}
-
-	// 영화 메뉴
-//	private void createPanel2() {
-//		panel2 = new JPanel();
-//		JButton switchButton = new JButton("Switch to Panel 1");
-//		panel2.add(switchButton);
-//
-//		switchButton.addActionListener(new ActionListener() {
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				cardLayout.show(frame.getContentPane(), "panel1");
-//			}
-//		});
-//
-////		frame.getContentPane().add(panel2, "panel2");
-//		pnlMain.add(panel2, "panel2");
-//	}
-//
-//	// 극장 메뉴
-//	private void createPanel3() {
-//		panel3 = new JPanel();
-//		JButton switchButton = new JButton("Switch to Panel 1");
-//		panel3.add(switchButton);
-//
-//		switchButton.addActionListener(new ActionListener() {
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				cardLayout.show(frame.getContentPane(), "panel1");
-//			}
-//		});
-//
-//		frame.getContentPane().add(panel3, "panel3");
-//	}
-//
-//	// 예매 메뉴
-//	private void createPanel4() {
-//		panel4 = new JPanel();
-//		JButton switchButton = new JButton("Switch to Panel 1");
-//		panel4.add(switchButton);
-//
-//		switchButton.addActionListener(new ActionListener() {
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				cardLayout.show(frame.getContentPane(), "panel1");
-//			}
-//		});
-//
-//		frame.getContentPane().add(panel4, "panel4");
-//	}
-//
-//	// 스토어 메뉴
-//	private void createPanel5() {
-//		panel5 = new JPanel();
-//		JButton switchButton = new JButton("Switch to Panel 1");
-//		panel5.add(switchButton);
-//
-//		switchButton.addActionListener(new ActionListener() {
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				cardLayout.show(frame.getContentPane(), "panel1");
-////                Store.
-//			}
-//		});
-//
-//		frame.getContentPane().add(panel5, "panel5");
-//	}
-//
-//	// 장바구니 메뉴
-//	private void createPanel6() {
-//		panel6 = new JPanel();
-//		JButton switchButton = new JButton("Switch to Panel 1");
-//		panel6.add(switchButton);
-//
-//		switchButton.addActionListener(new ActionListener() {
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				cardLayout.show(frame.getContentPane(), "panel1");
-//			}
-//		});
-//
-//		frame.getContentPane().add(panel6, "panel6");
-//	}
-//
-//	// 나의 메뉴
-//	private void createPanel7() {
-////        panel7 = new JPanel();
-//		panel7 = new JPanel();
-//		panel7.setLayout(null);
-//
-//		textField = new JTextField();
-//		textField.setBounds(133, 136, 116, 21);
-//		panel7.add(textField);
-//		textField.setColumns(10);
-//		JButton switchButton = new JButton("Switch to Panel 1");
-//		switchButton.setBounds(12, 10, 131, 23);
-//		panel7.add(switchButton);
-//
-//		switchButton.addActionListener(new ActionListener() {
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				cardLayout.show(frame.getContentPane(), "panel1");
-//			}
-//		});
-//
-//		frame.getContentPane().add(panel7, "panel7");
-//
-//		passwordField = new JPasswordField();
-//		passwordField.setBounds(133, 181, 116, 21);
-//		panel7.add(passwordField);
-//
-//		btnNewButton_5 = new JButton("로그인");
-//		btnNewButton_5.addActionListener(new ActionListener() {
-//
-//			public void actionPerformed(ActionEvent e) {
-//				userId = textField.getText();
-//				String userPassword = passwordField.getText();
-//				
-//				for (List<String> elem : MovieProgram.signUps) {
-//					if (userId.equals(elem.get(0)) && userPassword.equals(elem.get(1))) {
-//						System.out.println(userId + "로그인 성공");
-//						lblNewLabel_3.setText(userId + "님 환영합니다");
-//						setVisible(false);
-//					}
-//				}
-//
-//			}
-//		});
-//		btnNewButton_5.setBounds(313, 158, 97, 23);
-//		panel7.add(btnNewButton_5);
-//
-//		btnNewButton_6 = new JButton("회원가입");
-//		btnNewButton_6.addActionListener(new ActionListener() {
-//			private SignUp receivedSignUp;
-//
-//			public void actionPerformed(ActionEvent e) {
-////        		SignUpPanel s = new SignUpPanel();
-//
-//				SignUpPanel p = new SignUpPanel(s);
-//				frame.getContentPane().add(p);
-//				frame.getContentPane().add(p, "회원가입");
-//				cardLayout.show(frame.getContentPane(), "회원가입");
-//				System.out.println(signUps.toString());
-//			}
-//		});
-//		btnNewButton_6.setBounds(109, 228, 97, 23);
-//		panel7.add(btnNewButton_6);
-//
-//		btnNewButton_7 = new JButton("아이디 찾기");
-//		btnNewButton_7.setBounds(237, 228, 97, 23);
-//		panel7.add(btnNewButton_7);
-//
-//		JLabel lblNewLabel = new JLabel("CGV");
-//		lblNewLabel.setBounds(192, 56, 103, 35);
-//		panel7.add(lblNewLabel);
-//
-//		JLabel lblNewLabel_1 = new JLabel("아이디");
-//		lblNewLabel_1.setBounds(64, 139, 57, 15);
-//		panel7.add(lblNewLabel_1);
-//
-//		JLabel lblNewLabel_2 = new JLabel("비밀번호");
-//		lblNewLabel_2.setBounds(64, 184, 57, 15);
-//		panel7.add(lblNewLabel_2);
-		
-		
-		
-		
-		
 		// 스크롤
-		// JPanel을 생성하고 JButton을 추가합니다.
-				JPanel panel23 = new JPanel();
-				panel23.setLayout(new BoxLayout(panel23, BoxLayout.Y_AXIS));
-				
-				for (int i = 1; i <= 30; i++) {
-					panel23.add(new JButton("Button " + i));
-				}
-//				setLayout(null);
-//		        panel.add(new JButton("Button"));
+		JPanel panel23 = new JPanel();
+		panel23.setLayout(new BoxLayout(panel23, BoxLayout.Y_AXIS));
 
-				scrollPane = new JScrollPane(panel23);
-				scrollPane.setBounds(22, 2, 756, 456);
+		for (int i = 1; i <= 30; i++) {
+			panel23.add(new JButton("Button " + i));
+		}
 
-				// 스크롤 패널을 프레임에 추가합니다.
-				panel1.add(scrollPane);
+		scrollPane = new JScrollPane(panel23);
+		scrollPane.setBounds(22, 2, 756, 456);
 
-				// 세로 스크롤바 커스터마이징
-//				JScrollBar verticalScrollBar = scrollPane.getVerticalScrollBar();
-//				verticalScrollBar.setUI(new BasicScrollBarUI() {
-//					@Override
-//					protected void paintThumb(Graphics g, JComponent c, Rectangle trackBounds) {
-////						// 스크롤바 thumb을 그립니다.
-////						g.setColor(Color.black);
-//						g.setColor(Color.GRAY);
-//						g.fillRect(trackBounds.x, trackBounds.y, 8, trackBounds.height);
-////						g.fillRoundRect(trackBounds.x + 4, trackBounds.y, 12, trackBounds.height, 15, 7);
-//					}
-//////
-//					@Override
-//					protected JButton createDecreaseButton(int orientation) {
-//						return createZeroButton();
-//					}
-//
-//					@Override
-//					protected JButton createIncreaseButton(int orientation) {
-//						return createZeroButton();
-//					}
-//
-//					private JButton createZeroButton() {
-//						JButton button = new JButton();
-//						Dimension zeroDim = new Dimension(0, 0);
-//						button.setPreferredSize(zeroDim);
-//						button.setMinimumSize(zeroDim);
-//						button.setMaximumSize(zeroDim);
-//						return button;
-//					}
-//				});
+		// 스크롤 패널을 프레임에 추가합니다.
+		panel1.add(scrollPane);
 
-				JPanel panel_1 = new JPanel();
-				panel_1.setBounds(2, 350, 284, 31);
-				frame.getContentPane().add(panel_1);
+		JPanel panel = new JPanel();
+		panel23.add(panel);
+		panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
+		panel.setAlignmentX(Component.LEFT_ALIGNMENT);
 
-				JLabel lblNewLabel1 = new JLabel("dsfdsfs");
-				panel_1.add(lblNewLabel1);
-		
+		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setPreferredSize(new Dimension(30, 10));
+
+		panel.add(lblNewLabel_1);
+		JLabel lblNewLabel_2 = new JLabel("예매율 TOP3");
+		lblNewLabel_2.setFont(new Font("Lucida Grande", Font.BOLD, 20));
+		lblNewLabel_2.setBorder(new EmptyBorder(0, 40, 0, 30));
+		panel.add(lblNewLabel_2);
+
+		JButton btnNewButton_10 = new JButton("더보기");
+		btnNewButton_10.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Menu_Movie pnlMovie = new Menu_Movie();
+
+				MovieProgram.pnlMain.add(pnlMovie, "영화");
+				MovieProgram.cardLayout.show(MovieProgram.pnlMain, "영화");
+			}
+		});
+
+		panel.add(btnNewButton_10);
+
+		pnlM = new JPanel();
+		pnlM.setLayout(new GridLayout(0, 3));
+		panel23.add(pnlM);
+
+		createMainMoviePanel(pnlM, new Movie("1번영화", "1번감독", "1번배우", "1번장르", "1번개봉일"));
+		createMainMoviePanel(pnlM, new Movie("1번영화", "1번감독", "1번배우", "1번장르", "1번개봉일"));
+		createMainMoviePanel(pnlM, new Movie("1번영화", "1번감독", "1번배우", "1번장르", "1번개봉일"));
+
+		JPanel panel_1 = new JPanel();
+		panel_1.setBounds(2, 350, 284, 31);
+		frame.getContentPane().add(panel_1);
+
+		JLabel lblNewLabel1 = new JLabel("dsfdsfs");
+		panel_1.add(lblNewLabel1);
+
 	}
 
+	public static void createMainMoviePanel(JPanel panel, Movie movie) {
+
+		JPanel pnl1 = new JPanel();
+		pnl1.setLayout(null);
+		pnl1.setPreferredSize(new Dimension(100, 350));
+		panel.add(pnl1);
+		// 영화사진 추가
+		MoviesPhotoPanel moviesPhotoPanel = new MoviesPhotoPanel(50, movie.getTitle());
+		moviesPhotoPanel.setBounds(50, 20, 160, 200);
+		pnl1.add(moviesPhotoPanel);
+		// 영화제목
+		JLabel lbl = new JLabel(movie.getTitle());
+		lbl.setFont(new Font("Lucida Grande", Font.BOLD, 20));
+		lbl.setBounds(60, 235, 80, 35);
+		pnl1.add(lbl);
+		// 예매율
+		JLabel lblNewLabel = new JLabel("예매율");
+		lblNewLabel.setBounds(70, 269, 61, 16);
+		pnl1.add(lblNewLabel);
+		// 개봉일
+		JLabel lblNewLabel_4 = new JLabel(movie.getReleaseDate());
+		lblNewLabel_4.setBounds(70, 282, 61, 16);
+		pnl1.add(lblNewLabel_4);
+
+	}
 
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
