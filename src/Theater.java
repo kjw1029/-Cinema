@@ -19,6 +19,8 @@ public class Theater extends JPanel {
 	private JPanel panel;
 	private JPanel panel_1;
 	protected static List<JToggleButton> tbtn = new ArrayList<>();
+//	protected static ActionListener listener;
+//	protected static ActionListener listener2;
 
 	public Theater() {
 
@@ -49,7 +51,7 @@ public class Theater extends JPanel {
 
 	// 토클버튼 액션리스너 부착 좌석 예매가능여부 변경
 	public static void jtoggleButtonChangeListener(JToggleButton jtbtn) {
-		jtbtn.addActionListener(new ActionListener() {
+		ActionListener listener = (new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.out.println(jtbtn.getText());
@@ -65,11 +67,12 @@ public class Theater extends JPanel {
 				}
 			}
 		});
+		jtbtn.addActionListener(listener);
 	}
 
 	// 두버튼 동시
 	public static void jtoggleButtonListener2(JToggleButton jtbtn) {
-		jtbtn.addActionListener(new ActionListener() {
+		ActionListener listener2 = (new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				for (int i = 0; i < tbtn.size(); i++) {
@@ -112,6 +115,7 @@ public class Theater extends JPanel {
 				}
 			}
 		});
+		jtbtn.addActionListener(listener2);
 	}
 
 	public static void main(String[] args) {

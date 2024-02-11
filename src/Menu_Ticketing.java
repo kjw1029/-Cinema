@@ -1,14 +1,23 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.TextStyle;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JToggleButton;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.BorderLayout;
 
 public class Menu_Ticketing extends JPanel {
 //	private Movies movies; // 영화?????? 테스트
@@ -22,7 +31,7 @@ public class Menu_Ticketing extends JPanel {
 		setLayout(null);
 
 		panel = new JPanel();
-		panel.setBounds(359, 10, 441, 404);
+		panel.setBounds(573, 10, 227, 404);
 		add(panel);
 
 		Theater.makeSeats(panel); // 좌석 생성 패널에 부착
@@ -73,7 +82,10 @@ public class Menu_Ticketing extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				if (tglbtnNewToggleButton.isSelected()) {
 					for (int i = 0; i < Theater.tbtn.size(); i++) {
-						Theater.jtoggleButtonChangeListener((Theater.tbtn.get(i)));
+						for(ActionListener a :Theater.tbtn.get(i).getActionListeners()) { 
+							Theater.tbtn.get(i).removeActionListener(a);
+						}
+						Theater.jtoggleButtonChangeListener(Theater.tbtn.get(i));
 					}
 				}
 			}
@@ -87,6 +99,9 @@ public class Menu_Ticketing extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				if (tglbtnNewToggleButton_1.isSelected()) {
 					for (int i = 0; i < Theater.tbtn.size(); i++) {
+						for(ActionListener a :Theater.tbtn.get(i).getActionListeners()) { 
+							Theater.tbtn.get(i).removeActionListener(a);
+						}
 						Theater.jtoggleButtonListener2(Theater.tbtn.get(i));
 					}
 				}
@@ -95,6 +110,51 @@ public class Menu_Ticketing extends JPanel {
 
 		group.add(tglbtnNewToggleButton);
 		group.add(tglbtnNewToggleButton_1);
+		
+		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBounds(169, 10, 172, 409);
+		add(scrollPane_1);
+		
+		JPanel panel_2 = new JPanel();
+		scrollPane_1.setViewportView(panel_2);
+		panel_2.setLayout(new BoxLayout(panel_2, BoxLayout.Y_AXIS));
+		
+		JLabel lblNewLabel = new JLabel("년월");
+		lblNewLabel.setPreferredSize(new Dimension(40, 20));
+		panel_2.add(lblNewLabel);
+		
+		JPanel panel_3 = new JPanel();
+		panel_3.setBounds(351, 10, 121, 402);
+		add(panel_3);
+		panel_3.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		
+		for(int i = 0; i < 5; i++) {
+			JToggleButton btn = new JToggleButton("시간");
+			panel_3.add(btn);
+		}
+		
+		// 현재 날짜 가져오기
+        LocalDate currentDate = LocalDate.now();
+        
+        // 날짜 출력 포맷 지정
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        DateTimeFormatter dayOfWeekFormatter = DateTimeFormatter.ofPattern("EEEE");
+
+        // 현재 날짜부터 7일 후까지 출력
+        System.out.println("오늘부터 7일 후의 날짜와 요일:");
+        for (int i = 0; i < 7; i++) {
+        	 LocalDate date = currentDate.plusDays(i);
+             String formattedDate = date.format(dateFormatter);
+             DayOfWeek dayOfWeek = date.getDayOfWeek();
+             String formattedDayOfWeek = dayOfWeek.getDisplayName(TextStyle.FULL, Locale.getDefault()); // 전체 요일 이름
+             System.out.println(formattedDate + " (" + formattedDayOfWeek + ")");
+             int dayOfMonth = date.getDayOfMonth();
+             if (i ==0) {
+            	 lblNewLabel.setText(formattedDate + formattedDayOfWeek );
+             }
+             JToggleButton btn = new JToggleButton(formattedDayOfWeek + String.valueOf(dayOfMonth));
+             panel_2.add(btn);
+        }
 
 		// 테스트 예매 영화목록 보여주는 패널안
 		List<String> list = new ArrayList<>(); // 무비목록 리스트가 들어갈 예정 //테스트용
@@ -126,7 +186,7 @@ public class Menu_Ticketing extends JPanel {
 		list.add("영화이름");
 
 		for (int i = 0; i < list.size(); i++) {
-			panel_1.add(new JPanel().add(new JButton(list.get(i))));
+			panel_1.add(new JPanel().add(new JToggleButton(list.get(i))));
 		}
 
 	}
