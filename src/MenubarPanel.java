@@ -11,8 +11,10 @@ import java.awt.Font;
 
 public class MenubarPanel extends JPanel {
     public static JButton switchButton;
-	static JLabel lblNewLabel_3;
-
+	private Menu_Ticketing pnlTicketing = new Menu_Ticketing();
+	private StoreJPanel pnlStore = new StoreJPanel();
+    static JLabel lblNewLabel_3;
+	
 	public MenubarPanel() {
     	setBackground(Color.LIGHT_GRAY);
         setLayout(null);
@@ -51,7 +53,6 @@ public class MenubarPanel extends JPanel {
         btnNewButton_1.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Menu_Ticketing pnlTicketing = new Menu_Ticketing();
 				MovieProgram.pnlMain.add(pnlTicketing, "예매");
 				MovieProgram.cardLayout.show(MovieProgram.pnlMain, "예매");
 			}
@@ -62,7 +63,6 @@ public class MenubarPanel extends JPanel {
         add(btnNewButton_2);
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				StoreJPanel pnlStore = new StoreJPanel();
 				MovieProgram.pnlMain.add(pnlStore, "스토어");
 				MovieProgram.cardLayout.show(MovieProgram.pnlMain, "스토어");
 			}
