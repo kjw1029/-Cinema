@@ -86,9 +86,14 @@ public class Menu_Ticketing extends JPanel {
 				Menu_Ticketing.cancelTicket(test.get(0));
 			}
 		});
-
+		
+		
 		ButtonGroup group = new ButtonGroup();
-
+		for (int i = 0; i < Theater.tbtn.size(); i++) {
+			if(i+1 == 2||i+1 ==22 || i+1 ==42 || i+1 ==62 || i+1==19 || i+1==39 || i+1==59 || i+1==79) {
+				Theater.tbtn.get(i).setEnabled(false);
+			}
+		}
 		JToggleButton tglbtnNewToggleButton = new JToggleButton("1인");
 		tglbtnNewToggleButton.setBounds(587, 424, 89, 26);
 		add(tglbtnNewToggleButton);
@@ -98,6 +103,9 @@ public class Menu_Ticketing extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				if (tglbtnNewToggleButton.isSelected()) {
 					for (int i = 0; i < Theater.tbtn.size(); i++) {
+						if(i+1 == 2||i+1 ==22 || i+1 ==42 || i+1 ==62 || i+1==19 || i+1==39 || i+1==59 || i+1==79) {
+							Theater.tbtn.get(i).setEnabled(false);
+						}
 						for (ActionListener a : Theater.tbtn.get(i).getActionListeners()) {
 							Theater.tbtn.get(i).removeActionListener(a);
 						}
@@ -106,7 +114,7 @@ public class Menu_Ticketing extends JPanel {
 				}
 			}
 		});
-
+		
 		JToggleButton tglbtnNewToggleButton_1 = new JToggleButton("2인");
 		tglbtnNewToggleButton_1.setBounds(694, 424, 75, 26);
 		add(tglbtnNewToggleButton_1);
@@ -115,6 +123,9 @@ public class Menu_Ticketing extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				if (tglbtnNewToggleButton_1.isSelected()) {
 					for (int i = 0; i < Theater.tbtn.size(); i++) {
+						if(i+1 == 2||i+1 ==22 || i+1 ==42 || i+1 ==62 || i+1==19 || i+1==39 || i+1==59 || i+1==79) {
+							Theater.tbtn.get(i).setEnabled(true);
+						}
 						for (ActionListener a : Theater.tbtn.get(i).getActionListeners()) {
 							Theater.tbtn.get(i).removeActionListener(a);
 						}
@@ -123,10 +134,10 @@ public class Menu_Ticketing extends JPanel {
 				}
 			}
 		});
-
+		
 		group.add(tglbtnNewToggleButton);
 		group.add(tglbtnNewToggleButton_1);
-
+		
 		JScrollPane scrollPane_1 = new JScrollPane();
 		scrollPane_1.setBounds(195, 53, 172, 361);
 		add(scrollPane_1);
