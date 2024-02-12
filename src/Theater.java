@@ -1,4 +1,6 @@
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -10,8 +12,10 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JToggleButton;
+import javax.swing.SwingConstants;
 import javax.swing.JScrollPane;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 
 public class Theater extends JPanel {
 	private Seats seats;
@@ -34,6 +38,11 @@ public class Theater extends JPanel {
 				String seatNumber = String.format("%c-%02d", row, i);
 				String seatCol = String.format("%02d", i);
 				JToggleButton jtbtn = new JToggleButton(seatNumber); // 토클 버튼, 이름 생성
+//				jtbtn.setIcon(new ImageIcon("이미지\\좌석배경.PNG"));
+				jtbtn.setForeground(Color.BLACK);
+				jtbtn.setFont(new Font("굴림", Font.BOLD,8));
+				jtbtn.setHorizontalTextPosition(SwingConstants.CENTER);
+				jtbtn.setVerticalTextPosition(SwingConstants.CENTER);
 				jpanel.add(jtbtn); // 패널에 버튼 부착
 				jtoggleButtonChangeListener(jtbtn); // 액션 리스너 부착, 리스너가 버튼 클릭시 좌석예매 가능 여부 트루펄스로변환
 				tbtn.add(jtbtn); // 나중에 초기화를 한번에 하기위해서 리스트에 보관

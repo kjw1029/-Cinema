@@ -31,6 +31,7 @@ import java.awt.Font;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.Icon;
+import javax.swing.SwingConstants;
 
 public class StoreJPanel extends JPanel {
 	private CardLayout cardLayout;
@@ -82,15 +83,17 @@ public class StoreJPanel extends JPanel {
 		foodPurchaseList(btnNewButton_3);
 
 		JLabel lblNewLabel_1 = new JLabel("고소 팝콘");
-		lblNewLabel_1.setFont(new Font("굴림", Font.BOLD, 20));
+		lblNewLabel_1.setFont(new Font("굴림", Font.PLAIN, 18));
 		lblNewLabel_1.setBounds(12, 346, 185, 52);
 		popcorn.add(lblNewLabel_1);
 
-		JLabel label_3 = new JLabel("New label");
+		JLabel label_3 = new JLabel("치즈");
+		label_3.setFont(new Font("굴림", Font.PLAIN, 18));
 		label_3.setBounds(431, 348, 185, 52);
 		popcorn.add(label_3);
 
-		JLabel label_4 = new JLabel("New label");
+		JLabel label_4 = new JLabel("달콤");
+		label_4.setFont(new Font("굴림", Font.PLAIN, 18));
 		label_4.setBounds(214, 348, 185, 52);
 		popcorn.add(label_4);
 
@@ -107,19 +110,19 @@ public class StoreJPanel extends JPanel {
 		btnNewButton_1.setBorderPainted(false);
 		btnNewButton_1.setOpaque(false);
 		foodPurchaseList(btnNewButton_1);
-		
+
 		JPanel panel_3 = new JPanel();
 		panel_3.setBorder(new MatteBorder(0, 0, 1, 0, (Color) Color.LIGHT_GRAY));
 		panel_3.setBackground(Color.WHITE);
 		panel_3.setBounds(12, 10, 760, 52);
 		popcorn.add(panel_3);
 		panel_3.setLayout(null);
-		
+
 		JLabel lblNewLabel_6 = new JLabel("팝콘");
 		lblNewLabel_6.setFont(new Font("굴림", Font.BOLD, 20));
 		lblNewLabel_6.setBounds(12, 5, 52, 42);
 		panel_3.add(lblNewLabel_6);
-		
+
 		JLabel lblNewLabel_7 = new JLabel("고소, 달콤부터 고메까지 안 먹으면 서운해요");
 		lblNewLabel_7.setBounds(62, 14, 393, 28);
 		panel_3.add(lblNewLabel_7);
@@ -131,56 +134,63 @@ public class StoreJPanel extends JPanel {
 		beverage.setLayout(null);
 
 		JButton btnNewButton_4 = new JButton("콜라");
+		btnNewButton_4.setForeground(Color.WHITE);
+		btnNewButton_4.setHorizontalTextPosition(SwingConstants.LEADING);
 		btnNewButton_4.setIcon(new ImageIcon("이미지\\콜라.PNG"));
 		btnNewButton_4.setOpaque(false);
 		btnNewButton_4.setContentAreaFilled(false);
 		btnNewButton_4.setBorderPainted(false);
-		btnNewButton_4.setBounds(25, 77, 215, 279);
+		btnNewButton_4.setBounds(25, 77, 202, 279);
 		beverage.add(btnNewButton_4);
 		foodPurchaseList(btnNewButton_4);
 
 		JButton btnNewButton_5 = new JButton("커피");
+		btnNewButton_5.setForeground(Color.WHITE);
 		btnNewButton_5.setIcon(new ImageIcon("이미지\\커피.PNG"));
 		btnNewButton_5.setOpaque(false);
 		btnNewButton_5.setContentAreaFilled(false);
 		btnNewButton_5.setBorderPainted(false);
-		btnNewButton_5.setBounds(252, 77, 215, 279);
+		btnNewButton_5.setBounds(224, 87, 202, 279);
 		beverage.add(btnNewButton_5);
 		foodPurchaseList(btnNewButton_5);
 
 		JButton btnNewButton_6 = new JButton("에이드");
+		btnNewButton_6.setForeground(Color.WHITE);
 		btnNewButton_6.setOpaque(false);
 		btnNewButton_6.setBorderPainted(false);
 		btnNewButton_6.setContentAreaFilled(false);
 		btnNewButton_6.setIcon(new ImageIcon("이미지\\에이드.PNG"));
-		btnNewButton_6.setBounds(479, 77, 254, 279);
+		btnNewButton_6.setBounds(428, 90, 202, 273);
 		beverage.add(btnNewButton_6);
 		foodPurchaseList(btnNewButton_6);
 
-		JLabel lblNewLabel_2 = new JLabel("New label");
-		lblNewLabel_2.setBounds(25, 366, 215, 76);
+		JLabel lblNewLabel_2 = new JLabel("콜라");
+		lblNewLabel_2.setFont(new Font("굴림", Font.PLAIN, 18));
+		lblNewLabel_2.setBounds(63, 366, 82, 46);
 		beverage.add(lblNewLabel_2);
 
-		JLabel lblNewLabel_3 = new JLabel("New label");
-		lblNewLabel_3.setBounds(239, 366, 215, 76);
+		JLabel lblNewLabel_3 = new JLabel("커피");
+		lblNewLabel_3.setFont(new Font("굴림", Font.PLAIN, 18));
+		lblNewLabel_3.setBounds(278, 366, 58, 46);
 		beverage.add(lblNewLabel_3);
 
-		JLabel lblNewLabel_4 = new JLabel("New label");
-		lblNewLabel_4.setBounds(480, 366, 215, 76);
+		JLabel lblNewLabel_4 = new JLabel("에이드");
+		lblNewLabel_4.setFont(new Font("굴림", Font.PLAIN, 18));
+		lblNewLabel_4.setBounds(519, 360, 96, 46);
 		beverage.add(lblNewLabel_4);
-		
+
 		JPanel panel_4 = new JPanel();
 		panel_4.setBorder(new MatteBorder(0, 0, 1, 0, (Color) Color.LIGHT_GRAY));
 		panel_4.setBackground(Color.WHITE);
 		panel_4.setBounds(25, 10, 751, 56);
 		beverage.add(panel_4);
 		panel_4.setLayout(null);
-		
+
 		JLabel lblNewLabel_8 = new JLabel("음료");
 		lblNewLabel_8.setFont(new Font("굴림", Font.BOLD, 20));
 		lblNewLabel_8.setBounds(12, 10, 52, 36);
 		panel_4.add(lblNewLabel_8);
-		
+
 		JLabel lblNewLabel_9 = new JLabel("탄산음료부터 에이드까지, 마시는 즐거움!");
 		lblNewLabel_9.setBackground(Color.WHITE);
 		lblNewLabel_9.setBounds(66, 19, 392, 23);
@@ -202,17 +212,28 @@ public class StoreJPanel extends JPanel {
 
 			public void actionPerformed(ActionEvent e) {
 				ShoppingBasket.maketotalLastPurchaseList(); // 구매 목록 리스트
-				int length = MovieProgram.lblNewLabel_3.getText().length();
-				String cus = MovieProgram.lblNewLabel_3.getText().substring(0, length - 7);
-				for (List<String> s : MovieProgram.signUps) {
-					if (cus.equals(s.get(0))) {
-						List<String> list = new ArrayList<>();
-						list.addAll(ShoppingBasket.totalLastPurchaseList);
-						ShoppingBasket.signUpPurchaseList
-								.add(s.toString() + ShoppingBasket.totalLastPurchaseList.toString());
-						System.out.println(ShoppingBasket.signUpPurchaseList.toString());
-					}
-				}
+				System.out.println(ShoppingBasket.totalLastPurchaseList.toString());
+				panel_2.removeAll();
+				panel_2.revalidate();
+				panel_2.repaint();
+				ShoppingBasket.totalLastPurchaseList.clear();
+				ShoppingBasket.totalPurchaseCountList.clear();
+				ShoppingBasket.totalPurchaseList.clear();
+				amount = 0;
+				lblNewLabel_5.setText(String.valueOf(amount));
+				System.out.println(ShoppingBasket.totalLastPurchaseList.toString());
+
+//				int length = MovieProgram.lblNewLabel_3.getText().length();
+//				String cus = MovieProgram.lblNewLabel_3.getText().substring(0, length - 7);
+//				for (List<String> s : MovieProgram.signUps) {
+//					if (cus.equals(s.get(0))) {
+//						List<String> list = new ArrayList<>();
+//						list.addAll(ShoppingBasket.totalLastPurchaseList);
+//						ShoppingBasket.signUpPurchaseList
+//								.add(s.toString() + ShoppingBasket.totalLastPurchaseList.toString());
+//						System.out.println(ShoppingBasket.signUpPurchaseList.toString());
+//					}
+//				}
 
 			}
 		});
@@ -240,41 +261,66 @@ public class StoreJPanel extends JPanel {
 		giftCard.setLayout(null);
 
 		JButton btnNewButton = new JButton("영화관람권");
-		btnNewButton.setBounds(12, 5, 185, 257);
+		btnNewButton.setForeground(Color.WHITE);
+		btnNewButton.setIcon(new ImageIcon("이미지\\영화관람권.PNG"));
+		btnNewButton.setOpaque(false);
+		btnNewButton.setBorderPainted(false);
+		btnNewButton.setContentAreaFilled(false);
+		btnNewButton.setBounds(12, 104, 185, 220);
 		giftCard.add(btnNewButton);
 
 		giftCardPurchaseListListener(btnNewButton);
 
 		JButton button = new JButton("영화관람권2");
-		button.setBounds(218, 5, 185, 257);
+		button.setForeground(Color.WHITE);
+		button.setContentAreaFilled(false);
+		button.setBorderPainted(false);
+		button.setOpaque(false);
+		button.setIcon(new ImageIcon("이미지\\영화관람권2.PNG"));
+		button.setBounds(218, 104, 185, 220);
 		giftCard.add(button);
 		giftCardPurchaseListListener(button);
 
 		JButton button_1 = new JButton("4D관람권");
-		button_1.setBounds(415, 5, 185, 257);
+		button_1.setForeground(Color.WHITE);
+		button_1.setOpaque(false);
+		button_1.setIcon(new ImageIcon("이미지\\4D관람권.PNG"));
+		button_1.setBorderPainted(false);
+		button_1.setContentAreaFilled(false);
+		button_1.setBounds(415, 104, 185, 220);
 		giftCard.add(button_1);
 		giftCardPurchaseListListener(button_1);
 
-		JButton button_2 = new JButton("충전형영화관람권");
-		button_2.setBounds(612, 5, 176, 257);
-		giftCard.add(button_2);
-		StoreJPanel.giftCardPurchaseListListener(button_2);
-
-		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setBounds(424, 283, 176, 68);
+		JLabel lblNewLabel = new JLabel("4D 관람권");
+		lblNewLabel.setFont(new Font("굴림", Font.PLAIN, 18));
+		lblNewLabel.setBounds(415, 334, 152, 42);
 		giftCard.add(lblNewLabel);
 
-		JLabel label = new JLabel("New label");
-		label.setBounds(612, 283, 176, 68);
-		giftCard.add(label);
-
-		JLabel label_1 = new JLabel("New label");
-		label_1.setBounds(22, 272, 130, 68);
+		JLabel label_1 = new JLabel("영화관람권");
+		label_1.setFont(new Font("굴림", Font.PLAIN, 18));
+		label_1.setBounds(22, 334, 130, 51);
 		giftCard.add(label_1);
 
-		JLabel label_2 = new JLabel("New label");
-		label_2.setBounds(225, 283, 130, 68);
+		JLabel label_2 = new JLabel("영화관람권 2");
+		label_2.setFont(new Font("굴림", Font.PLAIN, 18));
+		label_2.setBounds(218, 334, 130, 42);
 		giftCard.add(label_2);
+
+		JPanel panel_5 = new JPanel();
+		panel_5.setBackground(Color.WHITE);
+		panel_5.setBorder(new MatteBorder(0, 0, 1, 0, (Color) Color.LIGHT_GRAY));
+		panel_5.setBounds(12, 10, 776, 68);
+		giftCard.add(panel_5);
+		panel_5.setLayout(null);
+
+		JLabel lblNewLabel_10 = new JLabel("영화 관람권");
+		lblNewLabel_10.setFont(new Font("굴림", Font.BOLD, 20));
+		lblNewLabel_10.setBounds(12, 10, 116, 48);
+		panel_5.add(lblNewLabel_10);
+
+		JLabel lblNewLabel_11 = new JLabel("영화, 모두에게 즐거운 경험");
+		lblNewLabel_11.setBounds(133, 21, 377, 31);
+		panel_5.add(lblNewLabel_11);
 
 		add(panel);
 
@@ -325,35 +371,68 @@ public class StoreJPanel extends JPanel {
 				panel_2.revalidate();
 				panel_2.repaint();
 				for (int i = 0; i < ShoppingBasket.totalPurchaseList.size(); i++) {
-					if (!ShoppingBasket.totalPurchaseCountList.get(i).equals("0")) {
+					if (0 == ShoppingBasket.totalPurchaseCountList.size()) {
+						return;
+					} else if (!ShoppingBasket.totalPurchaseCountList.get(i).equals("0")) {
 						JPanel pnl = new JPanel();
 						pnl.setBackground(Color.WHITE);
 						pnl.setBorder(new MatteBorder(1, 0, 1, 0, (Color) new Color(0, 0, 0)));
 						pnl.setName(ShoppingBasket.totalPurchaseList.get(i));
 						pnl.setLayout(new BorderLayout());
-						
+						pnl.setMaximumSize(new Dimension(785, 125));
+
 						JLabel lblImage = new JLabel();
+						lblImage.setPreferredSize(new Dimension(125, 125));
 						ImageIcon icon = new ImageIcon("이미지/" + ShoppingBasket.totalPurchaseList.get(i) + ".PNG");
 						// 이미지 아이콘에서 이미지를 가져와서 크기 조정
 						Image image = icon.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
 						// 크기가 조정된 이미지를 다시 ImageIcon으로 변환
 						ImageIcon newIcon = new ImageIcon(image);
-						
+
 						lblImage.setIcon(newIcon);
 						JLabel lbl = new JLabel(ShoppingBasket.totalPurchaseList.get(i));
+						Font font = lbl.getFont();
+						lbl.setFont(new Font(font.getName(), font.getStyle(), 15));
 						JLabel lblCount = new JLabel(ShoppingBasket.totalPurchaseCountList.get(i));
+						lblCount.setFont(new Font(font.getName(), font.getStyle(), 15));
+
 						JButton btn = new JButton("삭제");
+						btn.setForeground(Color.WHITE);
+						btn.setContentAreaFilled(false);
+						btn.setBorderPainted(false);
+						btn.setOpaque(false);
+						btn.setIcon(new ImageIcon("이미지\\삭제.PNG"));
+						btn.setPreferredSize(new Dimension(80, 30));
 						deletePurchaseList(btn, i, pnl, lblCount);
-						
+
+						JButton addBtn = new JButton("추가");
+						addBtn.setForeground(Color.WHITE);
+						addBtn.setContentAreaFilled(false);
+						addBtn.setBorderPainted(false);
+						addBtn.setOpaque(false);
+						addBtn.setIcon(new ImageIcon("이미지\\추가.PNG"));
+						addBtn.setPreferredSize(new Dimension(80, 30));
+						addPurchaseList(addBtn, i, pnl, lblCount);
+
 						JPanel centerPanel = new JPanel();
-			            centerPanel.setLayout(new FlowLayout(FlowLayout.CENTER)); // 중앙 정렬을 위한 FlowLayout 사용
-			            centerPanel.add(lbl);
-			            centerPanel.add(lblCount);
-			            
+						centerPanel.setBorder(new MatteBorder(0, 1, 0, 0, Color.BLACK));
+						centerPanel.setBackground(Color.WHITE);
+						centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.X_AXIS));
+						centerPanel.add(Box.createHorizontalGlue());
+//						centerPanel.setLayout(new FlowLayout(FlowLayout.CENTER)); // 중앙 정렬을 위한 FlowLayout 사용
+						centerPanel.add(lbl);
+						centerPanel.add(Box.createHorizontalGlue());
+						centerPanel.add(Box.createHorizontalGlue());
+						centerPanel.add(Box.createHorizontalGlue());
+						centerPanel.add(Box.createHorizontalGlue());
+						centerPanel.add(Box.createHorizontalGlue());
+						centerPanel.add(addBtn);
+						centerPanel.add(lblCount);
+
 						pnl.add(lblImage, BorderLayout.WEST);
 						pnl.add(centerPanel, BorderLayout.CENTER);
 						pnl.add(btn, BorderLayout.EAST);
-						
+
 //						pnl.add(lbl);
 //						pnl.add(lblCount);
 //						pnl.add(btn);
@@ -444,6 +523,44 @@ public class StoreJPanel extends JPanel {
 					ShoppingBasket.foodCount.clear();
 					ShoppingBasket.giftCount.clear();
 				}
+				ShoppingBasket.makeTotalPurchaseList();
+				ShoppingBasket.foodPurchaseList.clear();
+				ShoppingBasket.GiftCardPurchaseList.clear();
+			}
+		});
+	}
+
+	public static void addPurchaseList(JButton btn, int index, JPanel pnl, JLabel lbl) {
+		int i = index;
+		btn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (!ShoppingBasket.totalPurchaseCountList.get(i).equals("0")) {
+					int purchase = Integer.valueOf(ShoppingBasket.totalPurchaseCountList.get(i)) + 1;
+					lbl.setText(String.valueOf(purchase));
+					ShoppingBasket.totalPurchaseCountList.set(i, String.valueOf(purchase));
+					for (Food f : StoreMenu.foodmenu) {
+						if (ShoppingBasket.totalPurchaseList.get(i).equals(f.getName())) {
+							amount += f.getPrice();
+							lblNewLabel_5.setText(String.valueOf(amount));
+						}
+					}
+
+					for (GiftCard gift : StoreMenu.giftCardList) {
+						if (ShoppingBasket.totalPurchaseList.get(i).equals(gift.getName())) {
+							amount += gift.getPrice();
+							lblNewLabel_5.setText(String.valueOf(amount));
+						}
+					}
+				}
+//				if (ShoppingBasket.totalPurchaseCountList.get(i).equals("0")) {
+//					System.out.println(ShoppingBasket.totalPurchaseCountList.get(i));
+//					panel_2.remove(pnl);
+//					panel_2.revalidate();
+//					panel_2.repaint();
+//					ShoppingBasket.foodCount.clear();
+//					ShoppingBasket.giftCount.clear();
+//				}
 				ShoppingBasket.makeTotalPurchaseList();
 				ShoppingBasket.foodPurchaseList.clear();
 				ShoppingBasket.GiftCardPurchaseList.clear();
