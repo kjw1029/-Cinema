@@ -15,22 +15,11 @@ import java.awt.Font;
 public class SignInPanel extends JPanel {
 	public SignInPanel() {
 		setLayout(null);
-
+		
 		JTextField textField = new JTextField();
 		textField.setBounds(93, 139, 212, 21);
 		add(textField);
 		textField.setColumns(10);
-
-//		JButton switchButton = new JButton("메인");
-//		switchButton.setBounds(12, 10, 70, 23);
-//		add(switchButton);
-//
-//		switchButton.addActionListener(new ActionListener() {
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				setVisible(false);
-//			}
-//		});
 
 		JPasswordField passwordField = new JPasswordField();
 		passwordField.setBounds(93, 191, 212, 21);
@@ -49,8 +38,9 @@ public class SignInPanel extends JPanel {
 					for (List<String> elem : MovieProgram.signUps) {
 						if (userId.equals(elem.get(0)) && userPassword.equals(elem.get(1))) {
 							System.out.println(userId + "로그인 성공");
-							MovieProgram.lblNewLabel_3.setText(userId + "님 환영합니다");
+							MenubarPanel.lblNewLabel_3.setText(userId + "님 환영합니다");
 							setVisible(false);
+							MovieProgram.getLoginId();
 							return;
 						}
 					}

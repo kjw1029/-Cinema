@@ -18,7 +18,6 @@ public class MenubarPanel extends JPanel {
 	public MenubarPanel() {
     	setBackground(Color.LIGHT_GRAY);
         setLayout(null);
-//        setBackground(Color.LIGHT_GRAY);
         setBounds(0, 0, 800, 89); // 패널의 크기를 적절하게 설정
 
         switchButton = new JButton("홈");
@@ -28,7 +27,6 @@ public class MenubarPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				MovieProgram.cardLayout.show(MovieProgram.pnlMain, "panel1");
-//				MovieProgram.pnl.setVisible(true);
 			}
 		});
 
@@ -92,10 +90,7 @@ public class MenubarPanel extends JPanel {
 				} else {
 					// 비회원 조회시 로그인창 출력
 					SignInPanel sp = new SignInPanel();
-//					frame.getContentPane().add(sp, "로그인");
 					MovieProgram.pnlMain.add(sp, "로그인");
-//					pnl.setVisible(false);
-
 					MovieProgram.cardLayout.show(MovieProgram.pnlMain, "로그인");
 				}
 			}
@@ -107,19 +102,5 @@ public class MenubarPanel extends JPanel {
 		lblNewLabel.setFont(new Font("Lucida Grande", Font.BOLD, 25));
 		lblNewLabel.setBounds(30, 23, 63, 31);
 		add(lblNewLabel);
-        
-        
-        
     }
-	
-//
-//    public static void main(String[] args) {
-//        JFrame frame = new JFrame();
-//        frame.setSize(400, 500); // 프레임의 크기를 패널과 일치하도록 수정
-//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//
-//        MenubarPanel pnl = new MenubarPanel();
-//        frame.getContentPane().add(pnl);
-//        frame.setVisible(true);
-//    }
 }

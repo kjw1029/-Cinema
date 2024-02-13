@@ -16,27 +16,20 @@ public class Menu_Movie extends JPanel {
     private CardLayout cardLayout;
     private int currentIndex = 0;
     private JPanel pnlMain;
-    // 채크박스 필드 추가
     public static JCheckBox chckbxNewCheckBox;
 	static JPanel buttonPanel;
 
     public Menu_Movie() {
     	setLayout(null);
 
+    	System.out.println(MovieProgram.getLoginId());
+    	
 		pnlMain = new JPanel();
 		cardLayout = new CardLayout();
 		pnlMain.setLayout(cardLayout);
 		add(pnlMain);
 		pnlMain.setBounds(0, 80, 800, 500);
 		
-//		// chckbxNewCheckBox를 초기화합니다.
-//		chckbxNewCheckBox = new JCheckBox("현재 상영작만 보기");
-//		chckbxNewCheckBox.setBounds(279, 7, 128, 23);
-//		chckbxNewCheckBox.setSelected(false);
-//		buttonPanel.add(chckbxNewCheckBox);
-		
-		
-		// 다음 카드로 이동하는 버튼 생성
 		JButton nextButton = new JButton("전체 보기");
 		nextButton.setBounds(183, 44, 103, 29);
 		nextButton.addActionListener(new ActionListener() {
@@ -66,30 +59,20 @@ public class Menu_Movie extends JPanel {
 		lblNewLabel_6.setBounds(78, 35, 93, 29);
 		buttonPanel.add(lblNewLabel_6);
 
-		// 카드로 사용할 패널 생성
 		TotalMovie now = new TotalMovie();
 		NowPlaying card2 = new NowPlaying();
 
-		// 각각의 패널에 라벨 추가
 		now.add(new JLabel("현재 상영작"));
 		now.setBounds(10, 50, 40, 40);
 		card2.add(new JLabel("상영 예정작"));
 
-		// 카드 패널에 카드 추가
 		pnlMain.add(now, "전체 보기");
 		pnlMain.add(card2, "현재 상영작");
 		
 		JLabel lblNewLabel_5 = new JLabel("New label");
 		lblNewLabel_5.setBounds(72, 12, 61, 16);
 		add(lblNewLabel_5);
-
-
     }
-
-    // 나머지 코드 생략
-
-
-
 
 	public static void createMoviePanel(JPanel panel, Movie movie) {
 		JPanel pnl1 = new JPanel();

@@ -69,9 +69,12 @@ public class MovieProgram extends JFrame {
 	private JPanel pnlM;
 
 	public MovieProgram() {
+		// 회원가입 목차 추가
+		List<String> signUpTitles = Arrays.asList("아이디", "비밀번호", "성별", "연령대", "전화번호");
+		signUps.add(signUpTitles);
 
 		// 매니저 아이디 생성
-		if (signUps.size() == 0) {
+		if (signUps.size() == 1) {
 			List<String> signUpList = new ArrayList<String>(2);
 			// 아이디
 			signUpList.add(0, "admin");
@@ -103,38 +106,27 @@ public class MovieProgram extends JFrame {
 
 		System.out.println(signUps.toString());
 
-		List<String> signUpTitles = Arrays.asList("아이디", "비밀번호", "성별", "연령대", "전화번호");
-		signUps.add(signUpTitles);
-
 		frame = new JFrame("휴대폰");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(800, 600);
 
 		cardLayout = new CardLayout();
-//		frame.getContentPane().setLayout(cardLayout);
 		frame.getContentPane().setLayout(null);
 		pnlMain = new JPanel();
 		pnlMain.setLayout(cardLayout);
 		pnlMain.setBounds(0, 80, 800, 500);
 		frame.getContentPane().add(pnlMain);
 
-		createPanel1();
-//		createPanel2();
-//		createPanel3();
-//		createPanel4();
-//		createPanel5();
-//		createPanel6();
-//		createPanel7();
+		createMainPanel();
 
 		pnl = new MenubarPanel();
-//		pnl.switchButton.setLocation(12, 47);
 		pnl.setBounds(0, 0, 800, 80);
 		frame.getContentPane().add(pnl);
 		frame.setVisible(true);
 	}
 
 	// 메인화면
-	private void createPanel1() {
+	private void createMainPanel() {
 		panel1 = new JPanel();
 		panel1.setLayout(null);
 
@@ -199,7 +191,6 @@ public class MovieProgram extends JFrame {
 	}
 
 	public static void createMainMoviePanel(JPanel panel, Movie movie) {
-
 		JPanel pnl1 = new JPanel();
 		pnl1.setLayout(null);
 		pnl1.setPreferredSize(new Dimension(100, 350));
@@ -222,6 +213,19 @@ public class MovieProgram extends JFrame {
 		lblNewLabel_4.setBounds(70, 282, 61, 16);
 		pnl1.add(lblNewLabel_4);
 
+	}
+
+	// 로그인시 아이디 출력
+	public static String getLoginId() {
+		try {
+			if (!MenubarPanel.lblNewLabel_3.getText().equals("로그인 해주세요")) {
+				int length = MenubarPanel.lblNewLabel_3.getText().length();
+
+				return MenubarPanel.lblNewLabel_3.getText().substring(0, length - 7);
+			}
+		} catch (NullPointerException e) {
+		}
+		return "로그인 해주세요";
 	}
 
 	public static void main(String[] args) {
