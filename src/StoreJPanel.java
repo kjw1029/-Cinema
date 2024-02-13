@@ -221,6 +221,8 @@ public class StoreJPanel extends JPanel {
 				ShoppingBasket.totalPurchaseList.clear();
 				amount = 0;
 				lblNewLabel_5.setText(String.valueOf(amount));
+				ShoppingBasket.foodCount.clear();
+				ShoppingBasket.giftCount.clear();
 				System.out.println(ShoppingBasket.totalLastPurchaseList.toString());
 
 //				int length = MovieProgram.lblNewLabel_3.getText().length();
@@ -516,7 +518,10 @@ public class StoreJPanel extends JPanel {
 					}
 				}
 				if (ShoppingBasket.totalPurchaseCountList.get(i).equals("0")) {
-					System.out.println(ShoppingBasket.totalPurchaseCountList.get(i));
+					System.out.println("삭제확인 :" +ShoppingBasket.totalPurchaseCountList.get(i));
+					ShoppingBasket.totalPurchaseCountList.remove(i);
+					System.out.println("삭제확인 :" +ShoppingBasket.totalPurchaseList.get(i));
+					ShoppingBasket.totalPurchaseList.remove(i);
 					panel_2.remove(pnl);
 					panel_2.revalidate();
 					panel_2.repaint();
