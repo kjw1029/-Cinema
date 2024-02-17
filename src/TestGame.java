@@ -17,12 +17,30 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-class Block {
+class Block extends JPanel {
 	XY xy;
+	boolean interacting;
+	Color c;
+
+	public Block(XY xy, Color c) {
+		super();
+		this.xy = xy;
+		this.c = c;
+	}
 
 	public Block(XY xy) {
 		super();
 		this.xy = xy;
+		this.interacting = false; // 초기값은 false로 설정
+
+	}
+
+	public Color getC() {
+		return c;
+	}
+
+	public void setC(Color c) {
+		this.c = c;
 	}
 
 	public XY getXy() {
@@ -31,6 +49,23 @@ class Block {
 
 	public void setXy(XY xy) {
 		this.xy = xy;
+	}
+
+	public void setBlue() {
+		this.setBackground(Color.BLUE);
+	}
+
+	public boolean isInteracting() {
+		return interacting;
+	}
+
+	public void setInteracting(boolean interacting) {
+		this.interacting = interacting;
+	}
+
+	// 배경색 변경 메서드 추가
+	public void setBackgroundColor(Color color) {
+		this.setBackground(color);
 	}
 
 	@Override
@@ -97,7 +132,7 @@ public class TestGame extends JFrame {
 
 					frame.setFocusable(true); // 패널에 포커스 설정
 					frame.requestFocusInWindow();
-//					frame.requestFocusInWindow();
+//                  frame.requestFocusInWindow();
 
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -132,7 +167,9 @@ public class TestGame extends JFrame {
 		JButton btnNewButton = new JButton("+");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JPanel pnl2 = createBlock();
+				Block pnl2 = createBlock();
+				pnl2.setBackground(Color.green);
+//				pnl2.setb`
 				add(pnl2);
 				revalidate(); // 레이아웃 재구성
 				repaint();
@@ -150,6 +187,7 @@ public class TestGame extends JFrame {
 			public void keyPressed(KeyEvent e) {
 				int newX = pnl.getX();
 				int newY = pnl.getY();
+				boolean hit = false;
 				// 왼쪽
 				if (e.getKeyCode() == 37) {
 					newX -= 20;
@@ -165,11 +203,26 @@ public class TestGame extends JFrame {
 				// 아래쪽
 				else if (e.getKeyCode() == 40) {
 					newY += 20;
+				} else if (e.getKeyCode() == 69) {
+					interact();
+
 				}
+//                System.out.println(e.getKeyCode());
 				boolean isValidMove = true;
 				for (Block block : blocks) {
 					if (block.getXy().getX() == newX && block.getXy().getY() == newY) {
 						isValidMove = false;
+//						JPanel pnl = new JPanel();
+						System.out.println(block.getBackground());
+//						pnl.setBounds(block.getXy().getX(), block.getXy().getY(), 20, 20);
+//				        pnl.setBackground(Color.green);
+						((Block) block).setBackgroundColor(Color.blue);
+//						block.setBackground(Color.blue);
+//						add(pnl);
+						
+//                        block.setBackground(Color.black);
+//                        block.revalidate(); // 레이아웃 재구성
+//                        block.repaint();
 						return;
 					}
 				}
@@ -177,9 +230,71 @@ public class TestGame extends JFrame {
 				if (isValidMove) {
 					pnl.setLocation(newX, newY);
 				}
+				revalidate(); // 레이아웃 재구성
+				repaint();
 			}
 		};
 		return l;
+	}
+
+	// 캐릭터와 가까운 블록을 찾는 메서드
+	private Block findNearestBlock() {
+		Block nearestBlock = null;
+		double minDistance = Double.MAX_VALUE;
+
+		// 캐릭터 위치
+		int charX = pnl.getX() + 10; // 캐릭터의 중심 X 좌표
+		int charY = pnl.getY() + 10; // 캐릭터의 중심 Y 좌표
+
+		// 모든 블록에 대해 순회하면서 가장 가까운 블록을 찾음
+		for (Block block : blocks) {
+			int blockX = block.getXy().getX() + 10; // 블록의 중심 X 좌표
+			int blockY = block.getXy().getY() + 10; // 블록의 중심 Y 좌표
+
+			// 캐릭터와 블록 사이의 거리 계산 (피타고라스의 정리 사용)
+			double distance = Math.sqrt(Math.pow(blockX - charX, 2) + Math.pow(blockY - charY, 2));
+
+			// 현재까지 찾은 최소 거리보다 더 가까운 블록이면 업데이트
+			if (distance < minDistance) {
+				minDistance = distance;
+				nearestBlock = block;
+			}
+		}
+
+		return nearestBlock;
+	}
+
+	// 가장 가까운 블록이 존재하고 상호작용 상태를 변경
+	private void interact() {
+		// 캐릭터와 가장 가까운 블록을 찾음
+		Block nearestBlock = findNearestBlock();
+		// 가장 가까운 블록이 존재하고 상호작용 상태를 변경
+		if (nearestBlock != null) {
+			nearestBlock.setInteracting(!nearestBlock.isInteracting());
+			if (nearestBlock.isInteracting()) {
+				// 블록의 배경색을 파란색으로 변경
+//                	frame.setBackground(null);
+				nearestBlock.setBackground(Color.RED);
+//                    nearestBlock.setBackground(Color.BLUE);
+			} else {
+				// 블록의 배경색을 원래 색상으로 변경
+//                    nearestBlock.setBackground(Color.GREEN);
+			}
+		}
+
+//        blocks.remove(nearestBlock);
+//        remove(nearestBlock);
+//        if (nearestBlock != null) {
+//            blocks.remove(nearestBlock);
+//            remove(nearestBlock); // 블록 제거
+//            
+//            // 블록의 배경 색상을 원래 색상으로 변경
+////            nearestBlock.setBackground(null);
+//            
+//            revalidate(); // 레이아웃 재구성
+//            repaint();
+		System.out.println(nearestBlock.toString());
+		System.out.println(blocks.toString());
 	}
 
 	private MouseListener extracted() {
@@ -236,21 +351,38 @@ public class TestGame extends JFrame {
 			xy.setY((xy.getY() - remainderY));
 		}
 	}
+//
+//	private Block createBlock() {
+//		JPanel pnl = new JPanel();
+//		XY blockXY = new XY();
+//
+//		blockXY.setX(xy.getX());
+//		blockXY.setY(xy.getY());
+//		round20(blockXY);
+//
+//		pnl.setBounds(blockXY.getX(), blockXY.getY(), 20, 20);
+////        pnl.setBackground(Color.green);
+////		pnl.setBackground(Color.green);
+//		blocks.add(new Block(blockXY));
+//
+//		return new Block(blockXY);
+//	}
+	
+	private Block createBlock() {
+	    XY blockXY = new XY(xy.getX(), xy.getY());
+	    round20(blockXY);
 
-	private JPanel createBlock() {
-		JPanel pnl = new JPanel();
-		XY blockXY = new XY();
+	    Block block = new Block(blockXY, Color.GREEN); // Block 객체 생성
+	    block.setBounds(blockXY.getX(), blockXY.getY(), 20, 20); // 위치 설정
 
-		blockXY.setX(xy.getX());
-		blockXY.setY(xy.getY());
-		round20(blockXY);
+	    blocks.add(block); // 리스트에 추가
+	    return block; // 생성된 Block 객체 반환
+	}
 
-		pnl.setBounds(blockXY.getX(), blockXY.getY(), 20, 20);
-		pnl.setBackground(Color.green);
 
-		blocks.add(new Block(blockXY));
-
-		return pnl;
+	private JPanel updateBlock(JPanel block) {
+		block.setBackground(Color.blue);
+		return block;
 	}
 
 	public JPanel createCharacter() {
