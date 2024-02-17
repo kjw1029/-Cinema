@@ -129,11 +129,7 @@ public class TestGame extends JFrame {
 				try {
 					frame = new TestGame();
 					frame.setVisible(true);
-
-					frame.setFocusable(true); // 패널에 포커스 설정
 					frame.requestFocusInWindow();
-//                  frame.requestFocusInWindow();
-
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -169,7 +165,6 @@ public class TestGame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				Block pnl2 = createBlock();
 				pnl2.setBackground(Color.green);
-//				pnl2.setb`
 				add(pnl2);
 				revalidate(); // 레이아웃 재구성
 				repaint();
@@ -203,31 +198,17 @@ public class TestGame extends JFrame {
 				// 아래쪽
 				else if (e.getKeyCode() == 40) {
 					newY += 20;
-				} else if (e.getKeyCode() == 69) {
+				}
+				// 상호작용 E
+				else if (e.getKeyCode() == 69) {
 					interact();
 
 				}
-//                System.out.println(e.getKeyCode());
-				boolean isValidMove = true;
-				for (Block block : blocks) {
-					if (block.getXy().getX() == newX && block.getXy().getY() == newY) {
-						isValidMove = false;
-//						JPanel pnl = new JPanel();
-						System.out.println(block.getBackground());
-//						pnl.setBounds(block.getXy().getX(), block.getXy().getY(), 20, 20);
-//				        pnl.setBackground(Color.green);
-						((Block) block).setBackgroundColor(Color.blue);
-//						block.setBackground(Color.blue);
-//						add(pnl);
-						
-//                        block.setBackground(Color.black);
-//                        block.revalidate(); // 레이아웃 재구성
-//                        block.repaint();
-						return;
-					}
+				// 삭제 D
+				else if (e.getKeyCode() == 68) {
+					delete();
 				}
-
-				if (isValidMove) {
+				if (isValidMove(newX, newY)) {
 					pnl.setLocation(newX, newY);
 				}
 				revalidate(); // 레이아웃 재구성
@@ -235,6 +216,16 @@ public class TestGame extends JFrame {
 			}
 		};
 		return l;
+	}
+	
+	public boolean isValidMove(int newX, int newY) {
+		for (Block block : blocks) {
+			if (block.getXy().getX() == newX && block.getXy().getY() == newY) {
+				block.setBackgroundColor(Color.blue);
+				return false;
+			}
+		}
+		return true;
 	}
 
 	// 캐릭터와 가까운 블록을 찾는 메서드
@@ -264,35 +255,28 @@ public class TestGame extends JFrame {
 		return nearestBlock;
 	}
 
+	public void delete() {
+		Block nearestBlock = findNearestBlock();
+		nearestBlock.setInteracting(false);
+
+		if (nearestBlock != null) {
+			nearestBlock.setInteracting(true);
+			remove(nearestBlock);
+		}
+		System.out.println(nearestBlock.toString());
+		System.out.println(blocks.toString());
+	}
+
 	// 가장 가까운 블록이 존재하고 상호작용 상태를 변경
 	private void interact() {
 		// 캐릭터와 가장 가까운 블록을 찾음
 		Block nearestBlock = findNearestBlock();
-		// 가장 가까운 블록이 존재하고 상호작용 상태를 변경
-		if (nearestBlock != null) {
-			nearestBlock.setInteracting(!nearestBlock.isInteracting());
-			if (nearestBlock.isInteracting()) {
-				// 블록의 배경색을 파란색으로 변경
-//                	frame.setBackground(null);
-				nearestBlock.setBackground(Color.RED);
-//                    nearestBlock.setBackground(Color.BLUE);
-			} else {
-				// 블록의 배경색을 원래 색상으로 변경
-//                    nearestBlock.setBackground(Color.GREEN);
-			}
-		}
+		nearestBlock.setInteracting(false);
 
-//        blocks.remove(nearestBlock);
-//        remove(nearestBlock);
-//        if (nearestBlock != null) {
-//            blocks.remove(nearestBlock);
-//            remove(nearestBlock); // 블록 제거
-//            
-//            // 블록의 배경 색상을 원래 색상으로 변경
-////            nearestBlock.setBackground(null);
-//            
-//            revalidate(); // 레이아웃 재구성
-//            repaint();
+		if (nearestBlock != null) {
+			nearestBlock.setInteracting(true);
+			nearestBlock.setBackground(Color.RED);
+		}
 		System.out.println(nearestBlock.toString());
 		System.out.println(blocks.toString());
 	}
@@ -344,7 +328,7 @@ public class TestGame extends JFrame {
 		} else {
 			xy.setX((xy.getX() - remainderX));
 		}
-		int remainderY = (int) (xy.getY() % 20);
+		int remainderY = xy.getY() % 20;
 		if (remainderY >= 10) {
 			xy.setY((xy.getY() + (20 - remainderY)));
 		} else {
@@ -367,22 +351,16 @@ public class TestGame extends JFrame {
 //
 //		return new Block(blockXY);
 //	}
-	
+
 	private Block createBlock() {
-	    XY blockXY = new XY(xy.getX(), xy.getY());
-	    round20(blockXY);
+		XY blockXY = new XY(xy.getX(), xy.getY());
+		round20(blockXY);
 
-	    Block block = new Block(blockXY, Color.GREEN); // Block 객체 생성
-	    block.setBounds(blockXY.getX(), blockXY.getY(), 20, 20); // 위치 설정
+		Block block = new Block(blockXY); // Block 객체 생성
+		block.setBounds(blockXY.getX(), blockXY.getY(), 20, 20); // 위치 설정
 
-	    blocks.add(block); // 리스트에 추가
-	    return block; // 생성된 Block 객체 반환
-	}
-
-
-	private JPanel updateBlock(JPanel block) {
-		block.setBackground(Color.blue);
-		return block;
+		blocks.add(block); // 리스트에 추가
+		return block; // 생성된 Block 객체 반환
 	}
 
 	public JPanel createCharacter() {
