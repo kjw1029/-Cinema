@@ -144,6 +144,7 @@ public class TestGame extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 600);
 		setLayout(null);
+		
 
 		pnl = createCharacter();
 
@@ -219,6 +220,11 @@ public class TestGame extends JFrame {
 	}
 	
 	public boolean isValidMove(int newX, int newY) {
+		if (newX == getWidth() || newX < 0 || newY == getHeight() -100 || newY < 0) {
+			System.out.println();
+			return false;
+		}
+		
 		for (Block block : blocks) {
 			if (block.getXy().getX() == newX && block.getXy().getY() == newY) {
 				block.setBackgroundColor(Color.blue);
@@ -261,6 +267,7 @@ public class TestGame extends JFrame {
 
 		if (nearestBlock != null) {
 			nearestBlock.setInteracting(true);
+			blocks.remove(nearestBlock);
 			remove(nearestBlock);
 		}
 		System.out.println(nearestBlock.toString());
@@ -335,25 +342,9 @@ public class TestGame extends JFrame {
 			xy.setY((xy.getY() - remainderY));
 		}
 	}
-//
-//	private Block createBlock() {
-//		JPanel pnl = new JPanel();
-//		XY blockXY = new XY();
-//
-//		blockXY.setX(xy.getX());
-//		blockXY.setY(xy.getY());
-//		round20(blockXY);
-//
-//		pnl.setBounds(blockXY.getX(), blockXY.getY(), 20, 20);
-////        pnl.setBackground(Color.green);
-////		pnl.setBackground(Color.green);
-//		blocks.add(new Block(blockXY));
-//
-//		return new Block(blockXY);
-//	}
 
 	private Block createBlock() {
-		XY blockXY = new XY(xy.getX(), xy.getY());
+		XY blockXY = new XY(xy.getX()-10, xy.getY()-30);
 		round20(blockXY);
 
 		Block block = new Block(blockXY); // Block 객체 생성
