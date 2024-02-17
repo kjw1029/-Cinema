@@ -50,6 +50,14 @@ public class SignUp {
 	super();
 }
 
+	public String getPhoneNum() {
+		return phoneNum;
+	}
+
+	public void setPhoneNum(String phoneNum) {
+		this.phoneNum = phoneNum;
+	}
+
 	public String getID() {
 		return ID;
 	}

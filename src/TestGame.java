@@ -344,7 +344,7 @@ public class TestGame extends JFrame {
 	}
 
 	private Block createBlock() {
-		XY blockXY = new XY(xy.getX()-10, xy.getY()-30);
+		XY blockXY = new XY(xy.getX() - 10, xy.getY() - 30);
 		round20(blockXY);
 
 		Block block = new Block(blockXY); // Block 객체 생성

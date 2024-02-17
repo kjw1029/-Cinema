@@ -46,6 +46,7 @@ public class SignUpPanel extends JPanel {
 	private JFormattedTextField formattedTextField;
 
 	public SignUpPanel(SignUp s) {
+		UserDAO dao = new UserDAO();
 		SignUp ss = new SignUp();
 
 		JButton btnNewButton_2 = new JButton("이전");
@@ -92,14 +93,21 @@ public class SignUpPanel extends JPanel {
 		JButton btnNewButton = new JButton("중복확인");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (s.checkID(textField.getText()) && idDuplicateTest(textField.getText())) {
+//				if (s.checkID(textField.getText()) && idDuplicateTest(textField.getText())) {
+//					JOptionPane.showMessageDialog(SignUpPanel.this, "사용가능한 아이디입니다", "알림",
+//							JOptionPane.INFORMATION_MESSAGE);
+////
+//				} else {
+//					JOptionPane.showMessageDialog(SignUpPanel.this, "사용불가능한 아이디입니다", "알림",
+//							JOptionPane.INFORMATION_MESSAGE);
+//				}
+				if (MovieProgram.user.checkUserId(textField.getText())) {
+					JOptionPane.showMessageDialog(SignUpPanel.this, "사용불가능한 아이디입니다", "알림",
+							JOptionPane.INFORMATION_MESSAGE);
+				} else {
 					JOptionPane.showMessageDialog(SignUpPanel.this, "사용가능한 아이디입니다", "알림",
 							JOptionPane.INFORMATION_MESSAGE);
 					btnNewButton.setEnabled(false);
-
-				} else {
-					JOptionPane.showMessageDialog(SignUpPanel.this, "사용불가능한 아이디입니다", "알림",
-							JOptionPane.INFORMATION_MESSAGE);
 				}
 			}
 		});
@@ -215,9 +223,10 @@ public class SignUpPanel extends JPanel {
 				} else if (!s.checkPhoneNum(formattedTextField.getText())) {
 					JOptionPane.showMessageDialog(SignUpPanel.this, "전화번호확인", "알림", JOptionPane.INFORMATION_MESSAGE);
 
-				}
+				} 
 
 				else {
+					SignUp s = new SignUp();
 					List<String> signUpList = new ArrayList<String>(2);
 					// 아이디
 					signUpList.add(0, textField.getText());
@@ -227,9 +236,11 @@ public class SignUpPanel extends JPanel {
 					if (rdbtnNewRadioButton.isSelected()) {
 						System.out.println("m");
 						signUpList.add(2, rdbtnNewRadioButton.getText());
+						s.setGender("남성");
 					} else if (rdbtnNewRadioButton_1.isSelected()) {
 						System.out.println("f");
 						signUpList.add(2, rdbtnNewRadioButton_1.getText());
+						s.setGender("여성");
 					}
 					// 연령대
 					signUpList.add(3, comboBox.getSelectedItem().toString());
@@ -237,6 +248,18 @@ public class SignUpPanel extends JPanel {
 					signUpList.add(4, formattedTextField.getText());
 					MovieProgram.signUps.add(signUpList);
 
+					
+					
+					
+					s.setID(textField.getText());
+					s.setPassword(passwordField.getText());
+					
+					s.setAge(comboBox.getSelectedItem().toString());
+					s.setPhoneNum(formattedTextField.getText());
+//					List<SignUp> list = new ArrayList<SignUp>();
+//					MovieProgram.user.updateUser(s);
+					MovieProgram.user.createUser(s);
+					System.out.println(MovieProgram.user.list.toString());
 					// 가입완료 메시지
 					JOptionPane.showMessageDialog(SignUpPanel.this, "환영합니다!", "알림", JOptionPane.INFORMATION_MESSAGE);
 					SignUpPanel.this.setVisible(false);
@@ -253,16 +276,16 @@ public class SignUpPanel extends JPanel {
 	}
 
 	// 아이디 중복 확인
-	public boolean idDuplicateTest(String id) {
-		for (List<String> elem : MovieProgram.signUps) {
-			if (id.equals(elem.get(0))) {
-				System.out.println("아이디중복");
-				return false;
-			}
-		}
-		System.out.println("중복아님");
-		return true;
-	}
+//	public boolean idDuplicateTest(String id) {
+//		for (List<String> elem : MovieProgram.signUps) {
+//			if (id.equals(elem.get(0))) {
+//				System.out.println("아이디중복");
+//				return false;
+//			}
+//		}
+//		System.out.println("중복아님");
+//		return true;
+//	}
 
 	// 전화번호 형식 지정 (010-####-####)
 	private JFormattedTextField createPhoneNumberField() {

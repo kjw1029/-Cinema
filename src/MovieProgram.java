@@ -67,9 +67,11 @@ public class MovieProgram extends JFrame {
 	static JPanel pnlMain;
 	static MenubarPanel pnl;
 	private JPanel pnlM;
+	static UserDAO user = new UserDAO();
 
 	public MovieProgram() {
 		// 회원가입 목차 추가
+		user.createUser(new SignUp("admin", "1234", "관리자", "0세", "010-1234-1234"));
 		List<String> signUpTitles = Arrays.asList("아이디", "비밀번호", "성별", "연령대", "전화번호");
 		signUps.add(signUpTitles);
 
